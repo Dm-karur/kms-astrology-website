@@ -3,6 +3,7 @@ import { useLanguage } from "../context/LanguageContext";
 import { siteConfig } from "../config/siteConfig";
 import { BrandMotif } from "./SubtleKolam";
 import { Phone, MessageSquare, MapPin, Shield } from "lucide-react";
+import { SocialLinks } from "./SocialIcons";
 
 export const Footer = ({ onOpenPolicy, onSelectService }) => {
   const { t, isTamil } = useLanguage();
@@ -35,6 +36,12 @@ export const Footer = ({ onOpenPolicy, onSelectService }) => {
               <strong>{isTamil ? "சேவை வரம்பு:" : "Service Area:"}</strong>{" "}
               {isTamil ? siteConfig.astrologer.serviceAreaTa : siteConfig.astrologer.serviceArea}
             </p>
+            <div className="footer-social-brand">
+              <span className="footer-social-label">
+                {isTamil ? "எங்களைப் பின்தொடர:" : "Follow Us:"}
+              </span>
+              <SocialLinks iconSize={18} />
+            </div>
           </div>
 
           {/* Column 2: Quick Links */}
@@ -138,8 +145,8 @@ export const Footer = ({ onOpenPolicy, onSelectService }) => {
               <MapPin size={16} className="footer-contact-icon" aria-hidden="true" />
               <span>
                 {isTamil
-                  ? `${siteConfig.contact.stateTa} `
-                  : `${siteConfig.contact.city}, ${siteConfig.contact.state}`}
+                  ? siteConfig.contact.stateTa
+                  : (siteConfig.contact.city ? `${siteConfig.contact.city}, ` : "") + siteConfig.contact.state}
               </span>
             </div>
             <div style={{ marginTop: "1rem", fontSize: "0.8125rem", color: "var(--color-gold-light)" }}>
@@ -149,10 +156,14 @@ export const Footer = ({ onOpenPolicy, onSelectService }) => {
           </div>
         </div>
 
-        {/* Bottom Bar: Copyright & Policies */}
+        {/* Bottom Bar: Copyright, Social Icons & Policies */}
         <div className="footer-bottom-bar">
-          <div>
+          <div className="footer-copyright">
             © {currentYear} {isTamil ? siteConfig.brandNameTa : siteConfig.brandName}. {t.footer.allRights}
+          </div>
+
+          <div className="footer-bottom-socials">
+            <SocialLinks iconSize={18} />
           </div>
 
           <div className="footer-legal-links">

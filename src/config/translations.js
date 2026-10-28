@@ -170,7 +170,7 @@ export const translations = {
         {
           num: "Global",
           label: "International Trust",
-          sub: "India, Singapore, Malaysia, Sri Lanka & Vietnam",
+
         },
       ],
       ctaText: "Consult directly with Astrologer Subramani for personalized, degree-accurate astrological guidance.",
@@ -537,7 +537,7 @@ export const translations = {
         {
           num: "உலகளவில்",
           label: "நாடுகள் கடந்த நம்பிக்கை",
-          sub: "இந்தியா, சிங்கப்பூர், மலேசியா, இலங்கை மற்றும் வியட்நாம்",
+
         },
       ],
       ctaText: "ஜோதிடர் சுப்பிரமணி அவர்களிடம் உங்கள் தனிப்பட்ட ஜாதக ஆலோசனையைப் பெறுங்கள்.",
