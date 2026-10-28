@@ -12,16 +12,16 @@ export const siteConfig = {
 
   // Astrologer profile placeholders (editable by business owner)
   astrologer: {
-    name: "[ASTROLOGER NAME]",
-    nameTa: "[ஜோதிடர் பெயர்]",
+    name: "Astrologer Subramani",
+    nameTa: "ஜோதிடர் சுப்பிரமணி",
     title: "Vedic Astrology Consultant",
     titleTa: "வேத ஜோதிட ஆலோசகர்",
-    experience: "[28 YEARS OF EXPERIENCE]",
-    experienceTa: "[28 வருட அனுபவம்]",
-    location: "[ TAMIL NADU]",
-    locationTa: "[தமிழ்நாடு]",
-    serviceArea: "All districts across Tamil Nadu",
-    serviceAreaTa: "தமிழ்நாடு முழுவதும் உள்ள அனைத்து மாவட்டங்கள்",
+    experience: "28 Years of Dedicated Experience",
+    experienceTa: "28 ஆண்டுகால நீண்ட அனுபவம்",
+    location: "Karur, Amaravathi River, Tamil Nadu",
+    locationTa: "கரூர், அமராவதி ஆற்றங்கரை, தமிழ்நாடு",
+    serviceArea: "Tamil Nadu, India & Globally (Singapore, Malaysia, Sri Lanka, Vietnam)",
+    serviceAreaTa: "தமிழ்நாடு, இந்தியா & உலகளவில் (சிங்கப்பூர், மலேசியா, இலங்கை, வியட்நாம்)",
   },
 
   // Contact details placeholders

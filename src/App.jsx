@@ -13,6 +13,7 @@ import { NotFoundPage } from "./components/NotFoundPage";
 import { AdminPortal } from "./components/AdminPortal";
 import { WhatIsAstrology } from "./components/WhatIsAstrology";
 import { PurposeOfAstrology } from "./components/PurposeOfAstrology";
+import { UniqueJourney } from "./components/UniqueJourney";
 
 /**
  * Determines current client-side route
@@ -123,6 +124,8 @@ export function App() {
         <PurposeOfAstrology onBookConsultation={handleScrollToConsultation} />
         
         <WhyAstrology />
+        
+        <UniqueJourney onBookConsultation={handleScrollToConsultation} />
         
         <DedicatedCTA onBookConsultation={handleScrollToConsultation} />
         
