@@ -1,27 +1,26 @@
 import React from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { HelpCircle, AlertCircle } from "lucide-react";
+import { Compass, Clock, HeartHandshake, ShieldAlert, Sparkles, AlertCircle } from "lucide-react";
 import { GoldDivider } from "./SubtleKolam";
 
 export const WhyAstrology = () => {
   const { t } = useLanguage();
+  const data = t?.whyAstrology;
 
-  const blocks = [
-    {
-      num: "01",
-      title: t.whyAstrology.card1.title,
-      text: t.whyAstrology.card1.text,
-    },
-    {
-      num: "02",
-      title: t.whyAstrology.card2.title,
-      text: t.whyAstrology.card2.text,
-    },
-    {
-      num: "03",
-      title: t.whyAstrology.card3.title,
-      text: t.whyAstrology.card3.text,
-    },
+  if (!data) return null;
+
+  const cardIcons = [
+    <Compass key="compass" size={20} className="why-icon-svg" aria-hidden="true" />,
+    <Clock key="clock" size={20} className="why-icon-svg" aria-hidden="true" />,
+    <HeartHandshake key="rel" size={20} className="why-icon-svg" aria-hidden="true" />,
+    <ShieldAlert key="health" size={20} className="why-icon-svg" aria-hidden="true" />,
+    <Sparkles key="karma" size={20} className="why-icon-svg" aria-hidden="true" />,
+  ];
+
+  const cards = data.cards || [
+    { num: "01", title: data.card1?.title, text: data.card1?.text },
+    { num: "02", title: data.card2?.title, text: data.card2?.text },
+    { num: "03", title: data.card3?.title, text: data.card3?.text },
   ];
 
   return (
@@ -30,23 +29,27 @@ export const WhyAstrology = () => {
         {/* Section Header */}
         <div className="section-header">
           <div className="section-eyebrow">
-            <HelpCircle size={14} aria-hidden="true" />
-            <span>{t.whyAstrology.eyebrow}</span>
+            <span>{data.eyebrow}</span>
           </div>
           <h2 id="why-heading" className="section-title">
-            {t.whyAstrology.heading}
+            {data.heading}
           </h2>
           <GoldDivider />
           <p className="section-subtitle">
-            {t.whyAstrology.supporting}
+            {data.supporting}
           </p>
         </div>
 
-        {/* 3 Simple Clarity Blocks */}
+        {/* 5 Clarity Cards Grid */}
         <div className="why-grid">
-          {blocks.map((block) => (
-            <div key={block.num} className="why-card">
-              <div className="why-number">{block.num}</div>
+          {cards.map((block, idx) => (
+            <div key={block.num || idx} className="why-card">
+              <div className="why-card-top">
+                <span className="why-number">{block.num}</span>
+                <div className="why-card-icon-wrap" aria-hidden="true">
+                  {cardIcons[idx % cardIcons.length]}
+                </div>
+              </div>
               <h3 className="why-card-title">{block.title}</h3>
               <p className="why-card-text">{block.text}</p>
             </div>
@@ -59,9 +62,9 @@ export const WhyAstrology = () => {
             <AlertCircle size={18} style={{ color: "var(--color-gold)", flexShrink: 0, marginTop: "2px" }} aria-hidden="true" />
             <div>
               <strong style={{ display: "block", color: "var(--color-primary-dark)", marginBottom: "0.25rem", fontSize: "0.875rem" }}>
-                {t.whyAstrology.disclaimerTitle}
+                {data.disclaimerTitle}
               </strong>
-              <span>{t.whyAstrology.disclaimer}</span>
+              <span>{data.disclaimer}</span>
             </div>
           </div>
         </div>
@@ -69,3 +72,5 @@ export const WhyAstrology = () => {
     </section>
   );
 };
+
+export default WhyAstrology;

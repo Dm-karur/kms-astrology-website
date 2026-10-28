@@ -103,19 +103,46 @@ export const translations = {
     },
     whyAstrology: {
       eyebrow: "PERSPECTIVE & PURPOSE",
-      heading: "Why Do People Seek Astrological Guidance?",
-      supporting: "At important moments in life, people often look for a space to discuss their doubts, traditions, and personal concerns.",
+      heading: "Why Should We Consult Astrology?",
+      supporting: "Astrological guidance provides a trusted compass to understand your innate strengths, choose opportune times, nurture harmonious relationships, and attain peace of mind.",
+      cards: [
+        {
+          num: "01",
+          title: "To Understand Your Strengths and Weaknesses",
+          text: "Every individual has unique talents hidden within them. Astrology helps you gain a deeper understanding of your natural abilities, strengths, and weaknesses that you need to be cautious about through the interpretation of your horoscope chart.",
+        },
+        {
+          num: "02",
+          title: "To Choose the Right Time",
+          text: "“Knowing the right time to act is the first step towards success.” Before taking major steps in life, such as starting a new business, purchasing property, or building a house, astrological guidance helps you understand whether the time is favourable and choose the right moment to move forward.",
+        },
+        {
+          num: "03",
+          title: "To Understand Personal Relationships",
+          text: "Astrological insights help you avoid misunderstandings in relationships, not only in marriage but also with family members, business partners, and friends. They help you understand the other person's personality and characteristics, enabling you to live together in greater harmony.",
+        },
+        {
+          num: "04",
+          title: "Health and Lifestyle Precautions",
+          text: "Through the planetary positions in your horoscope, astrology helps you identify periods when you may need to pay extra attention to your physical health, allowing you to take appropriate precautionary measures and make necessary lifestyle changes in advance.",
+        },
+        {
+          num: "05",
+          title: "To Reduce the Effects of Karmic Influences",
+          text: "Astrology guides you in understanding the obstacles in life that may arise from past karma. Through simple spiritual remedies, charitable acts, and lifestyle changes, it helps you reduce the intensity of these effects and attain peace of mind.",
+        },
+      ],
       card1: {
-        title: "Understand Compatibility",
-        text: "Families may seek horoscope matching and guidance when discussing marriage proposals and compatibility.",
+        title: "To Understand Your Strengths and Weaknesses",
+        text: "Every individual has unique talents hidden within them. Astrology helps you gain a deeper understanding of your natural abilities, strengths, and weaknesses that you need to be cautious about through the interpretation of your horoscope chart.",
       },
       card2: {
-        title: "Gain Perspective on Education",
-        text: "Students and parents may seek guidance while discussing educational interests, academic choices, and future plans.",
+        title: "To Choose the Right Time",
+        text: "“Knowing the right time to act is the first step towards success.” Before taking major steps in life, such as starting a new business, purchasing property, or building a house, astrological guidance helps you understand whether the time is favourable and choose the right moment to move forward.",
       },
       card3: {
-        title: "Reflect on Business Plans",
-        text: "Business owners may seek a traditional astrological perspective when considering important business plans or professional changes.",
+        title: "To Understand Personal Relationships",
+        text: "Astrological insights help you avoid misunderstandings in relationships, not only in marriage but also with family members, business partners, and friends. They help you understand the other person's personality and characteristics, enabling you to live together in greater harmony.",
       },
       disclaimerTitle: "Responsible Guidance Note",
       disclaimer: "Astrology is a traditional belief-based practice. Consultations provide personal guidance and should not replace professional medical, educational, legal, or financial advice.",
@@ -372,20 +399,47 @@ export const translations = {
       ctaButton: "ஆலோசனை பெறுக",
     },
     whyAstrology: {
-      eyebrow: "நோக்கமும் முக்கியத்துவமும்",
-      heading: "ஏன் ஜோதிட ஆலோசனையை நாடுகிறார்கள்?",
-      supporting: "வாழ்க்கையின் முக்கியமான தருணங்களில், பலர் தங்கள் சந்தேகங்கள், பாரம்பரிய நம்பிக்கைகள் மற்றும் தனிப்பட்ட கவலைகளைப் பற்றி பேச வழிகாட்டுதலை நாடுகிறார்கள்.",
+      eyebrow: "நோக்கமும் நன்மைகளும்",
+      heading: "நாம் ஏன் ஜோதிடத்தைப் பார்க்க வேண்டும்?",
+      supporting: "நமது சுய பலங்களை அறியவும், சரியான நேரத்தைத் தேர்ந்தெடுக்கவும், உறவுகளில் இணக்கம் காணவும், மன அமைதி பெறவும் ஜோதிடம் ஒப்பற்ற வழிகாட்டியாக விளங்குகிறது.",
+      cards: [
+        {
+          num: "01",
+          title: "உங்களின் சுய பலம் மற்றும் பலவீனங்களை அறிய",
+          text: "ஒவ்வொரு மனிதருக்குள்ளும் ஏதேனும் ஒரு தனித்துவமான திறமை மறைந்திருக்கும். உங்கள் ஜாதகக் கட்டங்கள் வழியாக உங்களின் இயல்பான திறமைகள், பலங்கள் மற்றும் நீங்கள் எச்சரிக்கையாக இருக்க வேண்டிய பலவீனங்களை ஆழமாகப் புரிந்து கொள்ள ஜோதிடம் உதவுகிறது.",
+        },
+        {
+          num: "02",
+          title: "சரியான நேரத்தைத் தேர்ந்தெடுக்க",
+          text: "“காலம் அறிந்து செயல்படுவது வெற்றிக்கான முதல் படி.” புதிய தொழில் தொடங்குவது, சொத்துக்கள் வாங்குவது, வீடு கட்டுவது போன்ற வாழ்வின் பெரிய அடிகளை எடுத்து வைக்கும் முன், காலம் நமக்குச் சாதகமாக இருக்கிறதா என்பதை அறிந்து சரியான நேரத்தில் செயல்பட ஜோதிட வழிகாட்டுதல் அவசியமாகிறது.",
+        },
+        {
+          num: "03",
+          title: "தனிப்பட்ட உறவுகளின் புரிதலுக்கு",
+          text: "திருமணம் மட்டுமின்றி, குடும்ப உறுப்பினர்கள், வியாபாரக் கூட்டாளிகள் மற்றும் நண்பர்களுடனான உறவில் ஏற்படும் மனஸ்தாபங்களைத் தவிர்க்கவும், எதிராளியின் குண நலன்களைப் புரிந்து கொண்டு இணக்கமாக வாழவும் ஜோதிடப் பார்வைகள் உதவுகின்றன.",
+        },
+        {
+          num: "04",
+          title: "ஆரோக்கியம் மற்றும் வாழ்வியல் எச்சரிக்கை",
+          text: "ஜாதகத்தில் உள்ள கிரக நிலைகளின் மூலம் எந்தக் காலக்கட்டத்தில் உடல் ஆரோக்கியத்தில் கூடுதல் கவனம் செலுத்த வேண்டும் என்பதை முன்கூட்டியே அறிந்து, தகுந்த முன்னெச்சரிக்கை நடவடிக்கைகளையும் வாழ்வியல் மாற்றங்களையும் மேற்கொள்ள முடியும்.",
+        },
+        {
+          num: "05",
+          title: "கர்ம வினைகளின் தாக்கத்தைக் குறைக்க",
+          text: "கடந்த கால வினைகளால் வாழ்வில் ஏற்படும் தடைகளை உணர்ந்து, எளிய ஆன்மீகப் பரிகாரங்கள், தானங்கள் மற்றும் வாழ்வியல் மாற்றங்கள் மூலம் அந்தப் பாதிப்புகளின் தீவிரத்தைக் குறைத்து மன அமைதியைப் பெற ஜோதிடம் வழிகாட்டுகிறது.",
+        },
+      ],
       card1: {
-        title: "திருமணப் பொருத்தத்தைப் புரிந்துகொள்ளுங்கள்",
-        text: "திருமண வரன் பார்க்கும் போது, ஜாதகப் பொருத்தம் மற்றும் இருவரின் இணக்கம் குறித்து பல குடும்பங்கள் ஆலோசனை பெற விரும்புகிறார்கள்.",
+        title: "உங்களின் சுய பலம் மற்றும் பலவீனங்களை அறிய",
+        text: "ஒவ்வொரு மனிதருக்குள்ளும் ஏதேனும் ஒரு தனித்துவமான திறமை மறைந்திருக்கும். உங்கள் ஜாதகக் கட்டங்கள் வழியாக உங்களின் இயல்பான திறமைகள், பலங்கள் மற்றும் நீங்கள் எச்சரிக்கையாக இருக்க வேண்டிய பலவீனங்களை ஆழமாகப் புரிந்து கொள்ள ஜோதிடம் உதவுகிறது.",
       },
       card2: {
-        title: "கல்வி முடிவுகளில் தெளிவு பெறுங்கள்",
-        text: "மாணவர்களின் கல்வி ஆர்வம், படிப்புத் தேர்வுகள் மற்றும் எதிர்காலத் திட்டங்கள் குறித்து மாணவர்களும் பெற்றோர்களும் ஆலோசனை பெற விரும்பலாம்.",
+        title: "சரியான நேரத்தைத் தேர்ந்தெடுக்க",
+        text: "“காலம் அறிந்து செயல்படுவது வெற்றிக்கான முதல் படி.” புதிய தொழில் தொடங்குவது, சொத்துக்கள் வாங்குவது, வீடு கட்டுவது போன்ற வாழ்வின் பெரிய அடிகளை எடுத்து வைக்கும் முன், காலம் நமக்குச் சாதகமாக இருக்கிறதா என்பதை அறிந்து சரியான நேரத்தில் செயல்பட ஜோதிட வழிகாட்டுதல் அவசியமாகிறது.",
       },
       card3: {
-        title: "தொழில் திட்டங்களைப் பற்றி ஆலோசிக்குங்கள்",
-        text: "முக்கியமான தொழில் திட்டங்கள் அல்லது தொழில் மாற்றங்களைப் பற்றி யோசிக்கும் போது, சிலர் பாரம்பரிய ஜோதிடக் கண்ணோட்டத்தில் ஆலோசனை பெற விரும்புகிறார்கள்.",
+        title: "தனிப்பட்ட உறவுகளின் புரிதலுக்கு",
+        text: "திருமணம் மட்டுமின்றி, குடும்ப உறுப்பினர்கள், வியாபாரக் கூட்டாளிகள் மற்றும் நண்பர்களுடனான உறவில் ஏற்படும் மனஸ்தாபங்களைத் தவிர்க்கவும், எதிராளியின் குண நலன்களைப் புரிந்து கொண்டு இணக்கமாக வாழவும் ஜோதிடப் பார்வைகள் உதவுகின்றன.",
       },
       disclaimerTitle: "பொறுப்பான வழிகாட்டுதல் குறிப்பு",
       disclaimer: "ஜோதிடம் என்பது பாரம்பரிய நம்பிக்கைகளை அடிப்படையாகக் கொண்ட ஒரு நடைமுறை. ஜோதிட ஆலோசனை, மருத்துவம், கல்வி, சட்டம் அல்லது நிதி சார்ந்த நிபுணர் ஆலோசனைக்கு மாற்றாகாது.",

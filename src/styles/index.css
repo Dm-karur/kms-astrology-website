@@ -1224,40 +1224,131 @@ html[lang="ta"] .purpose-cta-text {
 /* Why Astrology Section */
 .why-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: var(--space-xl);
   margin-bottom: var(--space-3xl);
 }
+
 .why-card {
+  grid-column: span 2;
   background: var(--color-surface-white);
   border: 1px solid var(--color-border);
-  padding: var(--space-xl);
-  border-radius: 4px;
+  padding: 2rem 1.75rem;
+  border-radius: 8px;
   box-shadow: var(--shadow-subtle);
   position: relative;
+  display: flex;
+  flex-direction: column;
   transition: all var(--transition-normal);
 }
+
 .why-card:hover {
   border-color: var(--color-gold);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card);
 }
+
+/* On desktop, center cards 4 & 5 gracefully */
+.why-card:nth-child(4) {
+  grid-column: 2 / span 2;
+}
+
+.why-card:nth-child(5) {
+  grid-column: 4 / span 2;
+}
+
+.why-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+}
+
 .why-number {
   font-family: var(--font-heading-en);
-  font-size: 2.25rem;
+  font-size: 2rem;
   font-weight: 700;
-  color: var(--color-gold-light);
+  color: var(--color-gold);
   line-height: 1;
-  margin-bottom: var(--space-sm);
 }
+
+.why-card-icon-wrap {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--color-gold-subtle);
+  color: var(--color-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(176, 138, 80, 0.25);
+  transition: all var(--transition-fast);
+}
+
+.why-card:hover .why-card-icon-wrap {
+  background: var(--color-primary-dark);
+  color: #FFFFFF;
+}
+
 .why-card-title {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   color: var(--color-primary-dark);
-  margin-bottom: var(--space-sm);
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  line-height: 1.35;
 }
+
 .why-card-text {
   font-size: 0.9375rem;
   color: var(--color-text-muted);
   line-height: 1.7;
+  font-weight: 400;
+}
+
+html[lang="ta"] .why-card-title {
+  font-family: var(--font-heading-ta);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+html[lang="ta"] .why-card-text {
+  font-family: 'Noto Sans Tamil', var(--font-body-ta);
+  font-size: 0.8875rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+@media (max-width: 1024px) {
+  .why-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .why-card {
+    grid-column: span 1;
+  }
+  .why-card:nth-child(4) {
+    grid-column: span 1;
+  }
+  .why-card:nth-child(5) {
+    grid-column: span 2;
+    max-width: 540px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 680px) {
+  .why-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+  .why-card,
+  .why-card:nth-child(4),
+  .why-card:nth-child(5) {
+    grid-column: span 1;
+    max-width: 100%;
+  }
 }
 
 /* Responsible Guidance Disclaimer Box */
