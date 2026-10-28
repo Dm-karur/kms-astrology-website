@@ -882,19 +882,21 @@ html[lang="ta"] .brand-title {
 
 .what-is-main-paragraph {
   font-family: var(--font-heading-en);
-  font-size: clamp(1.15rem, 1.35vw + 0.45rem, 1.35rem);
+  font-size: clamp(1.1rem, 1.25vw + 0.4rem, 1.25rem);
   line-height: 1.85;
-  color: var(--color-primary-dark);
-  font-weight: 500;
+  color: var(--color-text-muted);
+  font-weight: 400;
   text-align: center;
   margin: 0;
 }
 
 html[lang="ta"] .what-is-main-paragraph {
-  font-family: var(--font-body-ta);
-  font-size: clamp(1.05rem, 1.25vw + 0.4rem, 1.2rem);
-  line-height: 1.95;
-  font-weight: 500;
+  font-family: 'Noto Sans Tamil', var(--font-body-ta);
+  font-size: clamp(0.975rem, 1.1vw + 0.35rem, 1.1rem);
+  line-height: 1.85;
+  color: var(--color-text-muted);
+  font-weight: 400;
+  letter-spacing: normal;
 }
 
 /* 3 Pillars Grid */
@@ -979,6 +981,28 @@ html[lang="ta"] .what-is-main-paragraph {
   padding: 0.65rem 1.35rem;
   font-size: 0.875rem;
   min-height: 42px;
+}
+
+html[lang="ta"] .what-is-pillar-title {
+  font-family: var(--font-heading-ta);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+html[lang="ta"] .what-is-pillar-desc {
+  font-family: 'Noto Sans Tamil', var(--font-body-ta);
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+html[lang="ta"] .what-is-cta-text {
+  font-family: var(--font-body-ta);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.5;
 }
 
 /* Responsive adjustments */

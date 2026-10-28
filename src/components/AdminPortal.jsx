@@ -434,7 +434,7 @@ export const AdminPortal = () => {
           <div className="admin-metric-card">
             <div className="admin-metric-header">
               <span className="admin-metric-label">மொத்தக் கோரிக்கைகள்</span>
-              <Sparkles size={18} className="admin-metric-icon gold" />
+
             </div>
             <span className="admin-metric-number">{stats.total}</span>
             <span className="admin-metric-sub">வரப்பெற்ற அனைத்து பதிவுகள்</span>
@@ -602,10 +602,9 @@ export const AdminPortal = () => {
           {filteredLeads.map((item) => {
             const cleanDigits = item.normalizedDigits || item.mobileNumber?.replace(/\D/g, "");
             const waGreeting = encodeURIComponent(
-              `வணக்கம் ${item.fullName}! KMS ஜோதிடத்தில் நீங்கள் பதிவு செய்த ${
-                item.consultationCategory === "marriage"
-                  ? "திருமண"
-                  : item.consultationCategory === "education"
+              `வணக்கம் ${item.fullName}! KMS ஜோதிடத்தில் நீங்கள் பதிவு செய்த ${item.consultationCategory === "marriage"
+                ? "திருமண"
+                : item.consultationCategory === "education"
                   ? "கல்வி"
                   : "தொழில்"
               } ஜோதிட ஆலோசனைக் கோரிக்கை (எண்: ${item.leadId}) தொடர்பாக தொடர்பு கொள்கிறோம்.`
@@ -621,8 +620,8 @@ export const AdminPortal = () => {
                       {item.consultationCategory === "marriage"
                         ? "திருமண ஜோதிடம்"
                         : item.consultationCategory === "education"
-                        ? "கல்வி ஜோதிடம்"
-                        : "தொழில் ஜோதிடம்"}
+                          ? "கல்வி ஜோதிடம்"
+                          : "தொழில் ஜோதிடம்"}
                     </span>
                   </div>
 
@@ -654,12 +653,12 @@ export const AdminPortal = () => {
                       <span>
                         {item.submissionTimestamp
                           ? new Date(item.submissionTimestamp).toLocaleString("ta-IN", {
-                              day: "numeric",
-                              month: "short",
-                              year: "numeric",
-                              hour: "2-digit",
-                              minute: "2-digit",
-                            })
+                            day: "numeric",
+                            month: "short",
+                            year: "numeric",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          })
                           : "இன்று"}
                       </span>
                       <span className="admin-contact-pref">

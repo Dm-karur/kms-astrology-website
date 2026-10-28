@@ -19,7 +19,7 @@ export const WhatIsAstrology = ({ onBookConsultation }) => {
         {/* Section Header */}
         <div className="section-header">
           <div className="section-eyebrow">
-            <Sparkles size={15} aria-hidden="true" />
+
             <span>{data.eyebrow}</span>
           </div>
           <h2 id="what-is-heading" className="section-title">
