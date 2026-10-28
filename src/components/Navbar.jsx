@@ -90,9 +90,7 @@ export const Navbar = ({ onOpenConsultation }) => {
             <span className="brand-title">
               {isTamil ? siteConfig.brandNameTa : siteConfig.brandName}
             </span>
-            <span className="brand-subtitle">
-              {isTamil ? "பாரம்பரிய ஜோதிடம்" : "Vedic Astrology"}
-            </span>
+
           </div>
         </a>
 

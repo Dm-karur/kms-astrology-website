@@ -15,7 +15,7 @@ export const AstrologerIntro = ({ onBookConsultation }) => {
           <div className="about-image-card">
             <div className="about-image-inner">
               <img
-                src="/images/astrologer-space.jpg"
+                src="/images/Astrologer-image.webp"
                 alt={t.about.imageAlt}
                 width="600"
                 height="800"

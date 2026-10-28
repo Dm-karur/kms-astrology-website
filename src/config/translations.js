@@ -18,7 +18,7 @@ export const translations = {
       closeMenu: "Close navigation menu",
     },
     hero: {
-      eyebrow: "TRADITIONAL ASTROLOGY • PERSONAL GUIDANCE",
+
       headline: "Guranteed Sucess of Your Life Events ",
       supporting: "Marriage, education, or business — receive personalised astrological guidance to help you reflect on your path and make informed decisions with greater clarity.",
       primaryCta: "Book a Consultation",
@@ -27,7 +27,7 @@ export const translations = {
     },
     about: {
       eyebrow: "ABOUT OUR APPROACH",
-      heading: "Guidance Rooted in Tradition, Focused on Your Concerns",
+      heading: "Guidance that Transforms Your Life",
       p1: "Every person faces important decisions at different stages of life. Our approach focuses on listening to your concerns, understanding your questions, and offering personalised astrological guidance in a respectful and approachable manner.",
       p2: "Whether you are exploring marriage compatibility, education-related questions, or business decisions, every consultation is an opportunity to discuss your concerns with care and clarity.",
       cta: "Know Your Astrologer",
@@ -257,7 +257,7 @@ export const translations = {
     },
     about: {
       eyebrow: "எங்கள் அணுகுமுறை",
-      heading: "பாரம்பரியத்தில் வேரூன்றி, உங்கள் கவலைகளுக்கு வழிகாட்டுதல்",
+      heading: "வழிகாட்டுதலுடன் உங்கள் வாழ்க்கையை மாற்றுங்கள்",
       p1: "வாழ்க்கையின் ஒவ்வொரு கட்டத்திலும் நாம் பல முக்கிய முடிவுகளை எதிர்கொள்கிறோம். உங்கள் கேள்விகளைக் கவனமாகக் கேட்டு, உங்கள் சூழ்நிலையைப் புரிந்துகொண்டு, எளிமையாகவும் மரியாதையுடனும் தனிப்பட்ட ஜோதிட வழிகாட்டுதலை வழங்குவதே எங்கள் அணுகுமுறை.",
       p2: "திருமணப் பொருத்தம், கல்வி தொடர்பான கேள்விகள் அல்லது தொழில் சார்ந்த முடிவுகள் என எதுவாக இருந்தாலும், உங்கள் கவலைகளைப் பகிர்ந்து தெளிவு பெற ஆலோசனை உதவும்.",
       cta: "ஜோதிடரைப் பற்றி அறிய",

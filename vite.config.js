@@ -10,8 +10,11 @@ export default defineConfig({
       registerType: 'autoUpdate',
       injectRegister: 'auto',
       includeAssets: [
+        'favicon.ico',
+        'favicon.webp',
         'favicon.svg',
         'icons.svg',
+        'images/favicon-kms-astro.webp',
         'pwa-192x192.png',
         'pwa-512x512.png',
         'pwa-maskable-512x512.png',

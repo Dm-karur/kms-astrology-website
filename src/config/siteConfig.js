@@ -7,8 +7,8 @@
 export const siteConfig = {
   brandName: "KMS Astrology",
   brandNameTa: "KMS ஜோதிடம்",
-  tagline: "Traditional Astrology • Personal Guidance",
-  taglineTa: "பாரம்பரிய ஜோதிடம் • தனிப்பட்ட வழிகாட்டுதல்",
+  tagline: "• Personal Guidance",
+  taglineTa: " • தனிப்பட்ட வழிகாட்டுதல்",
 
   // Astrologer profile placeholders (editable by business owner)
   astrologer: {
@@ -16,10 +16,10 @@ export const siteConfig = {
     nameTa: "[ஜோதிடர் பெயர்]",
     title: "Vedic Astrology Consultant",
     titleTa: "வேத ஜோதிட ஆலோசகர்",
-    experience: "[VERIFIED YEARS OF EXPERIENCE]",
-    experienceTa: "[சரிபார்க்கப்பட்ட அனுபவம்]",
-    location: "[Karur, TAMIL NADU]",
-    locationTa: "[கரூர், தமிழ்நாடு]",
+    experience: "[28 YEARS OF EXPERIENCE]",
+    experienceTa: "[28 வருட அனுபவம்]",
+    location: "[ TAMIL NADU]",
+    locationTa: "[தமிழ்நாடு]",
     serviceArea: "All districts across Tamil Nadu",
     serviceAreaTa: "தமிழ்நாடு முழுவதும் உள்ள அனைத்து மாவட்டங்கள்",
   },
@@ -31,9 +31,9 @@ export const siteConfig = {
     displayPhone: "+91 98400 XXXXX",
     displayWhatsApp: "+91 98400 XXXXX",
     email: "consultation@kmsastrology.com",
-    city: "Karur",
+    city: "",
     state: "Tamil Nadu",
-    cityTa: "கரூர்",
+    cityTa: "",
     stateTa: "தமிழ்நாடு",
   },
 

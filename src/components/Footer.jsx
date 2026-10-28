@@ -138,7 +138,7 @@ export const Footer = ({ onOpenPolicy, onSelectService }) => {
               <MapPin size={16} className="footer-contact-icon" aria-hidden="true" />
               <span>
                 {isTamil
-                  ? `${siteConfig.contact.cityTa}, ${siteConfig.contact.stateTa}`
+                  ? `${siteConfig.contact.stateTa} `
                   : `${siteConfig.contact.city}, ${siteConfig.contact.state}`}
               </span>
             </div>

@@ -18,9 +18,6 @@ export const HeroSection = ({ onBookConsultation }) => {
         <div className="hero-grid">
           {/* Left Column: Text & CTAs */}
           <div className="hero-content">
-            <div className="hero-eyebrow">
-              <span>{t.hero.eyebrow}</span>
-            </div>
 
             <h1 id="hero-heading" className="hero-headline">
               {t.hero.headline}

@@ -13,7 +13,7 @@ export const ServicesSection = ({ onSelectService }) => {
       title: t.services.marriage.title,
       description: t.services.marriage.description,
       cta: t.services.marriage.cta,
-      image: "/images/Marrige%20Astrology.webp",
+      image: "/images/marrige-image.webp",
       alt: t.services.marriage.alt,
     },
     {
@@ -31,7 +31,7 @@ export const ServicesSection = ({ onSelectService }) => {
       title: t.services.business.title,
       description: t.services.business.description,
       cta: t.services.business.cta,
-      image: "/images/Business%20Astrology.webp",
+      image: "/images/Business-image.webp",
       alt: t.services.business.alt,
     },
   ];
