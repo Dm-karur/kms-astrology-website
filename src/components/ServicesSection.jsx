@@ -57,7 +57,7 @@ export const ServicesSection = ({ onSelectService }) => {
         {/* 3 Premium Service Cards */}
         <div className="services-grid">
           {services.map((service) => (
-            <article key={service.id} className="service-card">
+            <article key={service.id} className={`service-card service-card-${service.id}`}>
               <div className="service-image-box">
                 <img
                   src={service.image}
@@ -65,6 +65,7 @@ export const ServicesSection = ({ onSelectService }) => {
                   width="600"
                   height="450"
                   loading="lazy"
+                  className={`service-card-img service-img-${service.id}`}
                 />
               </div>
 

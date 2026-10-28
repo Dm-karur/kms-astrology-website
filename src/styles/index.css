@@ -764,6 +764,11 @@ html[lang="ta"] .brand-title {
   object-fit: cover;
   transition: transform var(--transition-smooth);
 }
+/* Ensure the person in the vertical Business portrait has their full head and face visible */
+.service-card-business .service-image-box img,
+.service-img-business {
+  object-position: center 8%;
+}
 .service-card:hover .service-image-box img {
   transform: scale(1.04);
 }
