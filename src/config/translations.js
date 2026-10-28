@@ -61,6 +61,25 @@ export const translations = {
         alt: "Refined traditional business consultation desk with antique armillary sphere and plans",
       },
     },
+    whatIsAstrology: {
+      eyebrow: "COSMIC HARMONY & ASTRONOMICAL SCIENCE",
+      heading: "What is Astrology?",
+      mainQuote: "Astrology is not a concept founded on mere luck or arbitrary guesswork. It is a scientifically rooted spiritual science that illuminates the profound connection between the cosmos and human life. At the precise moment a person takes their very first breath on Earth, the unique alignment of the nine planets and constellations—the Cosmic Map—determines the blueprint of their life journey. Astrology is an incomparable astronomical mathematical discipline that reveals how the movement of the five primordial elements and the radiant energies of the celestial bodies reflect upon our thoughts, emotions, and life transitions.",
+      pillars: [
+        {
+          title: "Not Luck, but Astronomical Mathematics",
+          desc: "Rooted in exact celestial coordinates, planetary cycles, and mathematical calculations rather than arbitrary speculation.",
+        },
+        {
+          title: "The Cosmic Map of Birth",
+          desc: "The celestial snapshot of the nine planets (Navagrahas) and constellations at the exact moment of birth shapes one's life blueprint.",
+        },
+        {
+          title: "The Five Elements & Radiant Energies",
+          desc: "The movement of the Panchabhutas and cosmic planetary radiations subtly reflecting across our thoughts, emotions, and life transitions.",
+        },
+      ],
+    },
     whyAstrology: {
       eyebrow: "PERSPECTIVE & PURPOSE",
       heading: "Why Do People Seek Astrological Guidance?",
@@ -290,6 +309,25 @@ export const translations = {
         cta: "தொழில் ஆலோசனை பெற",
         alt: "பாரம்பரிய தொழில் மேசை மற்றும் திசைகாட்டி",
       },
+    },
+    whatIsAstrology: {
+      eyebrow: "பிரபஞ்ச அறிவியலும் ஆன்மீகக் கலையும்",
+      heading: "ஜோதிடம் என்றால் என்ன?",
+      mainQuote: "ஜோதிடம் என்பது ஏதோ அதிர்ஷ்டத்தையோ அல்லது வெறும் ஊகங்களையோ அடிப்படையாகக் கொண்ட கருத்து அல்ல. இது நம் பிரபஞ்சத்திற்கும் மனித வாழ்விற்கும் இடையே உள்ள ஆழமான தொடர்பை விளக்கும் அறிவியல் பூர்வமான ஆன்மீகக் கலையாகும். ஒரு மனிதன் பூமியில் முதன்முதலில் மூச்சு எடுக்கும் அந்தத் துல்லியமான கணத்தில், பிரபஞ்சத்தில் ஒன்பது கோள்களும் நட்சத்திரங்களும் நின்றிருக்கும் நிலையை (Cosmic Map) அடிப்படையாகக் கொண்டே அவனது வாழ்வியல் அமைப்பு தீர்மானிக்கப்படுகிறது. பஞ்சபூதங்களின் இயக்கமும், கோள்களின் கதிர்வீச்சுகளும் நமது எண்ணங்கள், உணர்வுகள் மற்றும் வாழ்வின் திருப்பங்களில் பிரதிபலிக்கின்றன என்பதை உணர்த்தும் ஒப்பற்ற வானியல் கணிதமே ஜோதிடம்.",
+      pillars: [
+        {
+          title: "அதிர்ஷ்டமல்ல, வானியல் கணிதம்",
+          desc: "வெறும் ஊகங்களோ அல்லது கண்மூடித்தனமான அதிர்ஷ்டமோ அல்லாமல், துல்லியமான கோள்களின் சுழற்சியைக் கணக்கிடும் உன்னதக் கணிதவியல்.",
+        },
+        {
+          title: "பிரபஞ்ச வரைபடம் (Cosmic Map)",
+          desc: "மனிதன் மூச்செடுக்கும் முதல் கணத்தில், ஒன்பது கோள்களும் நட்சத்திரங்களும் நின்றிருக்கும் நிலையே வாழ்வின் வரைபடமாக அமைகிறது.",
+        },
+        {
+          title: "பஞ்சபூத இயக்கமும் கதிர்வீச்சுகளும்",
+          desc: "ஐம்பூதங்களின் இயக்கமும் கோள்களின் கதிர்வீச்சுகளும் நமது எண்ணங்கள், உணர்வுகள் மற்றும் வாழ்வின் திருப்பங்களில் பிரதிபலிக்கின்றன.",
+        },
+      ],
     },
     whyAstrology: {
       eyebrow: "நோக்கமும் முக்கியத்துவமும்",

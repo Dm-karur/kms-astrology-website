@@ -11,6 +11,7 @@ import { Footer } from "./components/Footer";
 import { PolicyModal } from "./components/PolicyModal";
 import { NotFoundPage } from "./components/NotFoundPage";
 import { AdminPortal } from "./components/AdminPortal";
+import { WhatIsAstrology } from "./components/WhatIsAstrology";
 
 /**
  * Determines current client-side route
@@ -115,6 +116,8 @@ export function App() {
         <AstrologerIntro onBookConsultation={handleScrollToConsultation} />
         
         <ServicesSection onSelectService={handleSelectService} />
+        
+        <WhatIsAstrology onBookConsultation={handleScrollToConsultation} />
         
         <WhyAstrology />
         

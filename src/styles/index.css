@@ -817,6 +817,185 @@ html[lang="ta"] .brand-title {
   border-color: var(--color-primary-dark);
 }
 
+/* ==========================================================================
+   WHAT IS ASTROLOGY SECTION
+   ========================================================================== */
+.what-is-section {
+  padding: var(--space-4xl) 0;
+  background: linear-gradient(180deg, #F9F5EE 0%, var(--color-bg-warm) 100%);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.what-is-master-card {
+  position: relative;
+  background: var(--color-surface-white);
+  border: 1px solid rgba(176, 138, 80, 0.35);
+  border-radius: 12px;
+  padding: 3rem 3.5rem;
+  box-shadow: 0 12px 36px rgba(56, 37, 29, 0.07);
+  overflow: hidden;
+  margin-bottom: var(--space-2xl);
+}
+
+.what-is-master-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary-dark), var(--color-gold), var(--color-primary-dark));
+}
+
+.what-is-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--color-gold);
+  opacity: 0.045;
+  pointer-events: none;
+}
+
+.what-is-quote-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background-color: var(--color-gold-subtle);
+  color: var(--color-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem auto;
+  border: 1px solid rgba(176, 138, 80, 0.25);
+}
+
+.what-is-text-content {
+  position: relative;
+  z-index: 2;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.what-is-main-paragraph {
+  font-family: var(--font-heading-en);
+  font-size: clamp(1.15rem, 1.35vw + 0.45rem, 1.35rem);
+  line-height: 1.85;
+  color: var(--color-primary-dark);
+  font-weight: 500;
+  text-align: center;
+  margin: 0;
+}
+
+html[lang="ta"] .what-is-main-paragraph {
+  font-family: var(--font-body-ta);
+  font-size: clamp(1.05rem, 1.25vw + 0.4rem, 1.2rem);
+  line-height: 1.95;
+  font-weight: 500;
+}
+
+/* 3 Pillars Grid */
+.what-is-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.what-is-pillar-card {
+  background: var(--color-surface-white);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: var(--shadow-subtle);
+  transition: all var(--transition-normal);
+}
+
+.what-is-pillar-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-gold);
+  box-shadow: var(--shadow-card);
+}
+
+.what-is-pillar-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--color-gold-subtle);
+  color: var(--color-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(176, 138, 80, 0.25);
+  transition: all var(--transition-fast);
+}
+
+.what-is-pillar-card:hover .what-is-pillar-icon-wrap {
+  background: var(--color-primary-dark);
+  color: #FFFFFF;
+}
+
+.what-is-pillar-title {
+  font-size: 1.15rem;
+  color: var(--color-primary-dark);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.what-is-pillar-desc {
+  font-size: 0.8875rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* Bottom CTA Strip */
+.what-is-cta-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  background: var(--color-bg-beige);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1.15rem 1.75rem;
+}
+
+.what-is-cta-text {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+}
+
+.what-is-cta-btn {
+  padding: 0.65rem 1.35rem;
+  font-size: 0.875rem;
+  min-height: 42px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .what-is-master-card {
+    padding: 2rem 1.5rem;
+  }
+  .what-is-pillars-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+  .what-is-cta-strip {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
 /* Why Astrology Section */
 .why-grid {
   display: grid;
