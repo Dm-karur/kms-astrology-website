@@ -1020,6 +1020,207 @@ html[lang="ta"] .what-is-cta-text {
   }
 }
 
+/* ==========================================================================
+   PURPOSE OF ASTROLOGY SECTION (ஜோதிடம் எதற்காக உருவாக்கப்பட்டுள்ளது?)
+   ========================================================================== */
+.purpose-section {
+  padding: var(--space-4xl) 0;
+  background: linear-gradient(180deg, var(--color-bg-warm) 0%, #F3EDE3 100%);
+  border-bottom: 1px solid var(--color-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.purpose-master-card {
+  position: relative;
+  background: var(--color-surface-white);
+  border: 1px solid rgba(176, 138, 80, 0.35);
+  border-radius: 12px;
+  padding: 3rem 3.5rem;
+  box-shadow: 0 12px 36px rgba(56, 37, 29, 0.07);
+  overflow: hidden;
+  margin-bottom: var(--space-2xl);
+}
+
+.purpose-master-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-gold), var(--color-primary-dark), var(--color-gold));
+}
+
+.purpose-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--color-gold);
+  opacity: 0.045;
+  pointer-events: none;
+}
+
+.purpose-quote-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background-color: var(--color-gold-subtle);
+  color: var(--color-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem auto;
+  border: 1px solid rgba(176, 138, 80, 0.25);
+}
+
+.purpose-text-content {
+  position: relative;
+  z-index: 2;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.purpose-main-paragraph {
+  font-family: var(--font-body-en);
+  font-size: clamp(1.05rem, 1.2vw + 0.35rem, 1.15rem);
+  line-height: 1.85;
+  color: var(--color-text-muted);
+  font-weight: 400;
+  text-align: center;
+  margin: 0;
+}
+
+html[lang="ta"] .purpose-main-paragraph {
+  font-family: 'Noto Sans Tamil', var(--font-body-ta);
+  font-size: clamp(0.975rem, 1.1vw + 0.35rem, 1.1rem);
+  line-height: 1.85;
+  color: var(--color-text-muted);
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+/* 3 Pillars Grid */
+.purpose-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.purpose-pillar-card {
+  background: var(--color-surface-white);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: var(--shadow-subtle);
+  transition: all var(--transition-normal);
+}
+
+.purpose-pillar-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-gold);
+  box-shadow: var(--shadow-card);
+}
+
+.purpose-pillar-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--color-gold-subtle);
+  color: var(--color-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(176, 138, 80, 0.25);
+  transition: all var(--transition-fast);
+}
+
+.purpose-pillar-card:hover .purpose-pillar-icon-wrap {
+  background: var(--color-primary-dark);
+  color: #FFFFFF;
+}
+
+.purpose-pillar-title {
+  font-size: 1.15rem;
+  color: var(--color-primary-dark);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.purpose-pillar-desc {
+  font-size: 0.8875rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* Bottom CTA Strip */
+.purpose-cta-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  background: var(--color-bg-beige);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1.15rem 1.75rem;
+}
+
+.purpose-cta-text {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+}
+
+.purpose-cta-btn {
+  padding: 0.65rem 1.35rem;
+  font-size: 0.875rem;
+  min-height: 42px;
+}
+
+html[lang="ta"] .purpose-pillar-title {
+  font-family: var(--font-heading-ta);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+html[lang="ta"] .purpose-pillar-desc {
+  font-family: 'Noto Sans Tamil', var(--font-body-ta);
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+html[lang="ta"] .purpose-cta-text {
+  font-family: var(--font-body-ta);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .purpose-master-card {
+    padding: 2rem 1.5rem;
+  }
+  .purpose-pillars-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+  .purpose-cta-strip {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
 /* Why Astrology Section */
 .why-grid {
   display: grid;

@@ -80,6 +80,27 @@ export const translations = {
         },
       ],
     },
+    purposeOfAstrology: {
+      eyebrow: "ANCIENT WISDOM & SACRED PURPOSE",
+      heading: "Why Was Astrology Created?",
+      mainQuote: "Ancient Maharishis and Siddhars bestowed this sacred art of astrology upon humanity so that mankind would not languish in ignorance and perplexity. It was created as a guiding light to prevent the suffering that comes from acting against the laws of nature and the cosmos, and to help us live in harmony with universal cosmic energies. Astrology serves as a trusted compass—helping an individual comprehend their true birth purpose, awaken their hidden inner potentials, and navigate life's inevitable ebbs and flows with foresight, vigilance, and wisdom.",
+      pillars: [
+        {
+          title: "Blessing of the Sages",
+          desc: "Gifted by enlightened Maharishis and Siddhars to illuminate the human path and overcome ignorance and inner confusion.",
+        },
+        {
+          title: "Harmony with Cosmic Laws",
+          desc: "Guiding individuals to live in resonance with nature and celestial forces rather than suffering against universal laws.",
+        },
+        {
+          title: "A Compass for Life's Journey",
+          desc: "Revealing your birth purpose, awakening latent inner gifts, and navigating life's turning points with foresight and clarity.",
+        },
+      ],
+      ctaText: "Discover your true birth purpose and cosmic direction through personalised guidance.",
+      ctaButton: "Book a Consultation",
+    },
     whyAstrology: {
       eyebrow: "PERSPECTIVE & PURPOSE",
       heading: "Why Do People Seek Astrological Guidance?",
@@ -328,6 +349,27 @@ export const translations = {
           desc: "ஐம்பூதங்களின் இயக்கமும் கோள்களின் கதிர்வீச்சுகளும் நமது எண்ணங்கள், உணர்வுகள் மற்றும் வாழ்வின் திருப்பங்களில் பிரதிபலிக்கின்றன.",
         },
       ],
+    },
+    purposeOfAstrology: {
+      eyebrow: "ஞானியரின் வழிகாட்டல்",
+      heading: "ஜோதிடம் எதற்காக உருவாக்கப்பட்டுள்ளது?",
+      mainQuote: "பண்டைய காலத்து மகரிஷிகளும் சித்தர்களும் மனித குலம் அறியாமையிலும் குழப்பத்திலும் தவிக்கக் கூடாது என்பதற்காகவே இந்த ஜோதிடக் கலையை அருளினார்கள். இயற்கை மற்றும் பிரபஞ்ச விதிகளுக்கு மாறாகப் பயணித்துத் துன்பப்படுவதைத் தவிர்த்து, பிரபஞ்ச ஆற்றலோடு இசைந்து வாழ்வதற்கான வழிகாட்டியாக இது உருவாக்கப்பட்டது. ஒரு மனிதன் தன் பிறந்த நோக்கத்தைப் புரிந்து கொள்ளவும், அவனுக்குள் இருக்கும் மறைமுக ஆற்றல்களை வெளிக்கொணரவும், வாழ்வின் ஏற்ற இறக்கங்களை முன்கூட்டியே அறிந்து எச்சரிக்கையுடன் செயல்படவும் உதவும் ஒரு திசைகாட்டியாக ஜோதிடம் திகழ்கிறது.",
+      pillars: [
+        {
+          title: "மகரிஷிகள் மற்றும் சித்தர்களின் அருள்",
+          desc: "மனித குலம் அறியாமையிலும் குழப்பத்திலும் தவிக்காமல் நல்வழியில் பயணிக்க ஞானியர் அருளிய ஒப்பற்ற ஆன்மீகக் கொடை.",
+        },
+        {
+          title: "இயற்கையோடு இசைந்த வாழ்வியல்",
+          desc: "இயற்கை மற்றும் பிரபஞ்ச விதிகளுக்கு மாறாகச் செல்லாமல், பேரண்ட ஆற்றலோடு ஒன்றிணைந்து வாழ வழிகாட்டுகிறது.",
+        },
+        {
+          title: "வாழ்வின் வழிகாட்டும் திசைகாட்டி",
+          desc: "பிறந்த நோக்கத்தை உணர்ந்து, உள்ளிருக்கும் மறைமுக ஆற்றல்களை வெளிக்கொணர்ந்து, ஏற்ற இறக்கங்களை விவேகத்துடன் எதிர்கொள்ள உதவுகிறது.",
+        },
+      ],
+      ctaText: "உங்கள் பிறந்த நோக்கத்தையும் வாழ்வின் திசையையும் ஜோதிட வழிகாட்டலில் அறிந்துகொள்ளுங்கள்.",
+      ctaButton: "ஆலோசனை பெறுக",
     },
     whyAstrology: {
       eyebrow: "நோக்கமும் முக்கியத்துவமும்",
