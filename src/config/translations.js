@@ -60,6 +60,9 @@ export const translations = {
         cta: "Enquire About Business",
         alt: "Refined traditional business consultation desk with antique armillary sphere and plans",
       },
+      pricingMarriageBusiness: "Marriage and Business Astrology - ₹10,000",
+      pricingEducation: "Education Astrology - ₹5,000",
+      pricingText: "Marriage and Business Astrology - ₹10,000 • Education Astrology - ₹5,000",
     },
     whatIsAstrology: {
       eyebrow: "COSMIC HARMONY & ASTRONOMICAL SCIENCE",
@@ -424,6 +427,9 @@ export const translations = {
         cta: "தொழில் ஆலோசனை பெற",
         alt: "பாரம்பரிய தொழில் மேசை மற்றும் திசைகாட்டி",
       },
+      pricingMarriageBusiness: "திருமணம் மற்றும் தொழில் ஜோதிடம் - ₹10,000",
+      pricingEducation: "கல்வி ஜோதிடம் - ₹5,000",
+      pricingText: "திருமணம் மற்றும் தொழில் ஜோதிடம் - ₹10,000 • கல்வி ஜோதிடம் - ₹5,000",
     },
     whatIsAstrology: {
       eyebrow: "பிரபஞ்ச அறிவியலும் ஆன்மீகக் கலையும்",

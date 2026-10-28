@@ -817,6 +817,58 @@ html[lang="ta"] .brand-title {
   border-color: var(--color-primary-dark);
 }
 
+/* Services Section Pricing One-Liner */
+.services-pricing-wrapper {
+  margin-top: var(--space-2xl);
+  text-align: center;
+  padding: 0 var(--space-md);
+}
+
+.services-pricing-text {
+  font-family: var(--font-body-en);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  font-weight: 400;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.85rem;
+  margin: 0 auto;
+}
+
+html[lang="ta"] .services-pricing-text {
+  font-family: 'Noto Sans Tamil', var(--font-body-ta);
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.pricing-item {
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.pricing-divider {
+  color: var(--color-text-muted);
+  font-weight: 400;
+  user-select: none;
+}
+
+@media (max-width: 680px) {
+  .services-pricing-wrapper {
+    margin-top: var(--space-xl);
+  }
+  .services-pricing-text {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .pricing-divider {
+    display: none;
+  }
+}
+
 /* ==========================================================================
    WHAT IS ASTROLOGY SECTION
    ========================================================================== */

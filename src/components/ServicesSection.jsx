@@ -87,6 +87,17 @@ export const ServicesSection = ({ onSelectService }) => {
             </article>
           ))}
         </div>
+
+        {/* Services Pricing One-Liner */}
+        {(t.services?.pricingText || t.services?.pricingMarriageBusiness) && (
+          <div className="services-pricing-wrapper">
+            <p className="services-pricing-text">
+              <span className="pricing-item">{t.services.pricingMarriageBusiness || "Marriage and Business Astrology - ₹10,000"}</span>
+              <span className="pricing-divider" aria-hidden="true">•</span>
+              <span className="pricing-item">{t.services.pricingEducation || "Education Astrology - ₹5,000"}</span>
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );
