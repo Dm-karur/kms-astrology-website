@@ -14,6 +14,7 @@ import { AdminPortal } from "./components/AdminPortal";
 import { WhatIsAstrology } from "./components/WhatIsAstrology";
 import { PurposeOfAstrology } from "./components/PurposeOfAstrology";
 import { UniqueJourney } from "./components/UniqueJourney";
+import { AstrologerSpecialties } from "./components/AstrologerSpecialties";
 
 /**
  * Determines current client-side route
@@ -126,6 +127,8 @@ export function App() {
         <WhyAstrology />
         
         <UniqueJourney onBookConsultation={handleScrollToConsultation} />
+        
+        <AstrologerSpecialties onBookConsultation={handleScrollToConsultation} />
         
         <DedicatedCTA onBookConsultation={handleScrollToConsultation} />
         

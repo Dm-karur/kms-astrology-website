@@ -173,6 +173,47 @@ export const translations = {
       ctaText: "Consult directly with Astrologer Subramani for personalized, degree-accurate astrological guidance.",
       ctaButton: "Book a Consultation",
     },
+    specialties: {
+      eyebrow: "DISTINCTIVE MASTERY & SPECIALITIES",
+      heading: "Specialties of Astrologer Subramani",
+      subtitle: "Unmatched predictive accuracy, extraordinary marriage compatibility methodology, and dedicated in-person and global consultation services.",
+      items: [
+        {
+          num: "01",
+          tag: "Career & Business",
+          title: "Accurate Career and Business Predictions",
+          text: "He accurately predicts which profession an individual should pursue, based on their horoscope, to reach the pinnacle of success. He also clearly explains the possibilities of success and failure associated with starting new businesses, expanding existing businesses, and entering the field of politics.",
+        },
+        {
+          num: "02",
+          tag: "Signature Speciality",
+          title: "Remarkable and Unparalleled Marriage Compatibility",
+          text: "The greatest and most distinctive speciality of KMS Astrology is its method of marriage compatibility analysis! When looking for a suitable marriage alliance, providing only the bride’s horoscope is sufficient. He accurately presents the prospective groom’s horoscope and explains what his personality and background will be like.\n\nSimilarly, by providing only the groom’s horoscope, he vividly portrays the horoscope configuration of the woman who is likely to become his life partner, explaining what she will be like. Through this remarkable approach, he continues to amaze many people.",
+        },
+        {
+          num: "03",
+          tag: "Education & Future",
+          title: "Future Educational Guidance for Children",
+          text: "To help children build a bright future, he accurately predicts which field of study they should choose and supports parents in making the right decisions about their children’s education.",
+        },
+      ],
+      modesHeading: "Direct and Online Consultation Services",
+      modesSubtitle: "Flexible, respectful, and confidential consultation channels tailored to your convenience.",
+      modes: [
+        {
+          title: "Direct In-Person Visits at Your Residence",
+          badge: "Highest Accuracy",
+          text: "Clients have personally experienced that the accuracy of predictions increases significantly when he visits them in person at their place of residence and provides astrological readings.",
+        },
+        {
+          title: "Phone Call & Global Online Consultations",
+          badge: "Pan-India & International",
+          text: "Similarly, for those living abroad and in other cities, Astrologer Subramani obtains their date of birth, place of birth, and time of birth and provides detailed explanations and clear guidance on all their questions through phone calls.",
+        },
+      ],
+      ctaText: "Consult directly with Astrologer Subramani for in-person or phone consultation.",
+      ctaButton: "Book a Consultation",
+    },
     ctaSection: {
       heading: "Have Questions About Your Next Step?",
       supporting: "Share your concern and request a personalised consultation in Tamil or English.",
@@ -494,6 +535,47 @@ export const translations = {
         },
       ],
       ctaText: "ஜோதிடர் சுப்பிரமணி அவர்களிடம் உங்கள் தனிப்பட்ட ஜாதக ஆலோசனையைப் பெறுங்கள்.",
+      ctaButton: "ஆலோசனை பெறுக",
+    },
+    specialties: {
+      eyebrow: "தனித்துவமான ஜோதிட ஆற்றல்",
+      heading: "ஜோதிடர் சுப்பிரமணி அவர்களின் முதன்மையான சிறப்பம்சங்கள்",
+      subtitle: "துல்லியமான தொழில் கணிப்பு, வியக்க வைக்கும் திருமணப் பொருத்த முறை மற்றும் நேரடி, ஆன்லைன் ஆலோசனை சேவைகள்.",
+      items: [
+        {
+          num: "01",
+          tag: "தொழில் & வியாபாரம்",
+          title: "துல்லியமான தொழில் & வியாபாரக் கணிப்பு",
+          text: "ஒரு ஜாதகர் தனது ஜாதகப் பூர்வமாக எந்தத் தொழிலை மேற்கொண்டால் உச்சத்தைத் தொடுவார் என்பதைத் துல்லியமாகக் கணித்துக் கொடுக்கிறார். புதிய வியாபாரங்களைத் தொடங்குதல், தொழில் விரிவாக்கம் செய்தல் மற்றும் அரசியல் துறையில் கால்பதிப்பது பற்றியும், அதில் கிடைக்கும் வெற்றி-தோல்வி வாய்ப்புகளையும் மிகத் தெளிவாக விளக்குகிறார்.",
+        },
+        {
+          num: "02",
+          tag: "முதன்மையான தனித்துவம்",
+          title: "வியக்க வைக்கும் இணையற்ற திருமணப் பொருத்தம்",
+          text: "KMS ஜோதிடத்தின் ஆகச்சிறந்த தனித்துவமே இவரின் திருமணப் பொருத்த முறைதான்! திருமண வரன் பார்க்கும்போது, பெண்ணின் ஜாதகத்தை மட்டும் கொடுத்தால் போதும்—\"வரப்போகும் மாப்பிள்ளையின் ஜாதகம், குணம் மற்றும் பின்னணி இப்படித்தான் இருக்கும்\" என்று மாப்பிள்ளை ஜாதகத்தையே துல்லியமாகப் போட்டுக்கொடுத்து விடுவார். அதேபோல், மாப்பிள்ளையின் ஜாதகத்தை மட்டும் கொடுத்தால், \"அவருக்கு அமையப்போகும் பெண் இப்படித்தான் இருப்பார்\" என்று பெண்ணின் ஜாதக அமைப்பை அப்படியே படம்பிடித்துக் காட்டி பலரையும் வியப்பில் ஆழ்த்தி வருகிறார்.",
+        },
+        {
+          num: "03",
+          tag: "கல்வி & எதிர்காலம்",
+          title: "குழந்தைகளுக்கான வருங்காலக் கல்வி வழிகாட்டுதல்",
+          text: "குழந்தைகளின் எதிர்காலம் சிறப்பாக அமைய, அவர்கள் எந்தத் துறையைச் சார்ந்த படிப்பைத் தேர்ந்தெடுக்க வேண்டும் என்பதைத் துல்லியமாகக் கணித்து, பெற்றோர் சரியான முடிவெடுக்க உறுதுணையாக இருக்கிறார்.",
+        },
+      ],
+      modesHeading: "நேரடி & ஆன்லைன் ஆலோசனை சேவைகள்",
+      modesSubtitle: "உங்கள் வசதிக்கேற்ப இல்லம் தேடி வரும் நேரடி ஆலோசனை மற்றும் தொலைபேசி வழிகாட்டல் சேவைகள்.",
+      modes: [
+        {
+          title: "இருப்பிடத்திற்கே நேரில் வரும் சேவை",
+          badge: "அதிகபட்ச துல்லியம்",
+          text: "ஜாதகர்களின் இருப்பிடத்திற்கே நேரில் சென்று பலன்களைக் கூறும் போது கணிப்புகளின் அக்யூரசி பன்மடங்கு அதிகரிப்பதை வாடிக்கையாளர்கள் அனுபவப்பூர்வமாக உணர்ந்துள்ளனர்.",
+        },
+        {
+          title: "தொலைபேசி (Phone Call) மற்றும் வெளிநாட்டுச் சேவை",
+          badge: "இந்தியா & வெளிநாடுகள்",
+          text: "வெளிநாடு மற்றும் வெளியூர்களில் வாழும் அன்பர்களுக்காக, பிறந்த தேதி, பிறந்த ஊர் மற்றும் பிறந்த நேரம் ஆகிய விவரங்களைப் பெற்றுக் கொண்டு, போன் கால் (Phone Call) மூலமாகவே அவர்களின் அனைத்துக் கேள்விகளுக்கும் விரிவான விளக்கங்களையும் தெளிவான வழிகாட்டுதலையும் ஜோதிடர் சுப்பிரமணி வழங்கி வருகிறார்.",
+        },
+      ],
+      ctaText: "ஜோதிடர் சுப்பிரமணி அவர்களின் நேரடி அல்லது தொலைபேசி ஆலோசனையைப் பெற முன்பதிவு செய்யுங்கள்.",
       ctaButton: "ஆலோசனை பெறுக",
     },
     ctaSection: {
