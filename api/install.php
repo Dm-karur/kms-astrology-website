@@ -8,17 +8,10 @@ require_once __DIR__ . '/config/cors.php';
 require_once __DIR__ . '/config/db.php';
 
 try {
-    // 1. Connect to MySQL server without selecting database first
-    $rootPdo = getDBConnection(false);
-
-    // 2. Create database if it does not exist
-    $dbName = DB_NAME;
-    $rootPdo->exec("CREATE DATABASE IF NOT EXISTS `$dbName` DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_unicode_ci");
-
-    // 3. Connect to the created database
+    // 1. Connect directly to the configured database (Hostinger users already create DB in hPanel)
     $pdo = getDBConnection(true);
 
-    // 4. Create kms_admins table
+    // 2. Create kms_admins table
     $pdo->exec("
         CREATE TABLE IF NOT EXISTS `kms_admins` (
             `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
