@@ -5,6 +5,8 @@
 
 // Allow cross-origin requests from frontend dev servers & production domains
 $allowedOrigins = [
+    'https://kmsastrology.in',
+    'https://www.kmsastrology.in',
     'http://localhost:5173',
     'http://localhost:5174',
     'http://localhost:3000',
