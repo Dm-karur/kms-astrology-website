@@ -68,7 +68,7 @@ export const SocialLinks = ({ className = "", iconSize = 18 }) => {
   return (
     <div className={`footer-social-links ${className}`} aria-label="Social media profiles">
       <a
-        href={siteConfig.socials?.youtube || "https://www.youtube.com"}
+        href={siteConfig.socials?.youtube || "https://www.youtube.com/@kmsastrology001"}
         target="_blank"
         rel="noopener noreferrer"
         className="footer-social-btn social-youtube"

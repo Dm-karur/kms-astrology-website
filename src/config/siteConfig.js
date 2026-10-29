@@ -39,7 +39,7 @@ export const siteConfig = {
 
   // Official Social Media Profiles
   socials: {
-    youtube: "https://www.youtube.com/@kmsastrology",
+    youtube: "https://www.youtube.com/@kmsastrology001",
     instagram: "https://www.instagram.com/kmsastrology",
     whatsapp: "https://wa.me/?text=Hello%20KMS%20Astrology,%20I%20would%20like%20to%20enquire%20about%20a%20consultation",
   },
