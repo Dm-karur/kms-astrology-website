@@ -1,0 +1,35 @@
+# ==============================================================================
+# KMS ASTROLOGY - APACHE / CPANEL / HOSTINGER CONFIGURATION
+# Enables React SPA Routing, PWA Offline Service Workers, and PHP API Passthrough
+# ==============================================================================
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # 1. Do not rewrite direct calls to the PHP API
+  RewriteRule ^api/ - [L]
+
+  # 2. Allow existing static files & directories (images, icons, manifest, sw.js)
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # 3. Handle /admin and all client-side routes via index.html
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Correct MIME Types for PWA
+<IfModule mod_mime.c>
+  AddType application/manifest+json .webmanifest
+  AddType application/javascript .js .mjs
+  AddType image/webp .webp
+  AddType image/svg+xml .svg
+</IfModule>
+
+# Cache-Control for Service Worker & Manifest
+<IfModule mod_headers.c>
+  <FilesMatch "(sw\.js|registerSW\.js|manifest\.webmanifest)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </FilesMatch>
+</IfModule>

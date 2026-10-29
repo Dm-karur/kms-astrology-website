@@ -191,10 +191,21 @@ export async function submitConsultationLead(formData) {
       }
 
       const serverData = await response.json();
+      const savedLead = serverData.lead || leadPayload;
+
+      // Cache locally as offline backup
+      try {
+        const existing = JSON.parse(localStorage.getItem(LEADS_STORAGE_KEY) || "[]");
+        existing.unshift(savedLead);
+        localStorage.setItem(LEADS_STORAGE_KEY, JSON.stringify(existing.slice(0, 100)));
+      } catch (e) {
+        console.warn("Local storage cache warning:", e);
+      }
+
       return {
         success: true,
         source: "backend-api",
-        lead: serverData.lead || leadPayload,
+        lead: savedLead,
       };
     } catch (networkError) {
       console.warn("Backend API unavailable, saving securely:", networkError);
@@ -352,4 +363,132 @@ export function exportLeadsToCSV(leads) {
   link.click();
   document.body.removeChild(link);
   URL.revokeObjectURL(url);
+}
+
+// ==============================================================================
+// PHP & MYSQL BACKEND INTEGRATION APIS
+// ==============================================================================
+
+/**
+ * Admin Login via PHP / MySQL API
+ */
+export async function adminLoginAPI(username, password) {
+  try {
+    const res = await fetch(`${siteConfig.api.baseUrl}/auth/login.php`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+    return await res.json();
+  } catch (err) {
+    console.warn("Backend API not reachable (using offline fallback):", err);
+    return null;
+  }
+}
+
+/**
+ * Fetches consultation leads from MySQL Database via PHP API
+ */
+export async function fetchLeadsFromAPI(token = "", filters = {}) {
+  try {
+    const params = new URLSearchParams();
+    if (filters.status && filters.status !== "all") params.append("status", filters.status);
+    if (filters.category && filters.category !== "all") params.append("category", filters.category);
+    if (filters.search) params.append("search", filters.search);
+
+    const queryStr = params.toString() ? `?${params.toString()}` : "";
+    const res = await fetch(`${siteConfig.api.baseUrl}/leads/list.php${queryStr}`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        Authorization: token ? `Bearer ${token}` : "",
+      },
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      if (data.success && Array.isArray(data.leads)) {
+        // Sync local cache
+        localStorage.setItem(LEADS_STORAGE_KEY, JSON.stringify(data.leads));
+        return {
+          success: true,
+          leads: data.leads,
+          stats: data.stats,
+          source: "mysql-database",
+        };
+      }
+    }
+  } catch (err) {
+    console.warn("MySQL backend unreachable, serving from local vault:", err);
+  }
+
+  // Graceful offline fallback
+  return {
+    success: true,
+    leads: getStoredLeads(),
+    source: "local-vault",
+  };
+}
+
+/**
+ * Updates lead status in MySQL Database
+ */
+export async function updateLeadStatusAPI(leadId, newStatus, token = "") {
+  // Update local cache immediately
+  const localLeads = updateLeadStatus(leadId, newStatus);
+  try {
+    await fetch(`${siteConfig.api.baseUrl}/leads/update.php`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token ? `Bearer ${token}` : "",
+      },
+      body: JSON.stringify({ leadId, status: newStatus }),
+    });
+  } catch (err) {
+    console.warn("Network error during status update, saved locally:", err);
+  }
+  return localLeads;
+}
+
+/**
+ * Updates lead notes in MySQL Database
+ */
+export async function updateLeadNotesAPI(leadId, notes, token = "") {
+  // Update local cache immediately
+  const localLeads = updateLeadNotes(leadId, notes);
+  try {
+    await fetch(`${siteConfig.api.baseUrl}/leads/update.php`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token ? `Bearer ${token}` : "",
+      },
+      body: JSON.stringify({ leadId, notes }),
+    });
+  } catch (err) {
+    console.warn("Network error during notes update, saved locally:", err);
+  }
+  return localLeads;
+}
+
+/**
+ * Deletes a lead in MySQL Database
+ */
+export async function deleteLeadAPI(leadId, token = "") {
+  // Delete from local cache immediately
+  const localLeads = deleteLead(leadId);
+  try {
+    await fetch(`${siteConfig.api.baseUrl}/leads/delete.php`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token ? `Bearer ${token}` : "",
+      },
+      body: JSON.stringify({ leadId }),
+    });
+  } catch (err) {
+    console.warn("Network error during delete, removed locally:", err);
+  }
+  return localLeads;
 }

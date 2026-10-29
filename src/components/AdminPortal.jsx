@@ -5,6 +5,11 @@ import {
   updateLeadNotes,
   deleteLead,
   exportLeadsToCSV,
+  adminLoginAPI,
+  fetchLeadsFromAPI,
+  updateLeadStatusAPI,
+  updateLeadNotesAPI,
+  deleteLeadAPI,
 } from "../services/leadService";
 import { BrandMotif } from "./SubtleKolam";
 import {
@@ -30,6 +35,7 @@ import {
 } from "lucide-react";
 
 const ADMIN_STORAGE_KEY = "kms_admin_authenticated_session";
+const ADMIN_TOKEN_KEY = "kms_admin_token";
 const DEFAULT_USER = "admin";
 const DEFAULT_PASS = "kmsastro@2026";
 
@@ -43,10 +49,20 @@ export const AdminPortal = () => {
     }
   });
 
+  const [token, setToken] = useState(() => {
+    try {
+      return localStorage.getItem(ADMIN_TOKEN_KEY) || "";
+    } catch {
+      return "";
+    }
+  });
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState("");
+  const [dataSource, setDataSource] = useState("local"); // 'mysql' | 'local'
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   // Leads & filters state
   const [leads, setLeads] = useState(() => {
@@ -103,19 +119,31 @@ export const AdminPortal = () => {
     };
   }, []);
 
-  // Load leads from storage
-  const loadLeadsData = () => {
-    const data = getStoredLeads();
-    setLeads(data);
-    const initialNotes = {};
-    data.forEach((l) => {
-      initialNotes[l.leadId] = l.notes || "";
-    });
-    setEditingNotes(initialNotes);
+  // Load leads from MySQL Database or Storage
+  const loadLeadsData = async (activeToken = token) => {
+    setIsRefreshing(true);
+    const result = await fetchLeadsFromAPI(activeToken);
+    if (result && Array.isArray(result.leads)) {
+      setLeads(result.leads);
+      setDataSource(result.source === "mysql-database" ? "mysql" : "local");
+      const initialNotes = {};
+      result.leads.forEach((l) => {
+        initialNotes[l.leadId] = l.notes || "";
+      });
+      setEditingNotes(initialNotes);
+    }
+    setIsRefreshing(false);
   };
 
+  // Initial fetch on mount if authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      loadLeadsData();
+    }
+  }, [isAuthenticated]);
+
   // Handle Login
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setLoginError("");
 
@@ -127,6 +155,27 @@ export const AdminPortal = () => {
       return;
     }
 
+    // 1. Attempt authentication with PHP & MySQL backend
+    const apiResult = await adminLoginAPI(cleanUser, cleanPass);
+    if (apiResult && apiResult.success) {
+      const newToken = apiResult.token || "";
+      setToken(newToken);
+      try {
+        localStorage.setItem(ADMIN_TOKEN_KEY, newToken);
+        localStorage.setItem(ADMIN_STORAGE_KEY, "true");
+      } catch (err) {
+        console.error("Storage error", err);
+      }
+      setIsAuthenticated(true);
+      loadLeadsData(newToken);
+      setLoginError("");
+      return;
+    } else if (apiResult && !apiResult.success && apiResult.error === "INVALID_CREDENTIALS") {
+      setLoginError(apiResult.message || "தவறான பயனர் பெயர் அல்லது கடவுச்சொல். மீண்டும் முயற்சிக்கவும்.");
+      return;
+    }
+
+    // 2. Offline fallback if PHP server is not currently running
     if (cleanUser === DEFAULT_USER && cleanPass === DEFAULT_PASS) {
       try {
         localStorage.setItem(ADMIN_STORAGE_KEY, "true");
@@ -145,10 +194,12 @@ export const AdminPortal = () => {
   const handleLogout = () => {
     try {
       localStorage.removeItem(ADMIN_STORAGE_KEY);
+      localStorage.removeItem(ADMIN_TOKEN_KEY);
     } catch (err) {
       console.error(err);
     }
     setIsAuthenticated(false);
+    setToken("");
     setUsername("");
     setPassword("");
   };
@@ -171,16 +222,16 @@ export const AdminPortal = () => {
   };
 
   // Handle status update
-  const handleStatusChange = (leadId, newStatus) => {
-    const updated = updateLeadStatus(leadId, newStatus);
-    setLeads(updated);
+  const handleStatusChange = async (leadId, newStatus) => {
+    const updated = await updateLeadStatusAPI(leadId, newStatus, token);
+    setLeads([...updated]);
   };
 
   // Handle note save
-  const handleSaveNotes = (leadId) => {
+  const handleSaveNotes = async (leadId) => {
     const noteText = editingNotes[leadId] || "";
-    const updated = updateLeadNotes(leadId, noteText);
-    setLeads(updated);
+    const updated = await updateLeadNotesAPI(leadId, noteText, token);
+    setLeads([...updated]);
     setSavedNoteFeedback((prev) => ({ ...prev, [leadId]: true }));
     setTimeout(() => {
       setSavedNoteFeedback((prev) => ({ ...prev, [leadId]: false }));
@@ -188,9 +239,9 @@ export const AdminPortal = () => {
   };
 
   // Handle delete
-  const handleDeleteConfirm = (leadId) => {
-    const updated = deleteLead(leadId);
-    setLeads(updated);
+  const handleDeleteConfirm = async (leadId) => {
+    const updated = await deleteLeadAPI(leadId, token);
+    setLeads([...updated]);
     setDeleteConfirmId(null);
   };
 
@@ -349,11 +400,34 @@ export const AdminPortal = () => {
             </div>
             <div>
               <h1 className="admin-header-title">KMS ஜோதிடம்</h1>
-              <span className="admin-header-badge">நிர்வாகி போர்டல்</span>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginTop: "2px" }}>
+                <span className="admin-header-badge">நிர்வாகி போர்டல்</span>
+                {dataSource === "mysql" ? (
+                  <span className="admin-db-badge connected" title="MySQL தரவுத்தளத்துடன் இணைக்கப்பட்டுள்ளது">
+                    ● MySQL தரவுத்தளம்
+                  </span>
+                ) : (
+                  <span className="admin-db-badge offline" title="உள்ளூர் சேமிப்பகம் (Local Storage)">
+                    ● உள்ளூர் சேமிப்பகம்
+                  </span>
+                )}
+              </div>
             </div>
           </div>
 
           <div className="admin-header-actions">
+            {/* Live Refresh Button */}
+            <button
+              type="button"
+              className="btn btn-secondary admin-refresh-btn"
+              onClick={() => loadLeadsData()}
+              disabled={isRefreshing}
+              title="புதிய பதிவுகளைப் புதுப்பித்து பெறுக"
+            >
+              <RefreshCw size={15} className={isRefreshing ? "spin-icon" : ""} />
+              <span>புதுப்பி</span>
+            </button>
+
             {/* PWA Mobile App Install Button */}
             {!isAppInstalled && (
               <button

@@ -3242,6 +3242,48 @@ html[lang="ta"] .footer-social-label {
   font-weight: 500;
 }
 
+.admin-db-badge {
+  font-size: 0.6875rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 12px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  letter-spacing: 0.02em;
+}
+
+.admin-db-badge.connected {
+  background: rgba(46, 90, 68, 0.35);
+  color: #8ce1b2;
+  border: 1px solid rgba(46, 90, 68, 0.5);
+}
+
+.admin-db-badge.offline {
+  background: rgba(176, 138, 80, 0.18);
+  color: var(--color-gold-light);
+  border: 1px solid rgba(176, 138, 80, 0.35);
+}
+
+.admin-refresh-btn {
+  padding: 0.5rem 0.85rem;
+  font-size: 0.85rem;
+  min-height: 38px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.spin-icon {
+  animation: spinIcon 1s linear infinite;
+}
+
+@keyframes spinIcon {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 .admin-header-actions {
   display: flex;
   align-items: center;

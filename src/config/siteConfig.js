@@ -65,7 +65,8 @@ export const siteConfig = {
 
   // Lead Collection Endpoint Configuration
   api: {
-    endpoint: import.meta.env.VITE_LEAD_API_URL || "/api/consultation-enquiry",
-    isProductionBackendConfigured: Boolean(import.meta.env.VITE_LEAD_API_URL),
+    endpoint: import.meta.env.VITE_LEAD_API_URL || "/api/leads/submit.php",
+    baseUrl: import.meta.env.VITE_API_BASE_URL || "/api",
+    isProductionBackendConfigured: true,
   },
 };

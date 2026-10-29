@@ -1,125 +1,35 @@
 # ==============================================================================
-# KMS Astrology - Apache / LiteSpeed Configuration (.htaccess)
-# Optimized for Hostinger Web Hosting & Vite React SPA
+# KMS ASTROLOGY - APACHE / CPANEL / HOSTINGER CONFIGURATION
+# Enables React SPA Routing, PWA Offline Service Workers, and PHP API Passthrough
 # ==============================================================================
 
-# ------------------------------------------------------------------------------
-# 1. UTF-8 Character Encoding (Ensures Tamil & English text render correctly)
-# ------------------------------------------------------------------------------
-AddDefaultCharset UTF-8
-AddCharset UTF-8 .html .css .js .json .svg .webmanifest
-AddType application/manifest+json .webmanifest
-
-# ------------------------------------------------------------------------------
-# 2. Rewrite Engine & SPA Routing
-# ------------------------------------------------------------------------------
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
 
-  # Force HTTPS redirection (recommended for Hostinger SSL)
-  RewriteCond %{HTTPS} off
-  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  # 1. Do not rewrite direct calls to the PHP API
+  RewriteRule ^api/ - [L]
 
-  # Don't rewrite real existing files or directories
+  # 2. Allow existing static files & directories (images, icons, manifest, sw.js)
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # Vite SPA fallback: Route all other requests to index.html
+  # 3. Handle /admin and all client-side routes via index.html
   RewriteRule ^ index.html [L]
 </IfModule>
 
-# Custom 404 handler: Send 404 errors to index.html for React SPA rendering
-ErrorDocument 404 /index.html
-
-# ------------------------------------------------------------------------------
-# 3. Gzip / Deflate Compression (Improves load speeds & Google PageSpeed)
-# ------------------------------------------------------------------------------
-<IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html
-  AddOutputFilterByType DEFLATE text/css
-  AddOutputFilterByType DEFLATE text/javascript
-  AddOutputFilterByType DEFLATE text/plain
-  AddOutputFilterByType DEFLATE text/xml
-  AddOutputFilterByType DEFLATE application/javascript
-  AddOutputFilterByType DEFLATE application/x-javascript
-  AddOutputFilterByType DEFLATE application/json
-  AddOutputFilterByType DEFLATE application/xml
-  AddOutputFilterByType DEFLATE application/rss+xml
-  AddOutputFilterByType DEFLATE image/svg+xml
-  AddOutputFilterByType DEFLATE font/ttf
-  AddOutputFilterByType DEFLATE font/otf
-  AddOutputFilterByType DEFLATE font/woff
-  AddOutputFilterByType DEFLATE font/woff2
+# Correct MIME Types for PWA
+<IfModule mod_mime.c>
+  AddType application/manifest+json .webmanifest
+  AddType application/javascript .js .mjs
+  AddType image/webp .webp
+  AddType image/svg+xml .svg
 </IfModule>
 
-# ------------------------------------------------------------------------------
-# 4. Browser Caching Rules (mod_expires & Cache-Control)
-# ------------------------------------------------------------------------------
-<IfModule mod_expires.c>
-  ExpiresActive On
-
-  # Default expiration: 1 month
-  ExpiresDefault "access plus 1 month"
-
-  # HTML: Never cache index.html so users always receive fresh builds
-  ExpiresByType text/html "access plus 0 seconds"
-
-  # Data / JSON
-  ExpiresByType application/json "access plus 0 seconds"
-  ExpiresByType application/xml "access plus 0 seconds"
-
-  # CSS, JavaScript (Vite includes cache-busting hashes in asset filenames)
-  ExpiresByType text/css "access plus 1 year"
-  ExpiresByType application/javascript "access plus 1 year"
-  ExpiresByType text/javascript "access plus 1 year"
-
-  # Media: Images, Icons, Audio, Video
-  ExpiresByType image/jpeg "access plus 1 year"
-  ExpiresByType image/png "access plus 1 year"
-  ExpiresByType image/webp "access plus 1 year"
-  ExpiresByType image/gif "access plus 1 year"
-  ExpiresByType image/svg+xml "access plus 1 year"
-  ExpiresByType image/x-icon "access plus 1 year"
-
-  # Web Fonts
-  ExpiresByType font/ttf "access plus 1 year"
-  ExpiresByType font/woff "access plus 1 year"
-  ExpiresByType font/woff2 "access plus 1 year"
-</IfModule>
-
-# Prevent caching of index.html, sw.js, and manifest via HTTP Headers
-<FilesMatch "(index\.html|sw\.js|registerSW\.js|manifest\.webmanifest)$">
-  <IfModule mod_headers.c>
-    Header set Cache-Control "no-cache, no-store, must-revalidate"
-    Header set Pragma "no-cache"
-    Header set Expires 0
-  </IfModule>
-</FilesMatch>
-
-# ------------------------------------------------------------------------------
-# 5. Security Headers & Protection
-# ------------------------------------------------------------------------------
+# Cache-Control for Service Worker & Manifest
 <IfModule mod_headers.c>
-  # Protect against MIME-type sniffing
-  Header set X-Content-Type-Options "nosniff"
-
-  # Prevent clickjacking attacks (iframe framing)
-  Header set X-Frame-Options "SAMEORIGIN"
-
-  # Enable XSS filtering
-  Header set X-XSS-Protection "1; mode=block"
-
-  # Control referrer information sent with requests
-  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  <FilesMatch "(sw\.js|registerSW\.js|manifest\.webmanifest)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </FilesMatch>
 </IfModule>
-
-# Prevent viewing of hidden files (.env, .git, .htaccess, etc.)
-<FilesMatch "^\.">
-  Order allow,deny
-  Deny from all
-</FilesMatch>
-
-# Disable Directory Browsing
-Options -Indexes
