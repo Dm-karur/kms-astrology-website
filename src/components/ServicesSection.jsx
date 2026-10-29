@@ -4,7 +4,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 import { GoldDivider } from "./SubtleKolam";
 
 export const ServicesSection = ({ onSelectService }) => {
-  const { t } = useLanguage();
+  const { t, isTamil } = useLanguage();
 
   const services = [
     {
@@ -13,6 +13,7 @@ export const ServicesSection = ({ onSelectService }) => {
       title: t.services.marriage.title,
       description: t.services.marriage.description,
       cta: t.services.marriage.cta,
+      price: t.services.marriage.price || (isTamil ? "கட்டணம் - ₹10,000" : "Pricing - ₹10,000"),
       image: "/images/marrige-image.webp",
       alt: t.services.marriage.alt,
     },
@@ -22,6 +23,7 @@ export const ServicesSection = ({ onSelectService }) => {
       title: t.services.education.title,
       description: t.services.education.description,
       cta: t.services.education.cta,
+      price: t.services.education.price || (isTamil ? "கட்டணம் - ₹5,000" : "Pricing - ₹5,000"),
       image: "/images/Education%20Astrology.webp",
       alt: t.services.education.alt,
     },
@@ -31,6 +33,7 @@ export const ServicesSection = ({ onSelectService }) => {
       title: t.services.business.title,
       description: t.services.business.description,
       cta: t.services.business.cta,
+      price: t.services.business.price || (isTamil ? "கட்டணம் - ₹10,000" : "Pricing - ₹10,000"),
       image: "/images/Business-image.webp",
       alt: t.services.business.alt,
     },
@@ -83,6 +86,10 @@ export const ServicesSection = ({ onSelectService }) => {
                   <span>{service.cta}</span>
                   <ArrowRight size={18} aria-hidden="true" />
                 </button>
+
+                <div className="service-card-pricing">
+                  <span>{service.price}</span>
+                </div>
               </div>
             </article>
           ))}

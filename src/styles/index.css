@@ -817,6 +817,25 @@ html[lang="ta"] .brand-title {
   border-color: var(--color-primary-dark);
 }
 
+/* Service Card Pricing at Bottom of Each Card */
+.service-card-pricing {
+  margin-top: 0.85rem;
+  text-align: center;
+  font-family: var(--font-body-en);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+html[lang="ta"] .service-card-pricing {
+  font-family: 'Noto Sans Tamil', var(--font-body-ta);
+  font-size: 0.875rem;
+}
+
 /* Services Section Pricing One-Liner */
 .services-pricing-wrapper {
   margin-top: var(--space-2xl);
