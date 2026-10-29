@@ -54,14 +54,14 @@ export const HeroSection = ({ onBookConsultation }) => {
             </div>
           </div>
 
-          {/* Right Column: High Quality Spiritual Image */}
+          {/* Right Column: High Quality Cosmic Planetary Image */}
           <div className="hero-image-wrapper">
             <div className="hero-image-frame">
               <img
-                src="/images/hero-temple.jpg"
-                alt="Serene South Indian temple corridor with carved granite pillars and glowing brass lamps"
-                width="800"
-                height="600"
+                src="/images/hero-cosmic.webp"
+                alt="Radiant cosmic solar system and planetary alignment illustrating Vedic astrology"
+                width="960"
+                height="540"
                 loading="eager"
                 fetchPriority="high"
               />
