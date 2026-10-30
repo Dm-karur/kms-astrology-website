@@ -21,7 +21,7 @@ export const WhatIsAstrology = ({ onBookConsultation }) => {
         {/* Section Header */}
         <div className="section-header">
           <div className="section-eyebrow">
-            <Sparkles size={14} aria-hidden="true" />
+
             <span>{data.eyebrow}</span>
           </div>
           <h2 id="what-is-heading" className="section-title">
@@ -30,58 +30,35 @@ export const WhatIsAstrology = ({ onBookConsultation }) => {
           <GoldDivider />
         </div>
 
-        {/* Master Two-Column Editorial Showcase with Cosmic Imagery */}
-        <div className="what-is-showcase-grid">
-          {/* Visual Showcase Card */}
-          <div className="what-is-image-card">
-            <div className="what-is-image-frame">
-              <img
-                src="/solar-system-image.webp"
-                alt={isTamil ? "சூரிய குடும்பம் மற்றும் பிரபஞ்ச கிரக அமைப்புகள்" : "Solar system and planetary celestial alignment"}
-                width="640"
-                height="420"
-                loading="lazy"
-                className="what-is-cosmic-img"
-              />
-              <div className="what-is-image-overlay">
-                <span className="what-is-image-badge">
-                  <Sparkles size={13} aria-hidden="true" />
-                  {data.badge || (isTamil ? "வானியல் கணித அறிவியல்" : "Astronomical Mathematical Science")}
-                </span>
-              </div>
-            </div>
+        {/* Master Editorial Narrative Showcase Card */}
+        <div className="what-is-master-card">
+          <div className="what-is-narrative-watermark" aria-hidden="true">
+            <BrandMotif size={220} />
           </div>
 
-          {/* Editorial Content Column */}
-          <div className="what-is-narrative-card">
-            <div className="what-is-narrative-watermark" aria-hidden="true">
-              <BrandMotif size={200} />
+          <div className="what-is-narrative-body">
+            <h3 className="what-is-narrative-title">
+              {isTamil ? "பிரபஞ்சத்திற்கும் மனித வாழ்விற்குமான அறிவியல் பூர்வ இணைப்பு" : "The Scientific Connection Between Cosmos and Life"}
+            </h3>
+
+            <div className="what-is-narrative-text">
+              <p className="what-is-p what-is-p-lead">
+                {data.p1 || data.mainQuote}
+              </p>
+              {data.p2 && (
+                <p className="what-is-p">
+                  {data.p2}
+                </p>
+              )}
             </div>
 
-            <div className="what-is-narrative-body">
-              <h3 className="what-is-narrative-title">
-                {isTamil ? "பிரபஞ்சத்திற்கும் மனித வாழ்விற்குமான அறிவியல் பூர்வ இணைப்பு" : "The Scientific Connection Between Cosmos and Life"}
-              </h3>
-              
-              <div className="what-is-narrative-text">
-                <p className="what-is-p what-is-p-lead">
-                  {data.p1 || data.mainQuote}
-                </p>
-                {data.p2 && (
-                  <p className="what-is-p">
-                    {data.p2}
-                  </p>
-                )}
-              </div>
-
-              <div className="what-is-insight-badge">
-                <Compass size={16} className="text-gold" aria-hidden="true" />
-                <span>
-                  {isTamil
-                    ? "பிறந்த நேர பிரபஞ்ச நிலைகளை நுண்மையாக ஆராய்ந்து வழிகாட்டும் ஒப்பற்ற வானியல் முறை"
-                    : "Precise mathematical calculation of planetary degrees at the exact time of birth"}
-                </span>
-              </div>
+            <div className="what-is-insight-badge">
+              <Compass size={18} className="text-gold" aria-hidden="true" />
+              <span>
+                {isTamil
+                  ? "பிறந்த நேர பிரபஞ்ச நிலைகளை நுண்மையாக ஆராய்ந்து வழிகாட்டும் ஒப்பற்ற வானியல் முறை"
+                  : "Precise mathematical calculation of planetary degrees at the exact time of birth"}
+              </span>
             </div>
           </div>
         </div>

@@ -969,6 +969,30 @@ html[lang="ta"] .services-pricing-text {
   letter-spacing: 0.02em;
 }
 
+/* Master Editorial Showcase Card (Centered Standalone Card) */
+.what-is-master-card {
+  position: relative;
+  background: var(--color-surface-white);
+  border: 1px solid rgba(176, 138, 80, 0.32);
+  border-radius: 14px;
+  padding: 3rem 3.5rem;
+  box-shadow: 0 10px 32px rgba(56, 37, 29, 0.06);
+  max-width: 980px;
+  margin: 0 auto var(--space-2xl) auto;
+  overflow: hidden;
+  text-align: left;
+}
+
+.what-is-master-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary-dark), var(--color-gold), var(--color-primary-dark));
+}
+
 /* Editorial Narrative Column */
 .what-is-narrative-card {
   position: relative;
@@ -1495,6 +1519,7 @@ html[lang="ta"] .purpose-cta-text {
     min-height: 280px;
     max-height: 350px;
   }
+  .what-is-master-card,
   .what-is-narrative-card,
   .purpose-narrative-card {
     padding: 2rem 1.75rem;
@@ -3614,6 +3639,34 @@ html[lang="ta"] .footer-social-label {
   min-height: 42px;
 }
 
+.admin-pwa-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.admin-pwa-dismiss-btn {
+  background: transparent;
+  border: 1px solid rgba(176, 138, 80, 0.4);
+  color: var(--color-primary-dark);
+  border-radius: 8px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.admin-pwa-dismiss-btn:hover {
+  background: rgba(176, 138, 80, 0.15);
+  color: var(--color-gold);
+}
+
 /* Metrics Display */
 .admin-metrics-single-wrap {
   margin-bottom: var(--space-xl);
@@ -4181,8 +4234,14 @@ html[lang="ta"] .footer-social-label {
   .admin-pwa-banner-content {
     flex-direction: column;
   }
-  .admin-pwa-banner-btn {
+  .admin-pwa-banner-actions {
     width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .admin-pwa-banner-btn {
+    flex: 1;
   }
   .admin-lead-body {
     flex-direction: column;

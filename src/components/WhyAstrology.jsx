@@ -14,7 +14,7 @@ export const WhyAstrology = () => {
     <Clock key="clock" size={22} className="why-icon-svg" aria-hidden="true" />,
     <HeartHandshake key="rel" size={22} className="why-icon-svg" aria-hidden="true" />,
     <ShieldAlert key="health" size={22} className="why-icon-svg" aria-hidden="true" />,
-    <Sparkles key="karma" size={22} className="why-icon-svg" aria-hidden="true" />,
+    
   ];
 
   const cards = data.cards || [
@@ -29,7 +29,7 @@ export const WhyAstrology = () => {
         {/* Section Header */}
         <div className="section-header">
           <div className="section-eyebrow">
-            <Sparkles size={14} aria-hidden="true" />
+            
             <span>{data.eyebrow}</span>
           </div>
           <h2 id="why-heading" className="section-title">

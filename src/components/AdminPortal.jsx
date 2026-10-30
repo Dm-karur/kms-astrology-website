@@ -33,11 +33,13 @@ import {
   AlertCircle,
   ExternalLink,
   Languages,
+  X,
 } from "lucide-react";
 
 const ADMIN_STORAGE_KEY = "kms_admin_authenticated_session";
 const ADMIN_TOKEN_KEY = "kms_admin_token";
 const ADMIN_LANG_KEY = "kms_admin_portal_language";
+const PWA_INSTALLED_KEY = "kms_admin_pwa_installed";
 const DEFAULT_USER = "admin";
 const DEFAULT_PASS = "kmsastro@2026";
 
@@ -258,15 +260,17 @@ export const AdminPortal = () => {
   const [isInstallable, setIsInstallable] = useState(false);
   const [isAppInstalled, setIsAppInstalled] = useState(() => {
     if (typeof window !== "undefined") {
-      return (
+      const isStandalone =
         window.matchMedia("(display-mode: standalone)").matches ||
-        window.navigator.standalone === true
-      );
+        window.navigator.standalone === true;
+      const isStoredInstalled =
+        localStorage.getItem(PWA_INSTALLED_KEY) === "true";
+      return Boolean(isStandalone || isStoredInstalled);
     }
     return false;
   });
 
-  // Listen for PWA beforeinstallprompt
+  // Listen for PWA beforeinstallprompt and check installation status
   useEffect(() => {
     const handleBeforeInstallPrompt = (e) => {
       e.preventDefault();
@@ -278,10 +282,30 @@ export const AdminPortal = () => {
       setIsAppInstalled(true);
       setIsInstallable(false);
       setDeferredPrompt(null);
+      try {
+        localStorage.setItem(PWA_INSTALLED_KEY, "true");
+      } catch (err) {
+        console.error("Storage error", err);
+      }
     };
 
     window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
     window.addEventListener("appinstalled", handleAppInstalled);
+
+    // If browser supports getInstalledRelatedApps, check if PWA is already installed
+    if (typeof window !== "undefined" && "getInstalledRelatedApps" in navigator) {
+      navigator
+        .getInstalledRelatedApps()
+        .then((apps) => {
+          if (Array.isArray(apps) && apps.length > 0) {
+            setIsAppInstalled(true);
+            try {
+              localStorage.setItem(PWA_INSTALLED_KEY, "true");
+            } catch (err) {}
+          }
+        })
+        .catch(() => {});
+    }
 
     return () => {
       window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
@@ -380,13 +404,22 @@ export const AdminPortal = () => {
       alert(txt.pwaManualAlert);
       return;
     }
-    deferredPrompt.prompt();
-    const choice = await deferredPrompt.userChoice;
-    if (choice.outcome === "accepted") {
-      setIsAppInstalled(true);
+    try {
+      deferredPrompt.prompt();
+      const choice = await deferredPrompt.userChoice;
+      if (choice && choice.outcome === "accepted") {
+        setIsAppInstalled(true);
+        try {
+          localStorage.setItem(PWA_INSTALLED_KEY, "true");
+        } catch (err) {
+          console.error("Storage error", err);
+        }
+      }
+      setDeferredPrompt(null);
+      setIsInstallable(false);
+    } catch (err) {
+      console.error("Install prompt error", err);
     }
-    setDeferredPrompt(null);
-    setIsInstallable(false);
   };
 
   // Handle status update
@@ -711,14 +744,32 @@ export const AdminPortal = () => {
                 <p className="admin-pwa-banner-desc">{txt.pwaBannerDesc}</p>
               </div>
             </div>
-            <button
-              type="button"
-              className="btn btn-primary admin-pwa-banner-btn"
-              onClick={handleInstallApp}
-            >
-              <Download size={16} />
-              <span>{txt.installNow}</span>
-            </button>
+            <div className="admin-pwa-banner-actions">
+              <button
+                type="button"
+                className="btn btn-primary admin-pwa-banner-btn"
+                onClick={handleInstallApp}
+              >
+                <Download size={16} />
+                <span>{txt.installNow}</span>
+              </button>
+              <button
+                type="button"
+                className="admin-pwa-dismiss-btn"
+                onClick={() => {
+                  setIsAppInstalled(true);
+                  try {
+                    localStorage.setItem(PWA_INSTALLED_KEY, "true");
+                  } catch (e) {
+                    console.error(e);
+                  }
+                }}
+                title={adminLang === "ta" ? "மூடுக / ஏற்கனவே நிறுவப்பட்டது" : "Dismiss / Already installed"}
+                aria-label="Dismiss banner"
+              >
+                <X size={18} />
+              </button>
+            </div>
           </div>
         )}
 
@@ -733,6 +784,7 @@ export const AdminPortal = () => {
             <span className="admin-metric-sub">{txt.metricTotalSub}</span>
           </div>
         </div>
+
 
         {/* Filter and Search Bar */}
         <div className="admin-controls-card">

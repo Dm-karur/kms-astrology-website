@@ -21,7 +21,7 @@ export const PurposeOfAstrology = ({ onBookConsultation }) => {
         {/* Section Header */}
         <div className="section-header">
           <div className="section-eyebrow">
-            <Sparkles size={14} aria-hidden="true" />
+
             <span>{data.eyebrow}</span>
           </div>
           <h2 id="purpose-heading" className="section-title">
@@ -69,7 +69,7 @@ export const PurposeOfAstrology = ({ onBookConsultation }) => {
           <div className="purpose-image-card">
             <div className="purpose-image-frame">
               <img
-                src="/images/hero-temple.jpg"
+                src="/images/purposeofastro-image.webp"
                 alt={isTamil ? "தொன்மையான ஆன்மீக திருத்தலக் கோபுரம் மற்றும் ஞானப் பாரம்பரியம்" : "Sacred ancient temple sanctum and spiritual heritage"}
                 width="640"
                 height="420"
@@ -77,10 +77,7 @@ export const PurposeOfAstrology = ({ onBookConsultation }) => {
                 className="purpose-temple-img"
               />
               <div className="purpose-image-overlay">
-                <span className="purpose-image-badge">
-                  <Sparkles size={13} aria-hidden="true" />
-                  {data.badge || (isTamil ? "சித்தர்கள் & மகரிஷிகள் அருளிய மெய்ஞானம்" : "Siddhars & Maharishis Heritage")}
-                </span>
+
               </div>
             </div>
           </div>
