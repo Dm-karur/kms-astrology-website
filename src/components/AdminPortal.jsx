@@ -32,14 +32,197 @@ import {
   FileSpreadsheet,
   AlertCircle,
   ExternalLink,
+  Languages,
 } from "lucide-react";
 
 const ADMIN_STORAGE_KEY = "kms_admin_authenticated_session";
 const ADMIN_TOKEN_KEY = "kms_admin_token";
+const ADMIN_LANG_KEY = "kms_admin_portal_language";
 const DEFAULT_USER = "admin";
 const DEFAULT_PASS = "kmsastro@2026";
 
+/**
+ * Complete bilingual translations dictionary for Admin Portal
+ */
+const adminStrings = {
+  ta: {
+    brandTitle: "KMS ஜோதிடம்",
+    portalBadge: "நிர்வாகி போர்டல்",
+    loginSubtitle: "நிர்வாகி போர்டல் • உள்நுழைவு",
+    mysqlConnected: "MySQL தரவுத்தளம்",
+    localOffline: "உள்ளூர் சேமிப்பகம்",
+    pwaAsk: "மொபைலில் செயலியை நிறுவ வேண்டுமா?",
+    install: "நிறுவுக",
+    installApp: "செயலியை நிறுவுக",
+    appRunning: "செயலி இயங்குகிறது",
+    usernameLabel: "பயனர் பெயர் (Username)",
+    passwordLabel: "கடவுச்சொல் (Password)",
+    hidePw: "கடவுச்சொல்லை மறை",
+    showPw: "கடவுச்சொல்லைக் காட்டு",
+    signIn: "உள்நுழைக (Sign In)",
+    defaultCredsTitle: "இயல்புநிலை அனுமதி விவரங்கள்:",
+    usernameHint: "பயனர் பெயர்:",
+    passwordHint: "கடவுச்சொல்:",
+    invalidCreds: "தவறான பயனர் பெயர் அல்லது கடவுச்சொல். மீண்டும் முயற்சிக்கவும்.",
+    enterCreds: "தயவுசெய்து பயனர் பெயர் மற்றும் கடவுச்சொல்லை உள்ளிடவும்.",
+    refresh: "புதுப்பி",
+    refreshTooltip: "புதிய பதிவுகளைப் புதுப்பித்து பெறுக",
+    exportCsv: "எக்செல் (CSV)",
+    exportTooltip: "எல்லா கோரிக்கைகளையும் எக்செல் கோப்பாக பதிவிறக்குக",
+    logout: "வெளியேறு",
+    pwaBannerTitle: "KMS நிர்வாகி செயலியை உங்கள் மொபைலில் நிறுவவும்",
+    pwaBannerDesc: "உலாவிக்கு செல்லாமல், உங்கள் செல்போனின் முகப்புத் திரையிலிருந்தே ஒரே தொடுதலில் புதிய ஜோதிடக் கோரிக்கைகளைக் கண்காணிக்கலாம்.",
+    installNow: "இப்போதே நிறுவுக (Install App)",
+    metricTotal: "மொத்தக் கோரிக்கைகள்",
+    metricTotalSub: "வரப்பெற்ற அனைத்து பதிவுகள்",
+    metricNew: "புதியவை (New)",
+    metricNewSub: "உடனடி கவனத்திற்குரியவை",
+    metricContacted: "தொடர்பு கொண்டவை",
+    metricContactedSub: "பேச்சுவார்த்தையில் உள்ளவை",
+    metricConsulted: "ஆலோசனை முடிந்தவை",
+    metricConsultedSub: "நிறைவு பெற்ற ஆலோசனைகள்",
+    searchPlaceholder: "பெயர், கைப்பேசி எண், அல்லது விவரம் மூலம் தேடுக...",
+    filterCategory: "பிரிவு:",
+    filterStatus: "நிலை:",
+    all: "அனைத்தும்",
+    catMarriage: "திருமணம்",
+    catEducation: "கல்வி",
+    catBusiness: "தொழில்",
+    catMarriageBadge: "திருமண ஜோதிடம்",
+    catEducationBadge: "கல்வி ஜோதிடம்",
+    catBusinessBadge: "தொழில் ஜோதிடம்",
+    statusReceived: "புதியவை",
+    statusContacted: "தொடர்பு",
+    statusConsulted: "முடிந்தவை",
+    statusOptReceived: "🔴 புதியது (Received)",
+    statusOptContacted: "🟡 தொடர்பு கொள்ளப்பட்டது (Contacted)",
+    statusOptConsulted: "🟢 ஆலோசனை வழங்கப்பட்டது (Consulted)",
+    statusOptClosed: "⚪ நிறைவுற்றது (Closed)",
+    resultsCount: "காட்டப்படும் கோரிக்கைகள்:",
+    emptyTitle: "கோரிக்கைகள் ஏதும் கிடைக்கவில்லை",
+    emptyDesc: "தேடல் அல்லது வடிகட்டுதல் அமைப்புகளை மாற்றிப் பார்க்கவும்.",
+    showAll: "அனைத்தையும் காட்டு",
+    changeStatus: "நிலையை மாற்றவும்",
+    contactPref: "தொடர்பு வழி:",
+    either: "இரண்டும்",
+    whatsapp: "வாட்ஸ்அப்",
+    call: "அழைக்க",
+    clientConcern: "வாடிக்கையாளர் கேள்வி / குறிப்பு:",
+    privateNotes: "ஜோதிடரின் குறிப்புகள் (Private Notes):",
+    notesPlaceholder: "எ.கா: நேரம் ஒதுக்கப்பட்டுள்ளது / ஜாதகம் பெறப்பட்டது...",
+    save: "சேமி",
+    savedBadge: "சேமிக்கப்பட்டது! ✓",
+    deleteConfirm: "நிச்சயமாக நீக்கவா?",
+    yesDelete: "ஆம், நீக்கு",
+    cancel: "வேண்டாம்",
+    delete: "நீக்கு",
+    today: "இன்று",
+    pwaManualAlert: "செயலியை நிறுவ உங்கள் உலாவி மெனுவில் (மூன்று புள்ளிகள்) 'Install app' அல்லது 'Add to Home screen' என்பதைத் தேர்ந்தெடுக்கவும்.",
+    waGreetingIntro: "வணக்கம்",
+    waGreetingBody: "KMS ஜோதிடத்தில் நீங்கள் பதிவு செய்த",
+    waGreetingEnquiry: "ஜோதிட ஆலோசனைக் கோரிக்கை தொடர்பாக தொடர்பு கொள்கிறோம்.",
+  },
+  en: {
+    brandTitle: "KMS Astrology",
+    portalBadge: "Admin Portal",
+    loginSubtitle: "Admin Portal • Sign In",
+    mysqlConnected: "MySQL Database",
+    localOffline: "Local Storage (Offline)",
+    pwaAsk: "Install app on your mobile?",
+    install: "Install",
+    installApp: "Install App",
+    appRunning: "App Running",
+    usernameLabel: "Username",
+    passwordLabel: "Password",
+    hidePw: "Hide password",
+    showPw: "Show password",
+    signIn: "Sign In",
+    defaultCredsTitle: "Default Credentials:",
+    usernameHint: "Username:",
+    passwordHint: "Password:",
+    invalidCreds: "Invalid username or password. Please try again.",
+    enterCreds: "Please enter your username and password.",
+    refresh: "Refresh",
+    refreshTooltip: "Refresh to fetch latest incoming enquiries",
+    exportCsv: "Excel (CSV)",
+    exportTooltip: "Download all enquiries as an Excel compatible CSV file",
+    logout: "Logout",
+    pwaBannerTitle: "Install KMS Admin App on Your Mobile",
+    pwaBannerDesc: "Manage and respond to client astrology enquiries instantly with a single tap from your mobile home screen.",
+    installNow: "Install App Now",
+    metricTotal: "Total Enquiries",
+    metricTotalSub: "All recorded submissions",
+    metricNew: "New (Unread)",
+    metricNewSub: "Requires immediate attention",
+    metricContacted: "Contacted",
+    metricContactedSub: "In active conversation",
+    metricConsulted: "Completed",
+    metricConsultedSub: "Consultations delivered",
+    searchPlaceholder: "Search by client name, mobile number, ID or notes...",
+    filterCategory: "Category:",
+    filterStatus: "Status:",
+    all: "All",
+    catMarriage: "Marriage",
+    catEducation: "Education",
+    catBusiness: "Business",
+    catMarriageBadge: "Marriage Astrology",
+    catEducationBadge: "Education Astrology",
+    catBusinessBadge: "Business Astrology",
+    statusReceived: "New",
+    statusContacted: "Contacted",
+    statusConsulted: "Completed",
+    statusOptReceived: "🔴 New (Received)",
+    statusOptContacted: "🟡 Contacted",
+    statusOptConsulted: "🟢 Consultation Done",
+    statusOptClosed: "⚪ Closed",
+    resultsCount: "Showing enquiries:",
+    emptyTitle: "No enquiries found",
+    emptyDesc: "Try adjusting your search query or filter settings.",
+    showAll: "Show All",
+    changeStatus: "Change Status",
+    contactPref: "Preferred Contact:",
+    either: "Either",
+    whatsapp: "WhatsApp",
+    call: "Call",
+    clientConcern: "Client Question / Concern:",
+    privateNotes: "Astrologer's Private Notes:",
+    notesPlaceholder: "e.g., Slot scheduled / Horoscope chart received...",
+    save: "Save",
+    savedBadge: "Saved! ✓",
+    deleteConfirm: "Confirm delete?",
+    yesDelete: "Yes, Delete",
+    cancel: "Cancel",
+    delete: "Delete",
+    today: "Today",
+    pwaManualAlert: "To install the app, open your browser menu (3 dots) and tap 'Install app' or 'Add to Home screen'.",
+    waGreetingIntro: "Hello",
+    waGreetingBody: "We are contacting you regarding your KMS Astrology",
+    waGreetingEnquiry: "consultation enquiry.",
+  },
+};
+
 export const AdminPortal = () => {
+  // Bilingual Language State ('ta' | 'en')
+  const [adminLang, setAdminLang] = useState(() => {
+    try {
+      return localStorage.getItem(ADMIN_LANG_KEY) || "ta";
+    } catch {
+      return "ta";
+    }
+  });
+
+  const txt = adminStrings[adminLang] || adminStrings.ta;
+
+  const toggleAdminLang = (lang) => {
+    const target = lang || (adminLang === "ta" ? "en" : "ta");
+    setAdminLang(target);
+    try {
+      localStorage.setItem(ADMIN_LANG_KEY, target);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   // Authentication state
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     try {
@@ -151,7 +334,7 @@ export const AdminPortal = () => {
     const cleanPass = password.trim();
 
     if (!cleanUser || !cleanPass) {
-      setLoginError("தயவுசெய்து பயனர் பெயர் மற்றும் கடவுச்சொல்லை உள்ளிடவும்.");
+      setLoginError(txt.enterCreds);
       return;
     }
 
@@ -171,11 +354,11 @@ export const AdminPortal = () => {
       setLoginError("");
       return;
     } else if (apiResult && !apiResult.success && apiResult.error === "INVALID_CREDENTIALS") {
-      setLoginError(apiResult.message || "தவறான பயனர் பெயர் அல்லது கடவுச்சொல். மீண்டும் முயற்சிக்கவும்.");
+      setLoginError(apiResult.message || txt.invalidCreds);
       return;
     }
 
-    // 2. Offline fallback if PHP server is not currently running
+    // 2. Offline fallback if PHP server is not reachable
     if (cleanUser === DEFAULT_USER && cleanPass === DEFAULT_PASS) {
       try {
         localStorage.setItem(ADMIN_STORAGE_KEY, "true");
@@ -186,7 +369,7 @@ export const AdminPortal = () => {
       loadLeadsData();
       setLoginError("");
     } else {
-      setLoginError("தவறான பயனர் பெயர் அல்லது கடவுச்சொல். மீண்டும் முயற்சிக்கவும்.");
+      setLoginError(txt.invalidCreds);
     }
   };
 
@@ -207,9 +390,7 @@ export const AdminPortal = () => {
   // Trigger PWA install
   const handleInstallApp = async () => {
     if (!deferredPrompt) {
-      alert(
-        "செயலியை நிறுவ உங்கள் உலாவி மெனுவில் (மூன்று புள்ளிகள்) 'Install app' அல்லது 'Add to Home screen' என்பதைத் தேர்ந்தெடுக்கவும்."
-      );
+      alert(txt.pwaManualAlert);
       return;
     }
     deferredPrompt.prompt();
@@ -282,32 +463,70 @@ export const AdminPortal = () => {
     return { total, received, contacted, consulted };
   }, [leads]);
 
+  // Format timestamp in Indian Standard Time (IST)
+  const formatIST = (timestampStr) => {
+    if (!timestampStr) return txt.today;
+    const raw = timestampStr;
+    const d = new Date(raw.includes("T") || raw.endsWith("Z") ? raw : raw.replace(" ", "T") + "+05:30");
+    if (isNaN(d.getTime())) return raw;
+
+    return d.toLocaleString(adminLang === "en" ? "en-IN" : "ta-IN", {
+      timeZone: "Asia/Kolkata",
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
+  };
+
   // --------------------------------------------------------------------------
-  // LOGIN SCREEN (100% TAMIL)
+  // LOGIN SCREEN (BILINGUAL: TAMIL & ENGLISH)
   // --------------------------------------------------------------------------
   if (!isAuthenticated) {
     return (
       <div className="admin-login-page">
         <div className="admin-login-card">
+          {/* Top Language Toggle */}
+          <div className="admin-login-lang-bar">
+            <div className="admin-lang-switcher">
+              <button
+                type="button"
+                className={`admin-lang-pill ${adminLang === "ta" ? "active" : ""}`}
+                onClick={() => toggleAdminLang("ta")}
+              >
+                தமிழ்
+              </button>
+              <button
+                type="button"
+                className={`admin-lang-pill ${adminLang === "en" ? "active" : ""}`}
+                onClick={() => toggleAdminLang("en")}
+              >
+                English
+              </button>
+            </div>
+          </div>
+
           <div className="admin-login-brand">
             <div className="brand-motif" style={{ margin: "0 auto 1rem auto" }}>
               <BrandMotif size={28} />
             </div>
-            <h1 className="admin-login-title">KMS ஜோதிடம்</h1>
-            <p className="admin-login-subtitle">நிர்வாகி போர்டல் • உள்நுழைவு</p>
+            <h1 className="admin-login-title">{txt.brandTitle}</h1>
+            <p className="admin-login-subtitle">{txt.loginSubtitle}</p>
           </div>
 
           {/* PWA Install pill if accessible before login */}
           {isInstallable && (
             <div className="admin-pwa-quick-box">
               <Smartphone size={18} className="admin-pwa-icon" />
-              <span>மொபைலில் செயலியாக நிறுவ வேண்டுமா?</span>
+              <span>{txt.pwaAsk}</span>
               <button
                 type="button"
                 className="btn btn-secondary admin-pwa-quick-btn"
                 onClick={handleInstallApp}
               >
-                நிறுவுக
+                {txt.install}
               </button>
             </div>
           )}
@@ -322,7 +541,7 @@ export const AdminPortal = () => {
 
             <div className="form-group">
               <label className="form-label" htmlFor="admin-username">
-                பயனர் பெயர் (Username)
+                {txt.usernameLabel}
               </label>
               <div className="admin-input-wrap">
                 <User size={18} className="admin-input-icon" />
@@ -341,7 +560,7 @@ export const AdminPortal = () => {
 
             <div className="form-group">
               <label className="form-label" htmlFor="admin-password">
-                கடவுச்சொல் (Password)
+                {txt.passwordLabel}
               </label>
               <div className="admin-input-wrap">
                 <Lock size={18} className="admin-input-icon" />
@@ -359,7 +578,7 @@ export const AdminPortal = () => {
                   type="button"
                   className="admin-pw-toggle"
                   onClick={() => setShowPassword(!showPassword)}
-                  aria-label={showPassword ? "கடவுச்சொல்லை மறை" : "கடவுச்சொல்லைக் காட்டு"}
+                  aria-label={showPassword ? txt.hidePw : txt.showPw}
                 >
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
@@ -367,18 +586,18 @@ export const AdminPortal = () => {
             </div>
 
             <button type="submit" className="btn btn-primary admin-login-btn">
-              <span>உள்நுழைக (Sign In)</span>
+              <span>{txt.signIn}</span>
             </button>
           </form>
 
-          {/* Helper Credentials Hint for Astrologer */}
+          {/* Helper Credentials Hint */}
           <div className="admin-credentials-hint">
-            <strong>இயல்புநிலை அனுமதி விவரங்கள்:</strong>
+            <strong>{txt.defaultCredsTitle}</strong>
             <p>
-              பயனர் பெயர்: <code>admin</code>
+              {txt.usernameHint} <code>admin</code>
             </p>
             <p>
-              கடவுச்சொல்: <code>kmsastro@2026</code>
+              {txt.passwordHint} <code>kmsastro@2026</code>
             </p>
           </div>
         </div>
@@ -387,7 +606,7 @@ export const AdminPortal = () => {
   }
 
   // --------------------------------------------------------------------------
-  // ADMIN DASHBOARD SCREEN (100% TAMIL)
+  // ADMIN DASHBOARD SCREEN (BILINGUAL: TAMIL & ENGLISH)
   // --------------------------------------------------------------------------
   return (
     <div className="admin-dashboard-page">
@@ -399,16 +618,16 @@ export const AdminPortal = () => {
               <BrandMotif size={24} />
             </div>
             <div>
-              <h1 className="admin-header-title">KMS ஜோதிடம்</h1>
+              <h1 className="admin-header-title">{txt.brandTitle}</h1>
               <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginTop: "2px" }}>
-                <span className="admin-header-badge">நிர்வாகி போர்டல்</span>
+                <span className="admin-header-badge">{txt.portalBadge}</span>
                 {dataSource === "mysql" ? (
-                  <span className="admin-db-badge connected" title="MySQL தரவுத்தளத்துடன் இணைக்கப்பட்டுள்ளது">
-                    ● MySQL தரவுத்தளம்
+                  <span className="admin-db-badge connected" title={txt.mysqlConnected}>
+                    ● {txt.mysqlConnected}
                   </span>
                 ) : (
-                  <span className="admin-db-badge offline" title="உள்ளூர் சேமிப்பகம் (Local Storage)">
-                    ● உள்ளூர் சேமிப்பகம்
+                  <span className="admin-db-badge offline" title={txt.localOffline}>
+                    ● {txt.localOffline}
                   </span>
                 )}
               </div>
@@ -416,16 +635,34 @@ export const AdminPortal = () => {
           </div>
 
           <div className="admin-header-actions">
+            {/* Bilingual Switcher Pill */}
+            <div className="admin-lang-switcher" title={adminLang === "ta" ? "Switch to English" : "தமிழுக்கு மாற்றவும்"}>
+              <button
+                type="button"
+                className={`admin-lang-pill ${adminLang === "ta" ? "active" : ""}`}
+                onClick={() => toggleAdminLang("ta")}
+              >
+                தமிழ்
+              </button>
+              <button
+                type="button"
+                className={`admin-lang-pill ${adminLang === "en" ? "active" : ""}`}
+                onClick={() => toggleAdminLang("en")}
+              >
+                EN
+              </button>
+            </div>
+
             {/* Live Refresh Button */}
             <button
               type="button"
               className="btn btn-secondary admin-refresh-btn"
               onClick={() => loadLeadsData()}
               disabled={isRefreshing}
-              title="புதிய பதிவுகளைப் புதுப்பித்து பெறுக"
+              title={txt.refreshTooltip}
             >
               <RefreshCw size={15} className={isRefreshing ? "spin-icon" : ""} />
-              <span>புதுப்பி</span>
+              <span>{txt.refresh}</span>
             </button>
 
             {/* PWA Mobile App Install Button */}
@@ -434,17 +671,17 @@ export const AdminPortal = () => {
                 type="button"
                 className="btn btn-gold admin-install-btn"
                 onClick={handleInstallApp}
-                title="மொபைலில் இந்த செயலியை நிறுவவும்"
+                title={txt.installApp}
               >
                 <Smartphone size={16} />
-                <span>செயலியை நிறுவுக</span>
+                <span>{txt.installApp}</span>
               </button>
             )}
 
             {isAppInstalled && (
-              <div className="admin-installed-badge" title="செயலி நிறுவப்பட்டுள்ளது">
+              <div className="admin-installed-badge" title={txt.appRunning}>
                 <CheckCircle2 size={16} />
-                <span>செயலி இயங்குகிறது</span>
+                <span>{txt.appRunning}</span>
               </div>
             )}
 
@@ -452,11 +689,11 @@ export const AdminPortal = () => {
             <button
               type="button"
               className="btn btn-secondary admin-export-btn"
-              onClick={() => exportLeadsToCSV(leads)}
-              title="எல்லா கோரிக்கைகளையும் எக்செல் கோப்பாக பதிவிறக்குக"
+              onClick={() => exportLeadsToCSV(leads, adminLang)}
+              title={txt.exportTooltip}
             >
               <FileSpreadsheet size={16} />
-              <span>எக்செல் (CSV)</span>
+              <span>{txt.exportCsv}</span>
             </button>
 
             {/* Logout */}
@@ -464,10 +701,10 @@ export const AdminPortal = () => {
               type="button"
               className="btn btn-secondary admin-logout-btn"
               onClick={handleLogout}
-              title="வெளியேறு"
+              title={txt.logout}
             >
               <LogOut size={16} />
-              <span>வெளியேறு</span>
+              <span>{txt.logout}</span>
             </button>
           </div>
         </div>
@@ -483,13 +720,8 @@ export const AdminPortal = () => {
                 <Smartphone size={24} />
               </div>
               <div>
-                <h2 className="admin-pwa-banner-title">
-                  KMS நிர்வாகி செயலியை உங்கள் மொபைலில் நிறுவவும்
-                </h2>
-                <p className="admin-pwa-banner-desc">
-                  உலாவிக்கு செல்லாமல், உங்கள் செல்போனின் முகப்புத் திரையிலிருந்தே ஒரே தொடுதலில் புதிய
-                  ஜோதிடக் கோரிக்கைகளைக் கண்காணிக்கலாம்.
-                </p>
+                <h2 className="admin-pwa-banner-title">{txt.pwaBannerTitle}</h2>
+                <p className="admin-pwa-banner-desc">{txt.pwaBannerDesc}</p>
               </div>
             </div>
             <button
@@ -498,7 +730,7 @@ export const AdminPortal = () => {
               onClick={handleInstallApp}
             >
               <Download size={16} />
-              <span>இப்போதே நிறுவுக (Install App)</span>
+              <span>{txt.installNow}</span>
             </button>
           </div>
         )}
@@ -507,38 +739,37 @@ export const AdminPortal = () => {
         <div className="admin-metrics-grid">
           <div className="admin-metric-card">
             <div className="admin-metric-header">
-              <span className="admin-metric-label">மொத்தக் கோரிக்கைகள்</span>
-
+              <span className="admin-metric-label">{txt.metricTotal}</span>
             </div>
             <span className="admin-metric-number">{stats.total}</span>
-            <span className="admin-metric-sub">வரப்பெற்ற அனைத்து பதிவுகள்</span>
+            <span className="admin-metric-sub">{txt.metricTotalSub}</span>
           </div>
 
           <div className="admin-metric-card highlight-new">
             <div className="admin-metric-header">
-              <span className="admin-metric-label">புதியவை (New)</span>
+              <span className="admin-metric-label">{txt.metricNew}</span>
               <AlertCircle size={18} className="admin-metric-icon red" />
             </div>
             <span className="admin-metric-number">{stats.received}</span>
-            <span className="admin-metric-sub">உடனடி கவனத்திற்குரியவை</span>
+            <span className="admin-metric-sub">{txt.metricNewSub}</span>
           </div>
 
           <div className="admin-metric-card">
             <div className="admin-metric-header">
-              <span className="admin-metric-label">தொடர்பு கொண்டவை</span>
+              <span className="admin-metric-label">{txt.metricContacted}</span>
               <Clock size={18} className="admin-metric-icon blue" />
             </div>
             <span className="admin-metric-number">{stats.contacted}</span>
-            <span className="admin-metric-sub">பேச்சுவார்த்தையில் உள்ளவை</span>
+            <span className="admin-metric-sub">{txt.metricContactedSub}</span>
           </div>
 
           <div className="admin-metric-card">
             <div className="admin-metric-header">
-              <span className="admin-metric-label">ஆலோசனை முடிந்தவை</span>
+              <span className="admin-metric-label">{txt.metricConsulted}</span>
               <CheckCircle2 size={18} className="admin-metric-icon green" />
             </div>
             <span className="admin-metric-number">{stats.consulted}</span>
-            <span className="admin-metric-sub">நிறைவு பெற்ற ஆலோசனைகள்</span>
+            <span className="admin-metric-sub">{txt.metricConsultedSub}</span>
           </div>
         </div>
 
@@ -549,7 +780,7 @@ export const AdminPortal = () => {
             <input
               type="text"
               className="form-input admin-search-input"
-              placeholder="பெயர், கைப்பேசி எண், அல்லது விவரம் மூலம் தேடுக..."
+              placeholder={txt.searchPlaceholder}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -564,70 +795,71 @@ export const AdminPortal = () => {
             )}
           </div>
 
-          {/* Category Tabs */}
+          {/* Category & Status Tabs */}
           <div className="admin-filter-row">
+            {/* Category Tabs */}
             <div className="admin-pill-group">
-              <span className="admin-pill-label">பிரிவு:</span>
+              <span className="admin-pill-label">{txt.filterCategory}</span>
               <button
                 type="button"
                 className={`admin-pill ${categoryFilter === "all" ? "active" : ""}`}
                 onClick={() => setCategoryFilter("all")}
               >
-                அனைத்தும்
+                {txt.all}
               </button>
               <button
                 type="button"
                 className={`admin-pill ${categoryFilter === "marriage" ? "active" : ""}`}
                 onClick={() => setCategoryFilter("marriage")}
               >
-                திருமணம்
+                {txt.catMarriage}
               </button>
               <button
                 type="button"
                 className={`admin-pill ${categoryFilter === "education" ? "active" : ""}`}
                 onClick={() => setCategoryFilter("education")}
               >
-                கல்வி
+                {txt.catEducation}
               </button>
               <button
                 type="button"
                 className={`admin-pill ${categoryFilter === "business" ? "active" : ""}`}
                 onClick={() => setCategoryFilter("business")}
               >
-                தொழில்
+                {txt.catBusiness}
               </button>
             </div>
 
             {/* Status Tabs */}
             <div className="admin-pill-group">
-              <span className="admin-pill-label">நிலை:</span>
+              <span className="admin-pill-label">{txt.filterStatus}</span>
               <button
                 type="button"
                 className={`admin-pill ${statusFilter === "all" ? "active" : ""}`}
                 onClick={() => setStatusFilter("all")}
               >
-                அனைத்தும்
+                {txt.all}
               </button>
               <button
                 type="button"
                 className={`admin-pill ${statusFilter === "received" ? "active" : ""}`}
                 onClick={() => setStatusFilter("received")}
               >
-                புதியவை ({stats.received})
+                {txt.statusReceived} ({stats.received})
               </button>
               <button
                 type="button"
                 className={`admin-pill ${statusFilter === "contacted" ? "active" : ""}`}
                 onClick={() => setStatusFilter("contacted")}
               >
-                தொடர்பு ({stats.contacted})
+                {txt.statusContacted} ({stats.contacted})
               </button>
               <button
                 type="button"
                 className={`admin-pill ${statusFilter === "consulted" ? "active" : ""}`}
                 onClick={() => setStatusFilter("consulted")}
               >
-                முடிந்தவை ({stats.consulted})
+                {txt.statusConsulted} ({stats.consulted})
               </button>
             </div>
 
@@ -635,11 +867,11 @@ export const AdminPortal = () => {
             <button
               type="button"
               className="admin-refresh-btn"
-              onClick={loadLeadsData}
-              title="புதுப்பிக்கவும்"
+              onClick={() => loadLeadsData()}
+              title={txt.refresh}
             >
               <RefreshCw size={16} />
-              <span>புதுப்பி</span>
+              <span>{txt.refresh}</span>
             </button>
           </div>
         </div>
@@ -647,7 +879,7 @@ export const AdminPortal = () => {
         {/* Leads Count Indicator */}
         <div className="admin-results-bar">
           <span>
-            காட்டப்படும் கோரிக்கைகள்: <strong>{filteredLeads.length}</strong> / {leads.length}
+            {txt.resultsCount} <strong>{filteredLeads.length}</strong> / {leads.length}
           </span>
         </div>
 
@@ -655,8 +887,8 @@ export const AdminPortal = () => {
         {filteredLeads.length === 0 && (
           <div className="admin-empty-state">
             <AlertCircle size={40} className="admin-empty-icon" />
-            <h3>கோரிக்கைகள் ஏதும் கிடைக்கவில்லை</h3>
-            <p>தேடல் அல்லது வடிகட்டுதல் அமைப்புகளை மாற்றிப் பார்க்கவும்.</p>
+            <h3>{txt.emptyTitle}</h3>
+            <p>{txt.emptyDesc}</p>
             <button
               type="button"
               className="btn btn-secondary"
@@ -666,7 +898,7 @@ export const AdminPortal = () => {
                 setStatusFilter("all");
               }}
             >
-              அனைத்தையும் காட்டு
+              {txt.showAll}
             </button>
           </div>
         )}
@@ -675,13 +907,20 @@ export const AdminPortal = () => {
         <div className="admin-leads-list">
           {filteredLeads.map((item) => {
             const cleanDigits = item.normalizedDigits || item.mobileNumber?.replace(/\D/g, "");
-            const waGreeting = encodeURIComponent(
-              `வணக்கம் ${item.fullName}! KMS ஜோதிடத்தில் நீங்கள் பதிவு செய்த ${item.consultationCategory === "marriage"
-                ? "திருமண"
+
+            // Category text
+            const catBadgeText =
+              item.consultationCategory === "marriage"
+                ? txt.catMarriageBadge
                 : item.consultationCategory === "education"
-                  ? "கல்வி"
-                  : "தொழில்"
-              } ஜோதிட ஆலோசனைக் கோரிக்கை (எண்: ${item.leadId}) தொடர்பாக தொடர்பு கொள்கிறோம்.`
+                  ? txt.catEducationBadge
+                  : txt.catBusinessBadge;
+
+            // WhatsApp greeting adapting to selected language
+            const waGreeting = encodeURIComponent(
+              adminLang === "en"
+                ? `${txt.waGreetingIntro} ${item.fullName}! ${txt.waGreetingBody} ${catBadgeText} ${txt.waGreetingEnquiry} (ID: ${item.leadId})`
+                : `${txt.waGreetingIntro} ${item.fullName}! ${txt.waGreetingBody} ${catBadgeText} ${txt.waGreetingEnquiry} (எண்: ${item.leadId})`
             );
 
             return (
@@ -691,18 +930,14 @@ export const AdminPortal = () => {
                   <div className="admin-lead-badges">
                     <span className="admin-id-badge">{item.leadId}</span>
                     <span className={`admin-cat-badge cat-${item.consultationCategory}`}>
-                      {item.consultationCategory === "marriage"
-                        ? "திருமண ஜோதிடம்"
-                        : item.consultationCategory === "education"
-                          ? "கல்வி ஜோதிடம்"
-                          : "தொழில் ஜோதிடம்"}
+                      {catBadgeText}
                     </span>
                   </div>
 
                   {/* Status Dropdown */}
                   <div className="admin-status-dropdown-wrap">
                     <label htmlFor={`status-select-${item.leadId}`} className="sr-only">
-                      நிலையை மாற்றவும்
+                      {txt.changeStatus}
                     </label>
                     <select
                       id={`status-select-${item.leadId}`}
@@ -710,10 +945,10 @@ export const AdminPortal = () => {
                       value={item.status || "received"}
                       onChange={(e) => handleStatusChange(item.leadId, e.target.value)}
                     >
-                      <option value="received">🔴 புதியது (Received)</option>
-                      <option value="contacted">🟡 தொடர்பு கொள்ளப்பட்டது</option>
-                      <option value="consulted">🟢 ஆலோசனை வழங்கப்பட்டது</option>
-                      <option value="closed">⚪ நிறைவுற்றது (Closed)</option>
+                      <option value="received">{txt.statusOptReceived}</option>
+                      <option value="contacted">{txt.statusOptContacted}</option>
+                      <option value="consulted">{txt.statusOptConsulted}</option>
+                      <option value="closed">{txt.statusOptClosed}</option>
                     </select>
                   </div>
                 </div>
@@ -724,28 +959,9 @@ export const AdminPortal = () => {
                     <h3 className="admin-client-name">{item.fullName}</h3>
                     <div className="admin-client-time">
                       <Clock size={14} />
-                      <span>
-                        {item.submissionTimestamp
-                          ? (() => {
-                            // Ensure date is parsed reliably whether ISO format or SQL datetime
-                            const raw = item.submissionTimestamp;
-                            const d = new Date(raw.includes("T") || raw.endsWith("Z") ? raw : raw.replace(" ", "T") + "+05:30");
-                            return isNaN(d.getTime())
-                              ? raw
-                              : d.toLocaleString("ta-IN", {
-                                timeZone: "Asia/Kolkata",
-                                day: "numeric",
-                                month: "short",
-                                year: "numeric",
-                                hour: "2-digit",
-                                minute: "2-digit",
-                                hour12: true,
-                              });
-                          })()
-                          : "இன்று"}
-                      </span>
+                      <span>{formatIST(item.submissionTimestamp)}</span>
                       <span className="admin-contact-pref">
-                        • தொடர்பு வழி: <strong>{item.preferredContactMethod || "இரண்டும்"}</strong>
+                        • {txt.contactPref} <strong>{item.preferredContactMethod || txt.either}</strong>
                       </span>
                     </div>
                   </div>
@@ -757,17 +973,17 @@ export const AdminPortal = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn admin-wa-btn"
-                      title="வாட்ஸ்அப் மூலம் தொடர்புகொள்ள"
+                      title={txt.whatsapp}
                     >
                       <MessageCircle size={16} />
-                      <span>வாட்ஸ்அப்</span>
+                      <span>{txt.whatsapp}</span>
                       <ExternalLink size={12} />
                     </a>
 
                     <a
                       href={`tel:+91${cleanDigits}`}
                       className="btn admin-call-btn"
-                      title="தொலைபேசி அழைப்பு செய்ய"
+                      title={txt.call}
                     >
                       <Phone size={16} />
                       <span>{item.mobileNumber}</span>
@@ -778,7 +994,7 @@ export const AdminPortal = () => {
                 {/* Client's Concern Text */}
                 {item.briefConcern && (
                   <div className="admin-concern-box">
-                    <span className="admin-concern-label">வாடிக்கையாளர் கேள்வி / குறிப்பு:</span>
+                    <span className="admin-concern-label">{txt.clientConcern}</span>
                     <p className="admin-concern-text">{item.briefConcern}</p>
                   </div>
                 )}
@@ -789,14 +1005,14 @@ export const AdminPortal = () => {
                     htmlFor={`notes-input-${item.leadId}`}
                     className="admin-notes-label"
                   >
-                    ஜோதிடரின் குறிப்புகள் (Private Notes):
+                    {txt.privateNotes}
                   </label>
                   <div className="admin-notes-row">
                     <input
                       id={`notes-input-${item.leadId}`}
                       type="text"
                       className="form-input admin-notes-input"
-                      placeholder="எ.கா: நேரம் ஒதுக்கப்பட்டுள்ளது / ஜாதகம் பெறப்பட்டது..."
+                      placeholder={txt.notesPlaceholder}
                       value={editingNotes[item.leadId] || ""}
                       onChange={(e) =>
                         setEditingNotes({
@@ -814,10 +1030,10 @@ export const AdminPortal = () => {
                       onClick={() => handleSaveNotes(item.leadId)}
                     >
                       <Save size={14} />
-                      <span>சேமி</span>
+                      <span>{txt.save}</span>
                     </button>
                     {savedNoteFeedback[item.leadId] && (
-                      <span className="admin-saved-badge">சேமிக்கப்பட்டது! ✓</span>
+                      <span className="admin-saved-badge">{txt.savedBadge}</span>
                     )}
                   </div>
                 </div>
@@ -826,20 +1042,20 @@ export const AdminPortal = () => {
                 <div className="admin-lead-footer">
                   {deleteConfirmId === item.leadId ? (
                     <div className="admin-delete-confirm">
-                      <span>நிச்சயமாக நீக்கவா?</span>
+                      <span>{txt.deleteConfirm}</span>
                       <button
                         type="button"
                         className="admin-del-yes"
                         onClick={() => handleDeleteConfirm(item.leadId)}
                       >
-                        ஆம், நீக்கு
+                        {txt.yesDelete}
                       </button>
                       <button
                         type="button"
                         className="admin-del-no"
                         onClick={() => setDeleteConfirmId(null)}
                       >
-                        வேண்டாம்
+                        {txt.cancel}
                       </button>
                     </div>
                   ) : (
@@ -847,10 +1063,10 @@ export const AdminPortal = () => {
                       type="button"
                       className="admin-delete-trigger"
                       onClick={() => setDeleteConfirmId(item.leadId)}
-                      title="இந்த பதிவை நீக்கு"
+                      title={txt.delete}
                     >
                       <Trash2 size={14} />
-                      <span>நீக்கு</span>
+                      <span>{txt.delete}</span>
                     </button>
                   )}
                 </div>

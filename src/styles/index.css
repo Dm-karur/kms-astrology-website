@@ -3983,6 +3983,50 @@ html[lang="ta"] .footer-social-label {
   }
 }
 
+/* ==========================================================================
+   ADMIN BILINGUAL LANGUAGE SWITCHER (TAMIL & ENGLISH)
+   ========================================================================== */
+.admin-lang-switcher {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 6px;
+  padding: 2px;
+  gap: 2px;
+}
+
+.admin-lang-pill {
+  border: none;
+  background: transparent;
+  color: #FCFAF6;
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 0.35rem 0.65rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  line-height: 1;
+}
+
+.admin-lang-pill:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+}
+
+.admin-lang-pill.active {
+  background: var(--color-gold);
+  color: #FFFFFF;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.admin-login-lang-bar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.85rem;
+}
+
 /* Reduced Motion Respect */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

@@ -313,43 +313,79 @@ export function deleteLead(leadId) {
 }
 
 /**
- * Exports all leads to CSV formatted in Tamil with UTF-8 BOM
+ * Exports all leads to CSV formatted in Tamil or English with UTF-8 BOM
+ * @param {Array} leads
+ * @param {'ta' | 'en'} lang
  */
-export function exportLeadsToCSV(leads) {
-  const categoryTamilMap = {
-    marriage: "திருமணம் (Marriage)",
-    education: "கல்வி (Education)",
-    business: "தொழில் (Business)",
-  };
+export function exportLeadsToCSV(leads, lang = "ta") {
+  const isEn = lang === "en";
 
-  const statusTamilMap = {
-    received: "புதியது (Received)",
-    contacted: "தொடர்பு கொள்ளப்பட்டது (Contacted)",
-    consulted: "ஆலோசனை நிறைவு (Consulted)",
-    closed: "முடிந்தது (Closed)",
-  };
+  const categoryMap = isEn
+    ? {
+      marriage: "Marriage Astrology",
+      education: "Education Astrology",
+      business: "Business Astrology",
+    }
+    : {
+      marriage: "திருமணம் (Marriage)",
+      education: "கல்வி (Education)",
+      business: "தொழில் (Business)",
+    };
 
-  const headers = [
-    "பதிவு எண் (Lead ID)",
-    "பெயர் (Full Name)",
-    "கைப்பேசி எண் (Mobile Number)",
-    "ஆலோசனை வகை (Category)",
-    "விருப்பமான தொடர்பு (Contact Method)",
-    "சுருக்கமான விவரம் (Concern)",
-    "பதிவு செய்யப்பட்ட நேரம் (Submitted At)",
-    "தற்போதைய நிலை (Status)",
-    "ஜோதிடர் குறிப்புகள் (Notes)",
-  ];
+  const statusMap = isEn
+    ? {
+      received: "New (Received)",
+      contacted: "Contacted",
+      consulted: "Consulted",
+      closed: "Closed",
+    }
+    : {
+      received: "புதியது (Received)",
+      contacted: "தொடர்பு கொள்ளப்பட்டது (Contacted)",
+      consulted: "ஆலோசனை நிறைவு (Consulted)",
+      closed: "முடிந்தது (Closed)",
+    };
+
+  const headers = isEn
+    ? [
+      "Lead ID",
+      "Full Name",
+      "Mobile Number",
+      "Consultation Category",
+      "Preferred Contact Method",
+      "Brief Concern / Message",
+      "Submitted At (IST)",
+      "Current Status",
+      "Astrologer Private Notes",
+    ]
+    : [
+      "பதிவு எண் (Lead ID)",
+      "பெயர் (Full Name)",
+      "கைப்பேசி எண் (Mobile Number)",
+      "ஆலோசனை வகை (Category)",
+      "விருப்பமான தொடர்பு (Contact Method)",
+      "சுருக்கமான விவரம் (Concern)",
+      "பதிவு செய்யப்பட்ட நேரம் (Submitted At)",
+      "தற்போதைய நிலை (Status)",
+      "ஜோதிடர் குறிப்புகள் (Notes)",
+    ];
 
   const rows = leads.map((item) => [
     `"${item.leadId || ""}"`,
     `"${(item.fullName || "").replace(/"/g, '""')}"`,
     `"${item.mobileNumber || ""}"`,
-    `"${categoryTamilMap[item.consultationCategory] || item.consultationCategory || ""}"`,
+    `"${categoryMap[item.consultationCategory] || item.consultationCategory || ""}"`,
     `"${item.preferredContactMethod || ""}"`,
     `"${(item.briefConcern || "").replace(/"/g, '""').replace(/\n/g, " ")}"`,
-    `"${item.submissionTimestamp ? new Date(item.submissionTimestamp).toLocaleString("ta-IN") : ""}"`,
-    `"${statusTamilMap[item.status] || item.status || ""}"`,
+    `"${item.submissionTimestamp
+      ? new Date(
+        item.submissionTimestamp.includes("T") || item.submissionTimestamp.endsWith("Z")
+          ? item.submissionTimestamp
+          : item.submissionTimestamp.replace(" ", "T") + "+05:30"
+      ).toLocaleString(isEn ? "en-IN" : "ta-IN", { timeZone: "Asia/Kolkata" })
+      : ""
+    }"`,
+    `"${statusMap[item.status] || item.status || ""}"`,
     `"${(item.notes || "").replace(/"/g, '""').replace(/\n/g, " ")}"`,
   ]);
 
