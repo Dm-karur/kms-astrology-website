@@ -301,10 +301,10 @@ export const AdminPortal = () => {
             setIsAppInstalled(true);
             try {
               localStorage.setItem(PWA_INSTALLED_KEY, "true");
-            } catch (err) {}
+            } catch (err) { }
           }
         })
-        .catch(() => {});
+        .catch(() => { });
     }
 
     return () => {
@@ -773,17 +773,7 @@ export const AdminPortal = () => {
           </div>
         )}
 
-        {/* Total Enquiries Metric Card */}
-        <div className="admin-metrics-single-wrap">
-          <div className="admin-metric-card admin-metric-card-single">
-            <div className="admin-metric-header">
-              <span className="admin-metric-label">{txt.metricTotal}</span>
-              <Sparkles size={18} className="admin-metric-icon gold" />
-            </div>
-            <span className="admin-metric-number">{stats.total}</span>
-            <span className="admin-metric-sub">{txt.metricTotalSub}</span>
-          </div>
-        </div>
+
 
 
         {/* Filter and Search Bar */}
@@ -875,17 +865,6 @@ export const AdminPortal = () => {
                 {txt.statusConsulted} ({stats.consulted})
               </button>
             </div>
-
-            {/* Refresh */}
-            <button
-              type="button"
-              className="admin-refresh-btn"
-              onClick={() => loadLeadsData()}
-              title={txt.refresh}
-            >
-              <RefreshCw size={16} />
-              <span>{txt.refresh}</span>
-            </button>
           </div>
         </div>
 
