@@ -73,14 +73,7 @@ const adminStrings = {
     pwaBannerTitle: "KMS நிர்வாகி செயலியை உங்கள் மொபைலில் நிறுவவும்",
     pwaBannerDesc: "உலாவிக்கு செல்லாமல், உங்கள் செல்போனின் முகப்புத் திரையிலிருந்தே ஒரே தொடுதலில் புதிய ஜோதிடக் கோரிக்கைகளைக் கண்காணிக்கலாம்.",
     installNow: "இப்போதே நிறுவுக (Install App)",
-    metricTotal: "மொத்தக் கோரிக்கைகள்",
-    metricTotalSub: "வரப்பெற்ற அனைத்து பதிவுகள்",
-    metricNew: "புதியவை (New)",
-    metricNewSub: "உடனடி கவனத்திற்குரியவை",
-    metricContacted: "தொடர்பு கொண்டவை",
-    metricContactedSub: "பேச்சுவார்த்தையில் உள்ளவை",
-    metricConsulted: "ஆலோசனை முடிந்தவை",
-    metricConsultedSub: "நிறைவு பெற்ற ஆலோசனைகள்",
+
     searchPlaceholder: "பெயர், கைப்பேசி எண், அல்லது விவரம் மூலம் தேடுக...",
     filterCategory: "பிரிவு:",
     filterStatus: "நிலை:",
@@ -150,14 +143,8 @@ const adminStrings = {
     pwaBannerTitle: "Install KMS Admin App on Your Mobile",
     pwaBannerDesc: "Manage and respond to client astrology enquiries instantly with a single tap from your mobile home screen.",
     installNow: "Install App Now",
-    metricTotal: "Total Enquiries",
-    metricTotalSub: "All recorded submissions",
-    metricNew: "New (Unread)",
-    metricNewSub: "Requires immediate attention",
-    metricContacted: "Contacted",
-    metricContactedSub: "In active conversation",
-    metricConsulted: "Completed",
-    metricConsultedSub: "Consultations delivered",
+
+
     searchPlaceholder: "Search by client name, mobile number, ID or notes...",
     filterCategory: "Category:",
     filterStatus: "Status:",
@@ -735,41 +722,15 @@ export const AdminPortal = () => {
           </div>
         )}
 
-        {/* Metrics Cards */}
-        <div className="admin-metrics-grid">
-          <div className="admin-metric-card">
+        {/* Total Enquiries Metric Card */}
+        <div className="admin-metrics-single-wrap">
+          <div className="admin-metric-card admin-metric-card-single">
             <div className="admin-metric-header">
               <span className="admin-metric-label">{txt.metricTotal}</span>
+              <Sparkles size={18} className="admin-metric-icon gold" />
             </div>
             <span className="admin-metric-number">{stats.total}</span>
             <span className="admin-metric-sub">{txt.metricTotalSub}</span>
-          </div>
-
-          <div className="admin-metric-card highlight-new">
-            <div className="admin-metric-header">
-              <span className="admin-metric-label">{txt.metricNew}</span>
-              <AlertCircle size={18} className="admin-metric-icon red" />
-            </div>
-            <span className="admin-metric-number">{stats.received}</span>
-            <span className="admin-metric-sub">{txt.metricNewSub}</span>
-          </div>
-
-          <div className="admin-metric-card">
-            <div className="admin-metric-header">
-              <span className="admin-metric-label">{txt.metricContacted}</span>
-              <Clock size={18} className="admin-metric-icon blue" />
-            </div>
-            <span className="admin-metric-number">{stats.contacted}</span>
-            <span className="admin-metric-sub">{txt.metricContactedSub}</span>
-          </div>
-
-          <div className="admin-metric-card">
-            <div className="admin-metric-header">
-              <span className="admin-metric-label">{txt.metricConsulted}</span>
-              <CheckCircle2 size={18} className="admin-metric-icon green" />
-            </div>
-            <span className="admin-metric-number">{stats.consulted}</span>
-            <span className="admin-metric-sub">{txt.metricConsultedSub}</span>
           </div>
         </div>
 

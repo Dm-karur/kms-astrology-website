@@ -3614,7 +3614,21 @@ html[lang="ta"] .footer-social-label {
   min-height: 42px;
 }
 
-/* Metrics Grid */
+/* Metrics Display */
+.admin-metrics-single-wrap {
+  margin-bottom: var(--space-xl);
+}
+
+.admin-metric-card-single {
+  max-width: 320px;
+  background: var(--color-surface-white);
+  border: 1px solid rgba(176, 138, 80, 0.35);
+  border-left: 4px solid var(--color-gold);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 4px 16px rgba(56, 37, 29, 0.05);
+}
+
 .admin-metrics-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
