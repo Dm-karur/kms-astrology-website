@@ -108,8 +108,9 @@ if (mb_strlen($briefConcern, 'UTF-8') > 1000) {
     $briefConcern = mb_substr($briefConcern, 0, 1000, 'UTF-8');
 }
 
-// 8. Generate Unique Lead ID
+// 8. Generate Unique Lead ID & IST Timestamp
 $leadId = 'KMS-' . date('Ymd') . '-' . strtoupper(substr(bin2hex(random_bytes(3)), 0, 4));
+$istTimestamp = date('Y-m-d H:i:s');
 
 try {
     $pdo = getDBConnection(true);
@@ -121,7 +122,7 @@ try {
             `brief_concern`, `consent_given`, `consent_timestamp`, `submission_timestamp`,
             `status`, `notes`
         ) VALUES (
-            ?, ?, ?, ?, ?, ?, ?, ?, 1, NOW(), NOW(), 'received', ''
+            ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, 'received', ''
         )
     ");
 
@@ -133,7 +134,9 @@ try {
         $prefLang,
         $category,
         $contactMethod,
-        $briefConcern
+        $briefConcern,
+        $istTimestamp,
+        $istTimestamp
     ]);
 
     $insertedId = $pdo->lastInsertId();
@@ -149,7 +152,7 @@ try {
         'preferredContactMethod' => $contactMethod,
         'briefConcern'           => $briefConcern,
         'consentGiven'           => true,
-        'submissionTimestamp'    => date('c'),
+        'submissionTimestamp'    => date('Y-m-d\TH:i:s+05:30'),
         'status'                 => 'received',
         'notes'                  => ''
     ];

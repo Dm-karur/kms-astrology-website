@@ -58,7 +58,7 @@ try {
             `preferred_contact_method` AS `preferredContactMethod`,
             `brief_concern` AS `briefConcern`,
             `consent_given` AS `consentGiven`,
-            `submission_timestamp` AS `submissionTimestamp`,
+            DATE_FORMAT(`submission_timestamp`, '%Y-%m-%dT%H:%i:%s+05:30') AS `submissionTimestamp`,
             `status`,
             `notes`
         FROM `kms_leads`

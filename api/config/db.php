@@ -4,6 +4,9 @@
  * Supports custom environment settings or standard XAMPP/cPanel defaults.
  */
 
+// Enforce Indian Standard Time (IST, UTC+5:30) across all dates and times
+date_default_timezone_set('Asia/Kolkata');
+
 // Define database credentials with fallback defaults
 define('DB_HOST', getenv('DB_HOST') ?: '127.0.0.1');
 define('DB_PORT', getenv('DB_PORT') ?: '3306');
@@ -20,7 +23,8 @@ define('JWT_SECRET', getenv('JWT_SECRET') ?: 'kms_astrology_super_secret_tamil_p
  * @param bool $selectDatabase Whether to select the target database
  * @return PDO
  */
-function getDBConnection($selectDatabase = true) {
+function getDBConnection($selectDatabase = true)
+{
     static $pdo = null;
 
     if ($pdo !== null && $selectDatabase) {
@@ -34,14 +38,16 @@ function getDBConnection($selectDatabase = true) {
     $dsn .= ";charset=utf8mb4";
 
     $options = [
-        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::ATTR_EMULATE_PREPARES   => false,
-        PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci"
+        PDO::ATTR_EMULATE_PREPARES => false,
+        PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci, time_zone = '+05:30'"
     ];
 
     try {
         $instance = new PDO($dsn, DB_USER, DB_PASS, $options);
+        // Explicitly set connection timezone to Indian Standard Time (IST)
+        $instance->exec("SET time_zone = '+05:30'");
         if ($selectDatabase) {
             $pdo = $instance;
         }
@@ -54,9 +60,9 @@ function getDBConnection($selectDatabase = true) {
         }
         echo json_encode([
             'success' => false,
-            'error'   => 'DATABASE_CONNECTION_ERROR',
+            'error' => 'DATABASE_CONNECTION_ERROR',
             'message' => 'தரவுத்தள இணைப்பு தோல்வியடைந்தது: ' . $e->getMessage(),
-            'hint'    => 'Please ensure MySQL is running in XAMPP / cPanel and credentials in api/config/db.php match.'
+            'hint' => 'Please ensure MySQL is running in XAMPP / cPanel and credentials in api/config/db.php match.'
         ], JSON_UNESCAPED_UNICODE);
         exit;
     }

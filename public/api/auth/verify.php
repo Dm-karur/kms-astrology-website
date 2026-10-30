@@ -18,3 +18,4 @@ sendResponse(200, [
         'role'     => $auth['role'] ?? 'admin'
     ]
 ]);
+

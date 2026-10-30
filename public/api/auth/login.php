@@ -96,3 +96,4 @@ try {
         'message' => 'சர்வர் பிழை: ' . $e->getMessage()
     ]);
 }
+

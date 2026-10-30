@@ -62,3 +62,4 @@ function getJsonPayload() {
     $decoded = json_decode($raw, true);
     return is_array($decoded) ? $decoded : [];
 }
+

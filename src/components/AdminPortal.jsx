@@ -726,13 +726,22 @@ export const AdminPortal = () => {
                       <Clock size={14} />
                       <span>
                         {item.submissionTimestamp
-                          ? new Date(item.submissionTimestamp).toLocaleString("ta-IN", {
-                            day: "numeric",
-                            month: "short",
-                            year: "numeric",
-                            hour: "2-digit",
-                            minute: "2-digit",
-                          })
+                          ? (() => {
+                            // Ensure date is parsed reliably whether ISO format or SQL datetime
+                            const raw = item.submissionTimestamp;
+                            const d = new Date(raw.includes("T") || raw.endsWith("Z") ? raw : raw.replace(" ", "T") + "+05:30");
+                            return isNaN(d.getTime())
+                              ? raw
+                              : d.toLocaleString("ta-IN", {
+                                timeZone: "Asia/Kolkata",
+                                day: "numeric",
+                                month: "short",
+                                year: "numeric",
+                                hour: "2-digit",
+                                minute: "2-digit",
+                                hour12: true,
+                              });
+                          })()
                           : "இன்று"}
                       </span>
                       <span className="admin-contact-pref">

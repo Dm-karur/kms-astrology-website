@@ -108,3 +108,4 @@ INSERT INTO `kms_leads` (
   'consulted',
   'நேரடி ஆலோசனை நிறைவு பெற்றது. சுப முகூர்த்த நாள் வழங்கப்பட்டது.'
 ) ON DUPLICATE KEY UPDATE `lead_id` = `lead_id`;
+
