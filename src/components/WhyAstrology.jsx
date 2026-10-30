@@ -10,11 +10,11 @@ export const WhyAstrology = () => {
   if (!data) return null;
 
   const cardIcons = [
-    <Compass key="compass" size={20} className="why-icon-svg" aria-hidden="true" />,
-    <Clock key="clock" size={20} className="why-icon-svg" aria-hidden="true" />,
-    <HeartHandshake key="rel" size={20} className="why-icon-svg" aria-hidden="true" />,
-    <ShieldAlert key="health" size={20} className="why-icon-svg" aria-hidden="true" />,
-    <Sparkles key="karma" size={20} className="why-icon-svg" aria-hidden="true" />,
+    <Compass key="compass" size={22} className="why-icon-svg" aria-hidden="true" />,
+    <Clock key="clock" size={22} className="why-icon-svg" aria-hidden="true" />,
+    <HeartHandshake key="rel" size={22} className="why-icon-svg" aria-hidden="true" />,
+    <ShieldAlert key="health" size={22} className="why-icon-svg" aria-hidden="true" />,
+    <Sparkles key="karma" size={22} className="why-icon-svg" aria-hidden="true" />,
   ];
 
   const cards = data.cards || [
@@ -24,11 +24,12 @@ export const WhyAstrology = () => {
   ];
 
   return (
-    <section id="why-astrology" className="section-white" aria-labelledby="why-heading">
+    <section id="why-astrology" className="section-white why-astrology-section" aria-labelledby="why-heading">
       <div className="container">
         {/* Section Header */}
         <div className="section-header">
           <div className="section-eyebrow">
+            <Sparkles size={14} aria-hidden="true" />
             <span>{data.eyebrow}</span>
           </div>
           <h2 id="why-heading" className="section-title">
@@ -45,7 +46,7 @@ export const WhyAstrology = () => {
           {cards.map((block, idx) => (
             <div key={block.num || idx} className="why-card">
               <div className="why-card-top">
-                <span className="why-number">{block.num}</span>
+                <span className="why-number">{block.num || `0${idx + 1}`}</span>
                 <div className="why-card-icon-wrap" aria-hidden="true">
                   {cardIcons[idx % cardIcons.length]}
                 </div>
@@ -58,10 +59,10 @@ export const WhyAstrology = () => {
 
         {/* Responsible Guidance Note */}
         <div className="guidance-note" role="note">
-          <div style={{ display: "flex", alignItems: "flex-start", gap: "0.625rem" }}>
-            <AlertCircle size={18} style={{ color: "var(--color-gold)", flexShrink: 0, marginTop: "2px" }} aria-hidden="true" />
+          <div style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
+            <AlertCircle size={20} style={{ color: "var(--color-gold)", flexShrink: 0, marginTop: "2px" }} aria-hidden="true" />
             <div>
-              <strong style={{ display: "block", color: "var(--color-primary-dark)", marginBottom: "0.25rem", fontSize: "0.875rem" }}>
+              <strong style={{ display: "block", color: "var(--color-primary-dark)", marginBottom: "0.25rem", fontSize: "0.9375rem" }}>
                 {data.disclaimerTitle}
               </strong>
               <span>{data.disclaimer}</span>

@@ -70,17 +70,23 @@ export const translations = {
     whatIsAstrology: {
       eyebrow: "COSMIC HARMONY & ASTRONOMICAL SCIENCE",
       heading: "What is Astrology?",
+      badge: "Astronomical Mathematical Science",
+      p1: "Astrology is not a concept founded on mere luck or arbitrary guesswork. It is a scientifically rooted spiritual science that illuminates the profound connection between the cosmos and human life.",
+      p2: "At the precise moment a person takes their very first breath on Earth, the unique alignment of the nine planets and constellations—the Cosmic Map—determines the blueprint of their life journey. Astrology is an incomparable astronomical mathematical discipline that reveals how the movement of the five primordial elements and the radiant energies of the celestial bodies reflect upon our thoughts, emotions, and life transitions.",
       mainQuote: "Astrology is not a concept founded on mere luck or arbitrary guesswork. It is a scientifically rooted spiritual science that illuminates the profound connection between the cosmos and human life. At the precise moment a person takes their very first breath on Earth, the unique alignment of the nine planets and constellations—the Cosmic Map—determines the blueprint of their life journey. Astrology is an incomparable astronomical mathematical discipline that reveals how the movement of the five primordial elements and the radiant energies of the celestial bodies reflect upon our thoughts, emotions, and life transitions.",
       pillars: [
         {
+          num: "01",
           title: "Not Luck, but Astronomical Mathematics",
           desc: "Rooted in exact celestial coordinates, planetary cycles, and mathematical calculations rather than arbitrary speculation.",
         },
         {
+          num: "02",
           title: "The Cosmic Map of Birth",
           desc: "The celestial snapshot of the nine planets (Navagrahas) and constellations at the exact moment of birth shapes one's life blueprint.",
         },
         {
+          num: "03",
           title: "The Five Elements & Radiant Energies",
           desc: "The movement of the Panchabhutas and cosmic planetary radiations subtly reflecting across our thoughts, emotions, and life transitions.",
         },
@@ -89,17 +95,23 @@ export const translations = {
     purposeOfAstrology: {
       eyebrow: "ANCIENT WISDOM & SACRED PURPOSE",
       heading: "Why Was Astrology Created?",
+      badge: "Siddhars & Maharishis Heritage",
+      p1: "Ancient Maharishis and Siddhars bestowed this sacred art of astrology upon humanity so that mankind would not languish in ignorance and perplexity.",
+      p2: "It was created as a guiding light to prevent the suffering that comes from acting against the laws of nature and the cosmos, and to help us live in harmony with universal cosmic energies. Astrology serves as a trusted compass—helping an individual comprehend their true birth purpose, awaken their hidden inner potentials, and navigate life's inevitable ebbs and flows with foresight, vigilance, and wisdom.",
       mainQuote: "Ancient Maharishis and Siddhars bestowed this sacred art of astrology upon humanity so that mankind would not languish in ignorance and perplexity. It was created as a guiding light to prevent the suffering that comes from acting against the laws of nature and the cosmos, and to help us live in harmony with universal cosmic energies. Astrology serves as a trusted compass—helping an individual comprehend their true birth purpose, awaken their hidden inner potentials, and navigate life's inevitable ebbs and flows with foresight, vigilance, and wisdom.",
       pillars: [
         {
+          num: "01",
           title: "Blessing of the Sages",
           desc: "Gifted by enlightened Maharishis and Siddhars to illuminate the human path and overcome ignorance and inner confusion.",
         },
         {
+          num: "02",
           title: "Harmony with Cosmic Laws",
           desc: "Guiding individuals to live in resonance with nature and celestial forces rather than suffering against universal laws.",
         },
         {
+          num: "03",
           title: "A Compass for Life's Journey",
           desc: "Revealing your birth purpose, awakening latent inner gifts, and navigating life's turning points with foresight and clarity.",
         },
@@ -120,7 +132,7 @@ export const translations = {
         {
           num: "02",
           title: "To Choose the Right Time",
-          text: "“Knowing the right time to act is the first step towards success.” Before taking major steps in life, such as starting a new business, purchasing property, or building a house, astrological guidance helps you understand whether the time is favourable and choose the right moment to move forward.",
+          text: "Knowing the opportune time to act is the foundational step towards success. Before taking major steps in life, such as starting a new business, purchasing property, or building a house, astrological guidance helps you understand whether celestial timings are favourable and choose the right moment to move forward.",
         },
         {
           num: "03",
@@ -144,7 +156,7 @@ export const translations = {
       },
       card2: {
         title: "To Choose the Right Time",
-        text: "“Knowing the right time to act is the first step towards success.” Before taking major steps in life, such as starting a new business, purchasing property, or building a house, astrological guidance helps you understand whether the time is favourable and choose the right moment to move forward.",
+        text: "Knowing the opportune time to act is the foundational step towards success. Before taking major steps in life, such as starting a new business, purchasing property, or building a house, astrological guidance helps you understand whether celestial timings are favourable and choose the right moment to move forward.",
       },
       card3: {
         title: "To Understand Personal Relationships",
@@ -440,17 +452,23 @@ export const translations = {
     whatIsAstrology: {
       eyebrow: "பிரபஞ்ச அறிவியலும் ஆன்மீகக் கலையும்",
       heading: "ஜோதிடம் என்றால் என்ன?",
+      badge: "வானியல் கணித அறிவியல்",
+      p1: "ஜோதிடம் என்பது ஏதோ அதிர்ஷ்டத்தையோ அல்லது வெறும் ஊகங்களையோ அடிப்படையாகக் கொண்ட கருத்து அல்ல. இது நம் பிரபஞ்சத்திற்கும் மனித வாழ்விற்கும் இடையே உள்ள ஆழமான தொடர்பை விளக்கும் அறிவியல் பூர்வமான ஆன்மீகக் கலையாகும்.",
+      p2: "ஒரு மனிதன் பூமியில் முதன்முதலில் மூச்சு எடுக்கும் அந்தத் துல்லியமான கணத்தில், பிரபஞ்சத்தில் ஒன்பது கோள்களும் நட்சத்திரங்களும் நின்றிருக்கும் நிலையை (Cosmic Map) அடிப்படையாகக் கொண்டே அவனது வாழ்வியல் அமைப்பு தீர்மானிக்கப்படுகிறது. பஞ்சபூதங்களின் இயக்கமும், கோள்களின் கதிர்வீச்சுகளும் நமது எண்ணங்கள், உணர்வுகள் மற்றும் வாழ்வின் திருப்பங்களில் பிரதிபலிக்கின்றன என்பதை உணர்த்தும் ஒப்பற்ற வானியல் கணிதமே ஜோதிடம்.",
       mainQuote: "ஜோதிடம் என்பது ஏதோ அதிர்ஷ்டத்தையோ அல்லது வெறும் ஊகங்களையோ அடிப்படையாகக் கொண்ட கருத்து அல்ல. இது நம் பிரபஞ்சத்திற்கும் மனித வாழ்விற்கும் இடையே உள்ள ஆழமான தொடர்பை விளக்கும் அறிவியல் பூர்வமான ஆன்மீகக் கலையாகும். ஒரு மனிதன் பூமியில் முதன்முதலில் மூச்சு எடுக்கும் அந்தத் துல்லியமான கணத்தில், பிரபஞ்சத்தில் ஒன்பது கோள்களும் நட்சத்திரங்களும் நின்றிருக்கும் நிலையை (Cosmic Map) அடிப்படையாகக் கொண்டே அவனது வாழ்வியல் அமைப்பு தீர்மானிக்கப்படுகிறது. பஞ்சபூதங்களின் இயக்கமும், கோள்களின் கதிர்வீச்சுகளும் நமது எண்ணங்கள், உணர்வுகள் மற்றும் வாழ்வின் திருப்பங்களில் பிரதிபலிக்கின்றன என்பதை உணர்த்தும் ஒப்பற்ற வானியல் கணிதமே ஜோதிடம்.",
       pillars: [
         {
+          num: "01",
           title: "அதிர்ஷ்டமல்ல, வானியல் கணிதம்",
           desc: "வெறும் ஊகங்களோ அல்லது கண்மூடித்தனமான அதிர்ஷ்டமோ அல்லாமல், துல்லியமான கோள்களின் சுழற்சியைக் கணக்கிடும் உன்னதக் கணிதவியல்.",
         },
         {
+          num: "02",
           title: "பிரபஞ்ச வரைபடம் (Cosmic Map)",
           desc: "மனிதன் மூச்செடுக்கும் முதல் கணத்தில், ஒன்பது கோள்களும் நட்சத்திரங்களும் நின்றிருக்கும் நிலையே வாழ்வின் வரைபடமாக அமைகிறது.",
         },
         {
+          num: "03",
           title: "பஞ்சபூத இயக்கமும் கதிர்வீச்சுகளும்",
           desc: "ஐம்பூதங்களின் இயக்கமும் கோள்களின் கதிர்வீச்சுகளும் நமது எண்ணங்கள், உணர்வுகள் மற்றும் வாழ்வின் திருப்பங்களில் பிரதிபலிக்கின்றன.",
         },
@@ -459,17 +477,23 @@ export const translations = {
     purposeOfAstrology: {
       eyebrow: "ஞானியரின் வழிகாட்டல்",
       heading: "ஜோதிடம் எதற்காக உருவாக்கப்பட்டுள்ளது?",
+      badge: "சித்தர்கள் & மகரிஷிகள் அருளிய மெய்ஞானம்",
+      p1: "பண்டைய காலத்து மகரிஷிகளும் சித்தர்களும் மனித குலம் அறியாமையிலும் குழப்பத்திலும் தவிக்கக் கூடாது என்பதற்காகவே இந்த ஜோதிடக் கலையை அருளினார்கள்.",
+      p2: "இயற்கை மற்றும் பிரபஞ்ச விதிகளுக்கு மாறாகப் பயணித்துத் துன்பப்படுவதைத் தவிர்த்து, பிரபஞ்ச ஆற்றலோடு இசைந்து வாழ்வதற்கான வழிகாட்டியாக இது உருவாக்கப்பட்டது. ஒரு மனிதன் தன் பிறந்த நோக்கத்தைப் புரிந்து கொள்ளவும், அவனுக்குள் இருக்கும் மறைமுக ஆற்றல்களை வெளிக்கொணரவும், வாழ்வின் ஏற்ற இறக்கங்களை முன்கூட்டியே அறிந்து எச்சரிக்கையுடன் செயல்படவும் உதவும் ஒரு திசைகாட்டியாக ஜோதிடம் திகழ்கிறது.",
       mainQuote: "பண்டைய காலத்து மகரிஷிகளும் சித்தர்களும் மனித குலம் அறியாமையிலும் குழப்பத்திலும் தவிக்கக் கூடாது என்பதற்காகவே இந்த ஜோதிடக் கலையை அருளினார்கள். இயற்கை மற்றும் பிரபஞ்ச விதிகளுக்கு மாறாகப் பயணித்துத் துன்பப்படுவதைத் தவிர்த்து, பிரபஞ்ச ஆற்றலோடு இசைந்து வாழ்வதற்கான வழிகாட்டியாக இது உருவாக்கப்பட்டது. ஒரு மனிதன் தன் பிறந்த நோக்கத்தைப் புரிந்து கொள்ளவும், அவனுக்குள் இருக்கும் மறைமுக ஆற்றல்களை வெளிக்கொணரவும், வாழ்வின் ஏற்ற இறக்கங்களை முன்கூட்டியே அறிந்து எச்சரிக்கையுடன் செயல்படவும் உதவும் ஒரு திசைகாட்டியாக ஜோதிடம் திகழ்கிறது.",
       pillars: [
         {
+          num: "01",
           title: "மகரிஷிகள் மற்றும் சித்தர்களின் அருள்",
           desc: "மனித குலம் அறியாமையிலும் குழப்பத்திலும் தவிக்காமல் நல்வழியில் பயணிக்க ஞானியர் அருளிய ஒப்பற்ற ஆன்மீகக் கொடை.",
         },
         {
+          num: "02",
           title: "இயற்கையோடு இசைந்த வாழ்வியல்",
           desc: "இயற்கை மற்றும் பிரபஞ்ச விதிகளுக்கு மாறாகச் செல்லாமல், பேரண்ட ஆற்றலோடு ஒன்றிணைந்து வாழ வழிகாட்டுகிறது.",
         },
         {
+          num: "03",
           title: "வாழ்வின் வழிகாட்டும் திசைகாட்டி",
           desc: "பிறந்த நோக்கத்தை உணர்ந்து, உள்ளிருக்கும் மறைமுக ஆற்றல்களை வெளிக்கொணர்ந்து, ஏற்ற இறக்கங்களை விவேகத்துடன் எதிர்கொள்ள உதவுகிறது.",
         },
@@ -490,7 +514,7 @@ export const translations = {
         {
           num: "02",
           title: "சரியான நேரத்தைத் தேர்ந்தெடுக்க",
-          text: "“காலம் அறிந்து செயல்படுவது வெற்றிக்கான முதல் படி.” புதிய தொழில் தொடங்குவது, சொத்துக்கள் வாங்குவது, வீடு கட்டுவது போன்ற வாழ்வின் பெரிய அடிகளை எடுத்து வைக்கும் முன், காலம் நமக்குச் சாதகமாக இருக்கிறதா என்பதை அறிந்து சரியான நேரத்தில் செயல்பட ஜோதிட வழிகாட்டுதல் அவசியமாகிறது.",
+          text: "காலம் அறிந்து செயல்படுவதே வெற்றிக்கான முதல் படி. புதிய தொழில் தொடங்குவது, சொத்துக்கள் வாங்குவது, வீடு கட்டுவது போன்ற வாழ்வின் பெரிய அடிகளை எடுத்து வைக்கும் முன், காலம் நமக்குச் சாதகமாக இருக்கிறதா என்பதை அறிந்து சரியான நேரத்தில் செயல்பட ஜோதிட வழிகாட்டுதல் அவசியமாகிறது.",
         },
         {
           num: "03",
@@ -514,7 +538,7 @@ export const translations = {
       },
       card2: {
         title: "சரியான நேரத்தைத் தேர்ந்தெடுக்க",
-        text: "“காலம் அறிந்து செயல்படுவது வெற்றிக்கான முதல் படி.” புதிய தொழில் தொடங்குவது, சொத்துக்கள் வாங்குவது, வீடு கட்டுவது போன்ற வாழ்வின் பெரிய அடிகளை எடுத்து வைக்கும் முன், காலம் நமக்குச் சாதகமாக இருக்கிறதா என்பதை அறிந்து சரியான நேரத்தில் செயல்பட ஜோதிட வழிகாட்டுதல் அவசியமாகிறது.",
+        text: "காலம் அறிந்து செயல்படுவதே வெற்றிக்கான முதல் படி. புதிய தொழில் தொடங்குவது, சொத்துக்கள் வாங்குவது, வீடு கட்டுவது போன்ற வாழ்வின் பெரிய அடிகளை எடுத்து வைக்கும் முன், காலம் நமக்குச் சாதகமாக இருக்கிறதா என்பதை அறிந்து சரியான நேரத்தில் செயல்பட ஜோதிட வழிகாட்டுதல் அவசியமாகிறது.",
       },
       card3: {
         title: "தனிப்பட்ட உறவுகளின் புரிதலுக்கு",
