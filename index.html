@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
+  <script>window.__kmsLoaderStartTime = Date.now();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>KMS Astrology | Traditional Astrology & Personal Guidance in Tamil Nadu</title>
 
@@ -65,9 +66,286 @@
       ]
     }
     </script>
+
+  <!-- KMS Sacred Celestial Preloader Styles (Instant Zero-Delay Paint) -->
+  <style>
+    #kms-preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 999999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at center, #FFFDF9 0%, #FAF5EB 70%, #F5ECE0 100%);
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.65s;
+      pointer-events: auto;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    #kms-preloader.kms-loaded {
+      opacity: 0;
+      transform: scale(1.035);
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .kms-loader-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .kms-loader-emblem {
+      position: relative;
+      width: 136px;
+      height: 136px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.35rem;
+    }
+
+    .kms-loader-glow {
+      position: absolute;
+      width: 148px;
+      height: 148px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.22) 0%, rgba(176, 138, 80, 0.08) 50%, rgba(252, 250, 246, 0) 75%);
+      pointer-events: none;
+      animation: celestialAura 2.6s ease-in-out infinite;
+    }
+
+    .kms-mandala-svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      filter: drop-shadow(0 4px 14px rgba(56, 37, 29, 0.08));
+    }
+
+    .kms-orbit-outer {
+      transform-origin: 80px 80px;
+      animation: celestialSpinClockwise 24s linear infinite;
+    }
+
+    .kms-orbit-middle {
+      transform-origin: 80px 80px;
+      animation: celestialSpinCounter 16s linear infinite;
+    }
+
+    .kms-orbit-center {
+      transform-origin: 80px 80px;
+      animation: celestialPulse 2.4s ease-in-out infinite;
+    }
+
+    @keyframes celestialSpinClockwise {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes celestialSpinCounter {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(-360deg); }
+    }
+
+    @keyframes celestialPulse {
+      0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 6px rgba(176, 138, 80, 0.45));
+      }
+      50% {
+        transform: scale(1.08);
+        filter: drop-shadow(0 0 16px rgba(212, 175, 55, 0.8));
+      }
+    }
+
+    @keyframes celestialAura {
+      0%, 100% { transform: scale(0.95); opacity: 0.6; }
+      50% { transform: scale(1.18); opacity: 1; }
+    }
+
+    .kms-loader-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .kms-loader-title-ta {
+      font-family: 'Noto Sans Tamil', -apple-system, sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #38251D;
+      letter-spacing: 0.02em;
+      line-height: 1.25;
+    }
+
+    .kms-loader-title-en {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #B08A50;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+
+    .kms-loader-divider {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0.35rem 0 0.35rem 0;
+    }
+
+    .kms-loader-line {
+      width: 44px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #B08A50, transparent);
+    }
+
+    .kms-loader-diamond {
+      width: 6px;
+      height: 6px;
+      background-color: #B08A50;
+      transform: rotate(45deg);
+    }
+
+    .kms-loader-sub {
+      font-family: 'Noto Sans Tamil', -apple-system, sans-serif;
+      font-size: 0.775rem;
+      color: #7A695F;
+      letter-spacing: 0.06em;
+      font-weight: 500;
+    }
+
+    .kms-loader-progress {
+      width: 140px;
+      height: 2px;
+      background: rgba(176, 138, 80, 0.18);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: 1.25rem;
+      position: relative;
+    }
+
+    .kms-loader-bar {
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, #B08A50, #D4AF37, transparent);
+      border-radius: 2px;
+      position: absolute;
+      top: 0;
+      left: -60%;
+      animation: celestialShimmer 1.8s ease-in-out infinite;
+    }
+
+    @keyframes celestialShimmer {
+      0% { left: -60%; }
+      50% { left: 40%; }
+      100% { left: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .kms-orbit-outer,
+      .kms-orbit-middle,
+      .kms-orbit-center,
+      .kms-loader-glow,
+      .kms-loader-bar {
+        animation: none !important;
+      }
+    }
+  </style>
+
+  <noscript>
+    <style>
+      #kms-preloader { display: none !important; }
+    </style>
+  </noscript>
 </head>
 
 <body>
+  <!-- KMS Sacred Celestial Loading Experience -->
+  <div id="kms-preloader" role="status" aria-label="Loading KMS Astrology">
+    <div class="kms-loader-content">
+      <!-- Sacred Concentric Celestial Mandala -->
+      <div class="kms-loader-emblem">
+        <div class="kms-loader-glow" aria-hidden="true"></div>
+        <svg class="kms-mandala-svg" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="kmsGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#E5C775" />
+              <stop offset="50%" stop-color="#B08A50" />
+              <stop offset="100%" stop-color="#8C6834" />
+            </linearGradient>
+          </defs>
+
+          <!-- Outer Zodiac Orbit (Clockwise rotation) -->
+          <g class="kms-orbit-outer">
+            <circle cx="80" cy="80" r="74" stroke="#B08A50" stroke-width="1.2" stroke-opacity="0.32" stroke-dasharray="4 6" />
+            <circle cx="80" cy="80" r="66" stroke="#B08A50" stroke-width="0.8" stroke-opacity="0.45" />
+            <!-- 12 Astrological points -->
+            <circle cx="80" cy="10" r="2.5" fill="#B08A50" />
+            <circle cx="115" cy="19" r="1.8" fill="#B08A50" fill-opacity="0.65" />
+            <circle cx="141" cy="45" r="1.8" fill="#B08A50" fill-opacity="0.65" />
+            <circle cx="150" cy="80" r="2.5" fill="#B08A50" />
+            <circle cx="141" cy="115" r="1.8" fill="#B08A50" fill-opacity="0.65" />
+            <circle cx="115" cy="141" r="1.8" fill="#B08A50" fill-opacity="0.65" />
+            <circle cx="80" cy="150" r="2.5" fill="#B08A50" />
+            <circle cx="45" cy="141" r="1.8" fill="#B08A50" fill-opacity="0.65" />
+            <circle cx="19" cy="115" r="1.8" fill="#B08A50" fill-opacity="0.65" />
+            <circle cx="10" cy="80" r="2.5" fill="#B08A50" />
+            <circle cx="19" cy="45" r="1.8" fill="#B08A50" fill-opacity="0.65" />
+            <circle cx="45" cy="19" r="1.8" fill="#B08A50" fill-opacity="0.65" />
+          </g>
+
+          <!-- Middle Sacred Lotus Ring (Counter-Clockwise rotation) -->
+          <g class="kms-orbit-middle">
+            <circle cx="80" cy="80" r="48" stroke="#38251D" stroke-width="1" stroke-opacity="0.25" stroke-dasharray="5 3" />
+            <path d="M80 32 C88 56 104 72 128 80 C104 88 88 104 80 128 C72 104 56 88 32 80 C56 72 72 56 80 32 Z"
+                  stroke="#B08A50" stroke-width="1.2" stroke-opacity="0.75" fill="none" />
+            <path d="M46 46 C69 57 83 71 93 93 C71 83 57 69 46 46 Z"
+                  stroke="#B08A50" stroke-width="0.8" stroke-opacity="0.45" fill="none" />
+            <path d="M114 46 C103 69 89 83 67 93 C89 103 103 89 114 46 Z"
+                  stroke="#B08A50" stroke-width="0.8" stroke-opacity="0.45" fill="none" />
+          </g>
+
+          <!-- Inner Core Solar Star (Breathing pulse) -->
+          <g class="kms-orbit-center">
+            <circle cx="80" cy="80" r="24" fill="#38251D" stroke="#B08A50" stroke-width="1.5" />
+            <!-- 8-point sacred gold star -->
+            <path d="M80 58 L84.5 75.5 L102 80 L84.5 84.5 L80 102 L75.5 84.5 L58 80 L75.5 75.5 Z" fill="url(#kmsGoldGrad)" />
+            <circle cx="80" cy="80" r="3.5" fill="#FCFAF6" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- Bilingual Brand Typography -->
+      <div class="kms-loader-brand">
+        <div class="kms-loader-title-ta">KMS ஜோதிடம்</div>
+        <div class="kms-loader-title-en">KMS ASTROLOGY</div>
+        <div class="kms-loader-divider" aria-hidden="true">
+          <div class="kms-loader-line"></div>
+          <div class="kms-loader-diamond"></div>
+          <div class="kms-loader-line"></div>
+        </div>
+        <div class="kms-loader-sub">வேத வழிகாட்டுதல் • Sacred Vedic Guidance</div>
+      </div>
+
+      <!-- Golden Light Progress Beam -->
+      <div class="kms-loader-progress" aria-hidden="true">
+        <div class="kms-loader-bar"></div>
+      </div>
+    </div>
+  </div>
+
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>

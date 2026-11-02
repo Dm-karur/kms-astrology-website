@@ -13,6 +13,7 @@ import { WhatIsAstrology } from "./components/WhatIsAstrology";
 import { PurposeOfAstrology } from "./components/PurposeOfAstrology";
 import { UniqueJourney } from "./components/UniqueJourney";
 import { AstrologerSpecialties } from "./components/AstrologerSpecialties";
+import { WebsiteLoader } from "./components/WebsiteLoader";
 
 /**
  * Determines current client-side route
@@ -86,22 +87,31 @@ export function App() {
 
   // 1. Dedicated Admin Portal URL (/admin) - 100% Tamil, PWA mobile installable
   if (route === "admin") {
-    return <AdminPortal />;
+    return (
+      <>
+        <WebsiteLoader />
+        <AdminPortal />
+      </>
+    );
   }
 
   // 2. 404 Error Page for mistyped URLs
   if (route === "not-found") {
     return (
-      <NotFoundPage
-        onNavigateHome={() => handleNavigateHome()}
-        onSelectService={handleSelectServiceFrom404}
-      />
+      <>
+        <WebsiteLoader />
+        <NotFoundPage
+          onNavigateHome={() => handleNavigateHome()}
+          onSelectService={handleSelectServiceFrom404}
+        />
+      </>
     );
   }
 
   // 3. Public Website (Home) - Note: Strictly NO admin icons or links visible to the public
   return (
     <>
+      <WebsiteLoader />
       {/* Accessibility Skip Link */}
       <a href="#main-content" className="skip-to-content">
         Skip to main content
