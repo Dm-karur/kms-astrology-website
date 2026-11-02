@@ -170,7 +170,7 @@ export const translations = {
       heading: "The Unique Journey of KMS Astrology",
       p1: "KMS Astrology is deeply intertwined with the ancient historical glory and spiritual heritage of Karur, situated on the banks of the Amaravathi River. Here, spiritual wisdom and precise, scientific mathematical calculations come together. With astrologer Subramani’s extensive 28 years of experience and unwavering accuracy in predictions, KMS Astrology has today become a trusted name among thousands of clients.",
       p2: "Rather than limiting consultations to general zodiac predictions, Subramani’s distinctive approach lies in meticulously analysing the cosmic positions and planetary degrees at each individual’s time of birth and providing practical guidance to help shape their lives.",
-      p3: "Due to the remarkable accuracy of his predictions, thousands of clients, including leading entrepreneurs, business owners, and political leaders from Karur, across Tamil Nadu, and throughout India, as well as clients from various countries such as Singapore, Malaysia, Sri Lanka, and Vietnam, continue to seek him as their primary guide for their personal life and business decisions.",
+      p3: "Due to the remarkable accuracy of his predictions, thousands of clients, including leading entrepreneurs, business owners, and political leaders from Karur, across Tamil Nadu,  as well as clients from various countries continue to seek him as their primary guide for their personal life and business decisions.",
       highlights: [
         {
           num: "28+",

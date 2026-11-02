@@ -117,26 +117,47 @@ try {
 
     $stmt = $pdo->prepare("
         INSERT INTO `kms_leads` (
-            `lead_id`, `full_name`, `mobile_number`, `normalized_digits`,
-            `preferred_language`, `consultation_category`, `preferred_contact_method`,
-            `brief_concern`, `consent_given`, `consent_timestamp`, `submission_timestamp`,
-            `status`, `notes`
+            `lead_id`,
+            `full_name`,
+            `mobile_number`,
+            `normalized_digits`,
+            `preferred_language`,
+            `consultation_category`,
+            `preferred_contact_method`,
+            `brief_concern`,
+            `consent_given`,
+            `consent_timestamp`,
+            `submission_timestamp`,
+            `status`,
+            `notes`
         ) VALUES (
-            ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, 'received', ''
+            :lead_id,
+            :full_name,
+            :mobile_number,
+            :normalized_digits,
+            :preferred_language,
+            :consultation_category,
+            :preferred_contact_method,
+            :brief_concern,
+            1,
+            :consent_timestamp,
+            :submission_timestamp,
+            'received',
+            ''
         )
     ");
 
     $stmt->execute([
-        $leadId,
-        $fullName,
-        $formattedMobile,
-        $digits,
-        $prefLang,
-        $category,
-        $contactMethod,
-        $briefConcern,
-        $istTimestamp,
-        $istTimestamp
+        ':lead_id'                  => $leadId,
+        ':full_name'                => $fullName,
+        ':mobile_number'            => $formattedMobile,
+        ':normalized_digits'        => $digits,
+        ':preferred_language'       => $prefLang,
+        ':consultation_category'    => $category,
+        ':preferred_contact_method' => $contactMethod,
+        ':brief_concern'            => $briefConcern,
+        ':consent_timestamp'        => $istTimestamp,
+        ':submission_timestamp'     => $istTimestamp
     ]);
 
     $insertedId = $pdo->lastInsertId();

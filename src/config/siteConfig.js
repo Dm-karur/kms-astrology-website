@@ -20,8 +20,8 @@ export const siteConfig = {
     experienceTa: "28 ஆண்டுகால நீண்ட அனுபவம்",
     location: "Tamil Nadu",
     locationTa: " தமிழ்நாடு",
-    serviceArea: "Tamil Nadu, India & Globally (Singapore, Malaysia, Sri Lanka, Vietnam)",
-    serviceAreaTa: "தமிழ்நாடு, இந்தியா & உலகளவில் (சிங்கப்பூர், மலேசியா, இலங்கை, வியட்நாம்)",
+    serviceArea: "Tamil Nadu",
+    serviceAreaTa: "தமிழ்நாடு",
   },
 
   // Contact details placeholders
