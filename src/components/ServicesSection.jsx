@@ -40,7 +40,7 @@ export const ServicesSection = ({ onSelectService }) => {
   ];
 
   return (
-    <section id="services" className="section-warm" aria-labelledby="services-heading">
+    <section id="services" className="section-warm services-section" aria-labelledby="services-heading">
       <div className="container">
         {/* Section Header */}
         <div className="section-header">
