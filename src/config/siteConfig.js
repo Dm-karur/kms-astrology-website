@@ -24,12 +24,13 @@ export const siteConfig = {
     serviceAreaTa: "தமிழ்நாடு",
   },
 
-  // Contact details placeholders
+  // Contact details
   contact: {
-    phone: "[BUSINESS PHONE NUMBER]",
-    whatsapp: "[BUSINESS WHATSAPP NUMBER]",
-    displayPhone: "+91 98400 XXXXX",
-    displayWhatsApp: "+91 98400 XXXXX",
+    phone: "+917397162177",
+    whatsapp: "+917397162177",
+    displayPhone: "+91 73971 62177",
+    displayWhatsApp: "+91 73971 62177",
+    whatsappUrl: "https://wa.me/917397162177?text=Hello%20KMS%20Astrology,%20I%20would%20like%20to%20enquire%20about%20a%20consultation",
     email: "consultation@kmsastrology.com",
     city: "",
     state: "Tamil Nadu",
@@ -41,7 +42,7 @@ export const siteConfig = {
   socials: {
     youtube: "https://www.youtube.com/@kmsastrology001",
     instagram: "https://www.instagram.com/kmsastrology",
-    whatsapp: "https://wa.me/?text=Hello%20KMS%20Astrology,%20I%20would%20like%20to%20enquire%20about%20a%20consultation",
+    whatsapp: "https://wa.me/917397162177?text=Hello%20KMS%20Astrology,%20I%20would%20like%20to%20enquire%20about%20a%20consultation",
   },
 
   // Consultation Services (The Three Primary Pillars)

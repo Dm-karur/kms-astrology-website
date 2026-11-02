@@ -59,11 +59,10 @@ export const WhatsAppIcon = ({ size = 20, className = "" }) => (
  * Reusable SocialLinks group component for YouTube, Instagram, and WhatsApp
  */
 export const SocialLinks = ({ className = "", iconSize = 18 }) => {
-  const rawWhatsApp = (siteConfig.contact?.whatsapp || "").replace(/\D/g, "");
   const whatsAppUrl =
-    rawWhatsApp.length >= 10
-      ? `https://wa.me/${rawWhatsApp}`
-      : (siteConfig.socials?.whatsapp || "https://wa.me/?text=Hello%20KMS%20Astrology");
+    siteConfig.socials?.whatsapp ||
+    siteConfig.contact?.whatsappUrl ||
+    "https://wa.me/917397162177?text=Hello%20KMS%20Astrology,%20I%20would%20like%20to%20enquire%20about%20a%20consultation";
 
   return (
     <div className={`footer-social-links ${className}`} aria-label="Social media profiles">

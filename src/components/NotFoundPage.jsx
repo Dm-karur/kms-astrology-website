@@ -307,7 +307,7 @@ export const NotFoundPage = ({ onNavigateHome, onSelectService }) => {
                   <span>Call</span>
                 </a>
                 <a
-                  href={`https://wa.me/${siteConfig.contact.whatsapp.replace(/\D/g, "")}`}
+                  href={siteConfig.socials?.whatsapp || `https://wa.me/${siteConfig.contact.whatsapp.replace(/\D/g, "")}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-secondary not-found-mini-btn"

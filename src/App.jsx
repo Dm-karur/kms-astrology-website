@@ -14,6 +14,7 @@ import { PurposeOfAstrology } from "./components/PurposeOfAstrology";
 import { UniqueJourney } from "./components/UniqueJourney";
 import { AstrologerSpecialties } from "./components/AstrologerSpecialties";
 import { WebsiteLoader } from "./components/WebsiteLoader";
+import { FloatingWhatsApp } from "./components/FloatingWhatsApp";
 
 /**
  * Determines current client-side route
@@ -155,6 +156,9 @@ export function App() {
         policyType={activePolicy}
         onClose={() => setActivePolicy(null)}
       />
+
+      {/* Floating WhatsApp Quick Consultation Float */}
+      <FloatingWhatsApp />
     </>
   );
 }

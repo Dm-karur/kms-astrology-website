@@ -133,14 +133,24 @@ export const Footer = ({ onOpenPolicy, onSelectService }) => {
           {/* Column 4: Contact & Location */}
           <div>
             <h3 className="footer-col-title">{t.footer.contact}</h3>
-            <div className="footer-contact-item">
+            <a
+              href={`tel:${siteConfig.contact.phone}`}
+              className="footer-contact-item footer-contact-link"
+              aria-label={`Call ${siteConfig.contact.displayPhone}`}
+            >
               <Phone size={16} className="footer-contact-icon" aria-hidden="true" />
               <span>{siteConfig.contact.displayPhone}</span>
-            </div>
-            <div className="footer-contact-item">
+            </a>
+            <a
+              href={siteConfig.socials?.whatsapp || siteConfig.contact.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-contact-item footer-contact-link"
+              aria-label={`WhatsApp ${siteConfig.contact.displayWhatsApp}`}
+            >
               <MessageSquare size={16} className="footer-contact-icon" aria-hidden="true" />
               <span>{siteConfig.contact.displayWhatsApp}</span>
-            </div>
+            </a>
             <div className="footer-contact-item">
               <MapPin size={16} className="footer-contact-icon" aria-hidden="true" />
               <span>
