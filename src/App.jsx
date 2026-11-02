@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Navbar } from "./components/Navbar";
 import { HeroSection } from "./components/HeroSection";
-import { AstrologerIntro } from "./components/AstrologerIntro";
 import { ServicesSection } from "./components/ServicesSection";
 import { WhyAstrology } from "./components/WhyAstrology";
-import { DedicatedCTA } from "./components/DedicatedCTA";
 import { LeadForm } from "./components/LeadForm";
 import { FAQSection } from "./components/FAQSection";
 import { Footer } from "./components/Footer";
@@ -116,8 +114,6 @@ export function App() {
       <main id="main-content">
         <HeroSection onBookConsultation={handleScrollToConsultation} />
         
-        <AstrologerIntro onBookConsultation={handleScrollToConsultation} />
-        
         <ServicesSection onSelectService={handleSelectService} />
         
         <WhatIsAstrology onBookConsultation={handleScrollToConsultation} />
@@ -129,8 +125,6 @@ export function App() {
         <UniqueJourney onBookConsultation={handleScrollToConsultation} />
         
         <AstrologerSpecialties onBookConsultation={handleScrollToConsultation} />
-        
-        <DedicatedCTA onBookConsultation={handleScrollToConsultation} />
         
         <LeadForm
           preselectedCategory={selectedCategory}
