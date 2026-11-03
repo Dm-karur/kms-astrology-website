@@ -1,6 +1,6 @@
 import React from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { Compass, Globe2, Sun, ArrowRight, Sparkles } from "lucide-react";
+import { Compass, Globe2, Sun, ArrowRight } from "lucide-react";
 import { GoldDivider, BrandMotif } from "./SubtleKolam";
 
 export const WhatIsAstrology = ({ onBookConsultation }) => {
@@ -52,14 +52,7 @@ export const WhatIsAstrology = ({ onBookConsultation }) => {
               )}
             </div>
 
-            <div className="what-is-insight-badge">
-              <Compass size={18} className="text-gold" aria-hidden="true" />
-              <span>
-                {isTamil
-                  ? "பிறந்த நேர பிரபஞ்ச நிலைகளை நுண்மையாக ஆராய்ந்து வழிகாட்டும் ஒப்பற்ற வானியல் முறை"
-                  : "Precise mathematical calculation of planetary degrees at the exact time of birth"}
-              </span>
-            </div>
+
           </div>
         </div>
 

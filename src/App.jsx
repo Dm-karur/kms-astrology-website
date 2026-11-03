@@ -125,9 +125,9 @@ export function App() {
       <main id="main-content">
         <HeroSection onBookConsultation={handleScrollToConsultation} />
         
-        <ServicesSection onSelectService={handleSelectService} />
-        
         <WhatIsAstrology onBookConsultation={handleScrollToConsultation} />
+        
+        <ServicesSection onSelectService={handleSelectService} />
         
         <PurposeOfAstrology onBookConsultation={handleScrollToConsultation} />
         

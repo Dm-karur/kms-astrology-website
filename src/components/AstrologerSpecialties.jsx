@@ -8,7 +8,7 @@ import {
   Home,
   PhoneCall,
   ArrowRight,
-  Sparkles,
+
   Award,
   MapPin,
   Calendar,
@@ -74,7 +74,7 @@ export const AstrologerSpecialties = ({ onBookConsultation }) => {
                   className="specialties-photo"
                 />
                 <div className="specialties-image-badge">
-                  <Sparkles size={14} className="text-gold" aria-hidden="true" />
+
                   <span>{isTamil ? "28+ ஆண்டுகள் நீண்ட அனுபவம்" : "28+ Years Dedication"}</span>
                 </div>
               </div>
@@ -92,7 +92,7 @@ export const AstrologerSpecialties = ({ onBookConsultation }) => {
               </h3>
 
               <div className="specialties-profile-title-tag">
-                {isTamil ? siteConfig.astrologer.titleTa : siteConfig.astrologer.title} • {isTamil ? "கரூர், தமிழ்நாடு" : "Karur, Tamil Nadu"}
+                {isTamil ? siteConfig.astrologer.titleTa : siteConfig.astrologer.title} • {isTamil ? " தமிழ்நாடு" : " Tamil Nadu"}
               </div>
 
               <p className="specialties-profile-bio">
@@ -108,7 +108,7 @@ export const AstrologerSpecialties = ({ onBookConsultation }) => {
                 </div>
                 <div className="specialties-meta-pill">
                   <MapPin size={15} className="text-gold" aria-hidden="true" />
-                  <span>{isTamil ? "கரூர், தமிழ்நாடு & உலகளாவிய சேவை" : "Karur, Tamil Nadu & Global Service"}</span>
+                  <span>{isTamil ? "தமிழ்நாடு" : " Tamil Nadu"}</span>
                 </div>
               </div>
 

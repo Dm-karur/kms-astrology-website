@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { ChevronDown, HelpCircle } from "lucide-react";
-import { GoldDivider } from "./SubtleKolam";
+import { GoldDivider, BrandMotif } from "./SubtleKolam";
 
 export const FAQSection = () => {
   const { t } = useLanguage();
@@ -35,6 +35,10 @@ export const FAQSection = () => {
 
         {/* Accordion Container */}
         <div className="faq-container">
+          {/* Centered Sacred Brand Watermark */}
+          <div className="faq-watermark" aria-hidden="true">
+            <BrandMotif size={260} />
+          </div>
           {t.faq.items.map((item, index) => {
             const isOpen = openIndex === index;
             const contentId = `faq-answer-${index}`;

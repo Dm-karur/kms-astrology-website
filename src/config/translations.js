@@ -170,7 +170,7 @@ export const translations = {
       heading: "The Unique Journey of KMS Astrology",
       p1: "KMS Astrology is deeply intertwined with the ancient historical glory and spiritual heritage of Karur, situated on the banks of the Amaravathi River. Here, spiritual wisdom and precise, scientific mathematical calculations come together. With astrologer Subramani’s extensive 28 years of experience and unwavering accuracy in predictions, KMS Astrology has today become a trusted name among thousands of clients.",
       p2: "Rather than limiting consultations to general zodiac predictions, Subramani’s distinctive approach lies in meticulously analysing the cosmic positions and planetary degrees at each individual’s time of birth and providing practical guidance to help shape their lives.",
-      p3: "Due to the remarkable accuracy of his predictions, thousands of clients, including leading entrepreneurs, business owners, and political leaders from Karur, across Tamil Nadu,  as well as clients from various countries continue to seek him as their primary guide for their personal life and business decisions.",
+      p3: "Due to the remarkable accuracy of his predictions, thousands of clients, including leading entrepreneurs, business owners, and political leaders , across Tamil Nadu,  as well as clients from various countries continue to seek him as their primary guide for their personal life and business decisions.",
       highlights: [
         {
           num: "28+",
@@ -552,7 +552,7 @@ export const translations = {
       heading: "KMS ஜோதிடத்தின் தனித்துவமான பயணம்",
       p1: "அமராவதி ஆற்றின் கரையில் அமைந்த கரூரின் தொன்மையான வரலாற்றுப் பெருமையோடும் ஆன்மீகப் பாரம்பரியத்தோடும் பின்னிப்பிணைந்தது KMS ஜோதிடம். இங்கு ஆன்மீக ஞானமும், துல்லியமான அறிவியல் பூர்வமான கணிதக் கணிப்புகளும் ஒன்றிணைந்து இயங்கி வருகின்றன. ஜோதிடர் சுப்பிரமணி அவர்களின் 28 ஆண்டுகால நீண்ட அனுபவத்தாலும், அசைக்க முடியாத கணிப்புத் துல்லியத்தாலும் KMS ஜோதிடம் இன்று ஆயிரக்கணக்கான வாடிக்கையாளர்களின் நம்பிக்கைப் பாத்திரமாகத் திகழ்கிறது.",
       p2: "பொதுவான ராசி பலன்களோடு நிறுத்திவிடாமல், ஒவ்வொரு நபரின் பிறந்த நேரத்தின் பிரபஞ்ச நிலைகளையும் டிகிரி அளவுகளையும் நுண்மையாக ஆராய்ந்து, அவர்களின் வாழ்வைச் செதுக்குவதற்கான நடைமுறை வழிகாட்டுதல்களை வழங்குவதே சுப்பிரமணி அவர்களின் சிறப்பான அணுகுமுறையாகும்.",
-      p3: "இவரின் கணிப்புகள் அளிக்கும் வியக்கத்தக்க துல்லியத்தின் காரணமாக, கரூர் மற்றும் தமிழகம் மட்டுமின்றி, இந்தியா முழுவதிலும் உள்ள முன்னணி தொழில்முனைவோர்கள், நிறுவன அதிபர்கள், அரசியல் தலைவர்கள் மற்றும் சிங்கப்பூர், மலேசியா, இலங்கை, வியட்நாம் போன்ற பல்வேறு நாடுகளைச் சேர்ந்த ஆயிரக்கணக்கான வாடிக்கையாளர்கள் தங்களின் வாழ்வியல் மற்றும் தொழில் முடிவுகளுக்கு இவரை மட்டுமே முதன்மையான வழிகாட்டிகளாக நாடி வருகின்றனர்.",
+      p3: "இவரின் கணிப்புகள் அளிக்கும் வியக்கத்தக்க துல்லியத்தின் காரணமாக, கரூர் மற்றும் தமிழகம் மட்டுமின்றி, இந்தியா முழுவதிலும் உள்ள முன்னணி தொழில்முனைவோர்கள், நிறுவன அதிபர்கள், அரசியல் தலைவர்கள் மற்றும் ஆயிரக்கணக்கான வாடிக்கையாளர்கள் தங்களின் வாழ்வியல் மற்றும் தொழில் முடிவுகளுக்கு இவரை மட்டுமே முதன்மையான வழிகாட்டிகளாக நாடி வருகின்றனர்.",
       highlights: [
         {
           num: "28+",

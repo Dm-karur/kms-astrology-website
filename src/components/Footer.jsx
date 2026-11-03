@@ -131,33 +131,35 @@ export const Footer = ({ onOpenPolicy, onSelectService }) => {
           </div>
 
           {/* Column 4: Contact & Location */}
-          <div>
+          <div className="footer-contact-col">
             <h3 className="footer-col-title">{t.footer.contact}</h3>
-            <a
-              href={`tel:${siteConfig.contact.phone}`}
-              className="footer-contact-item footer-contact-link"
-              aria-label={`Call ${siteConfig.contact.displayPhone}`}
-            >
-              <Phone size={16} className="footer-contact-icon" aria-hidden="true" />
-              <span>{siteConfig.contact.displayPhone}</span>
-            </a>
-            <a
-              href={siteConfig.socials?.whatsapp || siteConfig.contact.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer-contact-item footer-contact-link"
-              aria-label={`WhatsApp ${siteConfig.contact.displayWhatsApp}`}
-            >
-              <MessageSquare size={16} className="footer-contact-icon" aria-hidden="true" />
-              <span>{siteConfig.contact.displayWhatsApp}</span>
-            </a>
-            <div className="footer-contact-item">
-              <MapPin size={16} className="footer-contact-icon" aria-hidden="true" />
-              <span>
-                {isTamil
-                  ? siteConfig.contact.stateTa
-                  : (siteConfig.contact.city ? `${siteConfig.contact.city}, ` : "") + siteConfig.contact.state}
-              </span>
+            <div className="footer-contact-list">
+              <a
+                href={`tel:${siteConfig.contact.phone}`}
+                className="footer-contact-item footer-contact-link"
+                aria-label={`Call ${siteConfig.contact.displayPhone}`}
+              >
+                <Phone size={16} className="footer-contact-icon" aria-hidden="true" />
+                <span>{siteConfig.contact.displayPhone}</span>
+              </a>
+              <a
+                href={siteConfig.socials?.whatsapp || siteConfig.contact.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-contact-item footer-contact-link"
+                aria-label={`WhatsApp ${siteConfig.contact.displayWhatsApp}`}
+              >
+                <MessageSquare size={16} className="footer-contact-icon" aria-hidden="true" />
+                <span>{siteConfig.contact.displayWhatsApp}</span>
+              </a>
+              <div className="footer-contact-item">
+                <MapPin size={16} className="footer-contact-icon" aria-hidden="true" />
+                <span>
+                  {isTamil
+                    ? siteConfig.contact.stateTa
+                    : (siteConfig.contact.city ? `${siteConfig.contact.city}, ` : "") + siteConfig.contact.state}
+                </span>
+              </div>
             </div>
             <div style={{ marginTop: "1rem", fontSize: "0.8125rem", color: "var(--color-gold-light)" }}>
               <Shield size={14} style={{ display: "inline", marginRight: "4px" }} aria-hidden="true" />

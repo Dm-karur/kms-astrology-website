@@ -1,6 +1,6 @@
 import React from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { Award, Compass, Globe2, ArrowRight, Sparkles } from "lucide-react";
+import { Award, Compass, Globe2, ArrowRight } from "lucide-react";
 import { GoldDivider, BrandMotif } from "./SubtleKolam";
 
 export const UniqueJourney = ({ onBookConsultation }) => {

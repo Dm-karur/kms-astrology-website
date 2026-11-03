@@ -27,9 +27,16 @@
   AddType image/svg+xml .svg
 </IfModule>
 
-# Cache-Control for Service Worker & Manifest
+# Cache-Control for HTML, Service Worker & Manifest (Instant Updates)
 <IfModule mod_headers.c>
+  <FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires 0
+  </FilesMatch>
   <FilesMatch "(sw\.js|registerSW\.js|manifest\.webmanifest)$">
     Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires 0
   </FilesMatch>
 </IfModule>

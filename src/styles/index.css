@@ -48,9 +48,9 @@
   --space-md: 1rem;
   --space-lg: 1.5rem;
   --space-xl: 2rem;
-  --space-2xl: 3rem;
-  --space-3xl: 4.5rem;
-  --space-4xl: 6rem;
+  --space-2xl: 2.25rem;
+  --space-3xl: 3rem;
+  --space-4xl: clamp(2.25rem, 3.2vw, 3.25rem);
 
   /* Container */
   --container-max: 1200px;
@@ -148,13 +148,13 @@ html[lang="ta"] .hero-headline {
 }
 
 html[lang="ta"] .section-title {
-  font-size: clamp(1.4rem, 2.1vw + 0.35rem, 1.95rem);
+  font-size: clamp(1.65rem, 2.5vw + 0.35rem, 2.35rem);
   line-height: 1.35;
   letter-spacing: normal;
 }
 
 html[lang="ta"] .dedicated-cta-title {
-  font-size: clamp(1.4rem, 2.1vw + 0.35rem, 1.95rem);
+  font-size: clamp(1.65rem, 2.5vw + 0.35rem, 2.35rem);
   line-height: 1.35;
   letter-spacing: normal;
 }
@@ -278,6 +278,7 @@ html[lang="ta"] .footer-link {
   margin-right: auto;
   padding-left: var(--space-lg);
   padding-right: var(--space-lg);
+  position: relative;
 }
 
 /* Skip link */
@@ -302,7 +303,7 @@ html[lang="ta"] .footer-link {
 .section-header {
   text-align: center;
   max-width: 680px;
-  margin: 0 auto var(--space-3xl) auto;
+  margin: 0 auto clamp(1.25rem, 2vw, 1.85rem) auto;
 }
 
 .section-eyebrow {
@@ -318,7 +319,7 @@ html[lang="ta"] .footer-link {
 }
 
 .section-title {
-  font-size: clamp(1.85rem, 3.2vw + 0.5rem, 2.75rem);
+  font-size: clamp(2.15rem, 3.6vw + 0.5rem, 3.25rem);
   color: var(--color-primary-dark);
   margin-bottom: var(--space-md);
   letter-spacing: -0.01em;
@@ -570,7 +571,11 @@ html[lang="ta"] .brand-title {
   display: grid;
   grid-template-columns: 1.15fr 1fr;
   gap: var(--space-3xl);
-  align-items: center;
+  align-items: stretch;
+}
+.hero-content {
+  display: flex;
+  flex-direction: column;
 }
 .hero-eyebrow {
   display: inline-flex;
@@ -622,35 +627,36 @@ html[lang="ta"] .brand-title {
 /* Hero Image Framing */
 .hero-image-wrapper {
   position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 .hero-image-frame {
   position: relative;
-  border-radius: 4px;
+  width: 100%;
+  margin-top: 4px;
+  height: calc(100% - 40px);
+  max-height: calc(100% - 40px);
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: var(--shadow-hover);
+  box-shadow: 0 16px 36px -8px rgba(56, 37, 29, 0.14), 0 0 0 1px rgba(176, 138, 80, 0.22);
   border: 1px solid var(--color-border);
-  aspect-ratio: 4 / 3;
 }
 .hero-image-frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
+  border-radius: 20px;
   transition: transform var(--transition-smooth);
 }
 .hero-image-frame:hover img {
   transform: scale(1.02);
 }
 .hero-image-accent {
-  position: absolute;
-  bottom: -16px;
-  right: -16px;
-  width: 100%;
-  height: 100%;
-  border: 1px solid var(--color-border-subtle);
-  border-radius: 4px;
-  pointer-events: none;
-  z-index: -1;
+  display: none;
 }
 
 /* Section Backgrounds */
@@ -748,8 +754,7 @@ html[lang="ta"] .brand-title {
 
 /* Services Section */
 .services-section {
-  padding-top: clamp(1.25rem, 2vw, 2rem) !important;
-  padding-bottom: var(--space-4xl);
+  padding: var(--space-4xl) 0;
 }
 .services-grid {
   display: grid;
@@ -803,10 +808,7 @@ html[lang="ta"] .brand-title {
   margin-bottom: var(--space-xs);
 }
 .service-card-divider {
-  width: 32px;
-  height: 2px;
-  background-color: var(--color-gold);
-  margin-bottom: var(--space-md);
+  display: none;
 }
 .service-card-desc {
   font-size: 0.9375rem;
@@ -919,6 +921,7 @@ html[lang="ta"] .services-pricing-text {
   overflow: hidden;
 }
 
+
 /* Master 2-Column Showcase Grid */
 .what-is-showcase-grid {
   display: grid;
@@ -1003,15 +1006,6 @@ html[lang="ta"] .services-pricing-text {
   text-align: left;
 }
 
-.what-is-master-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--color-primary-dark), var(--color-gold), var(--color-primary-dark));
-}
 
 /* Editorial Narrative Column */
 .what-is-narrative-card {
@@ -1027,24 +1021,16 @@ html[lang="ta"] .services-pricing-text {
   overflow: hidden;
 }
 
-.what-is-narrative-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--color-primary-dark), var(--color-gold), var(--color-primary-dark));
-}
 
 .what-is-narrative-watermark {
   position: absolute;
   top: 50%;
-  right: -20px;
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
   color: var(--color-gold);
   opacity: 0.045;
   pointer-events: none;
+  z-index: 1;
 }
 
 .what-is-narrative-body {
@@ -1097,9 +1083,8 @@ html[lang="ta"] .what-is-p {
   align-items: center;
   gap: 0.75rem;
   background: var(--color-gold-subtle);
-  border-left: 3px solid var(--color-gold);
-  padding: 0.75rem 1rem;
-  border-radius: 0 6px 6px 0;
+  padding: 0.85rem 1.15rem;
+  border-radius: 8px;
   font-size: 0.875rem;
   color: var(--color-primary-dark);
   font-weight: 600;
@@ -1240,7 +1225,36 @@ html[lang="ta"] .what-is-cta-text {
   overflow: hidden;
 }
 
-/* Master 2-Column Showcase Grid (Content on Left, Temple on Right) */
+/* Master Showcase Card (Unified Single White Container for Image + Text) */
+.purpose-master-card {
+  position: relative;
+  background: var(--color-surface-white);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 2.75rem 3rem;
+  box-shadow: 0 10px 32px rgba(56, 37, 29, 0.06);
+  margin-bottom: var(--space-2xl);
+  overflow: hidden;
+}
+
+.purpose-master-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 2.75rem;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.purpose-image-col {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Kept for backwards compatibility */
 .purpose-showcase-grid {
   display: grid;
   grid-template-columns: 1.15fr 1fr;
@@ -1249,11 +1263,10 @@ html[lang="ta"] .what-is-cta-text {
   margin-bottom: var(--space-2xl);
 }
 
-/* Editorial Wisdom Column */
 .purpose-narrative-card {
   position: relative;
   background: var(--color-surface-white);
-  border: 1px solid rgba(176, 138, 80, 0.35);
+  border: 1px solid var(--color-border);
   border-radius: 12px;
   padding: 2.5rem 2.75rem;
   box-shadow: 0 10px 30px rgba(56, 37, 29, 0.06);
@@ -1263,24 +1276,15 @@ html[lang="ta"] .what-is-cta-text {
   overflow: hidden;
 }
 
-.purpose-narrative-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--color-gold), var(--color-primary-dark), var(--color-gold));
-}
-
 .purpose-narrative-watermark {
   position: absolute;
   top: 50%;
-  left: -20px;
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
   color: var(--color-gold);
   opacity: 0.045;
   pointer-events: none;
+  z-index: 1;
 }
 
 .purpose-narrative-body {
@@ -1333,9 +1337,8 @@ html[lang="ta"] .purpose-p {
   align-items: center;
   gap: 0.75rem;
   background: var(--color-gold-subtle);
-  border-left: 3px solid var(--color-gold);
-  padding: 0.75rem 1rem;
-  border-radius: 0 6px 6px 0;
+  padding: 0.85rem 1.15rem;
+  border-radius: 8px;
   font-size: 0.875rem;
   color: var(--color-primary-dark);
   font-weight: 600;
@@ -1350,10 +1353,10 @@ html[lang="ta"] .purpose-insight-badge {
 /* Sacred Heritage Temple Image Card */
 .purpose-image-card {
   position: relative;
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 12px 32px rgba(56, 37, 29, 0.12);
-  border: 1px solid rgba(176, 138, 80, 0.35);
+  border: 1px solid var(--color-border);
   background: var(--color-primary-dark);
   min-height: 380px;
   display: flex;
@@ -1363,8 +1366,13 @@ html[lang="ta"] .purpose-insight-badge {
   position: relative;
   width: 100%;
   height: 100%;
+  min-height: 300px;
+  max-height: 400px;
+  aspect-ratio: 16 / 11;
   overflow: hidden;
-  border-radius: 11px;
+  border-radius: 14px;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 8px 24px rgba(56, 37, 29, 0.10);
 }
 
 .purpose-temple-img {
@@ -1541,8 +1549,18 @@ html[lang="ta"] .purpose-cta-text {
   }
   .what-is-master-card,
   .what-is-narrative-card,
+  .purpose-master-card,
   .purpose-narrative-card {
     padding: 2rem 1.75rem;
+  }
+  .purpose-master-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .purpose-image-frame {
+    aspect-ratio: 16 / 10;
+    min-height: 240px;
+    max-height: 360px;
   }
   .what-is-pillars-grid,
   .purpose-pillars-grid {
@@ -1694,8 +1712,7 @@ html[lang="ta"] .why-card-text {
   margin: 0 auto;
   padding: var(--space-md) var(--space-lg);
   background-color: var(--color-gold-subtle);
-  border-left: 3px solid var(--color-gold);
-  border-radius: 2px;
+  border-radius: 8px;
   font-size: 0.875rem;
   color: var(--color-text-main);
   line-height: 1.6;
@@ -1724,15 +1741,6 @@ html[lang="ta"] .why-card-text {
   margin-bottom: var(--space-2xl);
 }
 
-.journey-master-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--color-primary-dark), var(--color-gold), var(--color-primary-dark));
-}
 
 .journey-watermark {
   position: absolute;
@@ -1774,8 +1782,6 @@ html[lang="ta"] .why-card-text {
   color: var(--color-primary-dark);
   font-weight: 500;
   line-height: 1.85;
-  border-left: 3px solid var(--color-gold);
-  padding-left: 1.25rem;
 }
 
 html[lang="ta"] .journey-p {
@@ -1793,8 +1799,6 @@ html[lang="ta"] .journey-p-highlight {
   color: var(--color-primary-dark);
   font-weight: 500;
   line-height: 1.9;
-  border-left: 3px solid var(--color-gold);
-  padding-left: 1.25rem;
 }
 
 /* 3 Impact Stat Cards */
@@ -1948,22 +1952,16 @@ html[lang="ta"] .journey-cta-text {
   overflow: hidden;
 }
 
-.specialties-profile-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--color-primary-dark), var(--color-gold), var(--color-primary-dark));
-}
 
 .specialties-profile-watermark {
   position: absolute;
-  right: -30px;
-  bottom: -30px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--color-gold);
   opacity: 0.04;
   pointer-events: none;
+  z-index: 1;
 }
 
 .specialties-profile-grid {
@@ -2117,17 +2115,6 @@ html[lang="ta"] .specialties-profile-bio {
   overflow: hidden;
 }
 
-.specialty-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
-  opacity: 0;
-  transition: opacity var(--transition-normal);
-}
 
 .specialty-card:hover {
   transform: translateY(-4px);
@@ -2136,10 +2123,6 @@ html[lang="ta"] .specialties-profile-bio {
   background: #FFFFFF;
 }
 
-.specialty-card:hover::before,
-.specialty-card:nth-child(2)::before {
-  opacity: 1;
-}
 
 .specialty-card:nth-child(2) {
   border-color: rgba(176, 138, 80, 0.45);
@@ -2260,11 +2243,13 @@ html[lang="ta"] .specialty-card-text {
 
 .modes-watermark {
   position: absolute;
-  right: -30px;
-  bottom: -30px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   opacity: 0.04;
   color: var(--color-gold);
   pointer-events: none;
+  z-index: 1;
 }
 
 .modes-header {
@@ -2498,7 +2483,7 @@ html[lang="ta"] .specialties-cta-text {
 }
 .dedicated-cta-title {
   color: #FCFAF6;
-  font-size: clamp(1.85rem, 3.2vw + 0.5rem, 2.75rem);
+  font-size: clamp(2.15rem, 3.6vw + 0.5rem, 3.25rem);
   margin-bottom: var(--space-md);
 }
 .dedicated-cta-desc {
@@ -2566,6 +2551,8 @@ html[lang="ta"] .specialties-cta-text {
 
 /* Form Container Card */
 .form-card {
+  position: relative;
+  overflow: hidden;
   background-color: var(--color-surface-white);
   padding: var(--space-2xl);
   border: 1px solid var(--color-border);
@@ -2742,6 +2729,7 @@ html[lang="ta"] .specialties-cta-text {
   background-color: var(--color-bg-warm);
 }
 .faq-container {
+  position: relative;
   max-width: 820px;
   margin: 0 auto;
 }
@@ -2852,18 +2840,26 @@ html[lang="ta"] .footer-col-title {
 .footer-link:hover {
   color: var(--color-gold-light);
 }
+.footer-contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
 .footer-contact-item {
   display: flex;
-  align-items: flex-start;
-  gap: 0.625rem;
+  align-items: center;
+  gap: 0.65rem;
   font-size: 0.875rem;
   color: rgba(252, 250, 246, 0.75);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0;
+  white-space: nowrap;
 }
 a.footer-contact-link {
   text-decoration: none;
   transition: color var(--transition-fast), transform var(--transition-fast);
-  display: inline-flex;
+  display: flex;
+  align-items: center;
+  width: fit-content;
 }
 a.footer-contact-link:hover {
   color: var(--color-gold-light);
@@ -2872,7 +2868,6 @@ a.footer-contact-link:hover {
 .footer-contact-icon {
   color: var(--color-gold);
   flex-shrink: 0;
-  margin-top: 3px;
 }
 
 /* Footer Social Media Icons */
@@ -3179,6 +3174,18 @@ html[lang="ta"] .footer-social-label {
     gap: var(--space-2xl);
   }
 
+  .hero-image-wrapper {
+    height: auto;
+  }
+
+  .hero-image-frame {
+    height: auto;
+    margin-top: 0;
+    aspect-ratio: 16 / 10;
+    min-height: 280px;
+    max-height: 440px;
+  }
+
   .footer-grid {
     grid-template-columns: 1fr 1fr;
     gap: var(--space-2xl);
@@ -3230,6 +3237,14 @@ html[lang="ta"] .footer-social-label {
 @media (max-width: 480px) {
   .hero-headline {
     font-size: 2rem;
+  }
+  .hero-image-frame {
+    aspect-ratio: 4 / 3;
+    min-height: 220px;
+    border-radius: 16px;
+  }
+  .hero-image-frame img {
+    border-radius: 16px;
   }
   .footer-grid {
     grid-template-columns: 1fr;
@@ -3290,15 +3305,6 @@ html[lang="ta"] .footer-social-label {
   overflow: hidden;
 }
 
-.not-found-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--color-primary-dark), var(--color-gold), var(--color-primary-dark));
-}
 
 /* Subtle Astrological Mandala Motif with gentle orbit */
 .not-found-emblem-wrap {
@@ -3614,15 +3620,6 @@ html[lang="ta"] .footer-social-label {
   overflow: hidden;
 }
 
-.admin-login-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--color-gold), #FCFAF6, var(--color-gold));
-}
 
 .admin-login-brand {
   text-align: center;
@@ -3986,7 +3983,6 @@ html[lang="ta"] .footer-social-label {
   max-width: 320px;
   background: var(--color-surface-white);
   border: 1px solid rgba(176, 138, 80, 0.35);
-  border-left: 4px solid var(--color-gold);
   border-radius: 10px;
   padding: 1.25rem 1.5rem;
   box-shadow: 0 4px 16px rgba(56, 37, 29, 0.05);
@@ -4816,6 +4812,9 @@ html[lang="ta"] .footer-social-label {
   .purpose-showcase-grid {
     gap: 3rem;
   }
+  .purpose-master-card {
+    padding: 3rem 3.5rem;
+  }
 
   .purpose-pillars-grid {
     gap: 2rem;
@@ -4887,7 +4886,7 @@ html[lang="ta"] .footer-social-label {
   }
 
   .section-title {
-    font-size: clamp(2.2rem, 2.4vw, 2.75rem);
+    font-size: clamp(2.45rem, 2.7vw, 3.25rem);
   }
 
   .section-subtitle {
@@ -5080,7 +5079,7 @@ html[lang="ta"] .footer-social-label {
   }
 
   html[lang="ta"] .section-title {
-    font-size: clamp(1.7rem, 1.8vw + 0.35rem, 2.25rem);
+    font-size: clamp(1.95rem, 2.1vw + 0.35rem, 2.65rem);
   }
 
   html[lang="ta"] .specialties-profile-name {
@@ -5335,4 +5334,49 @@ html[lang="ta"] .footer-social-label {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Centered Sacred Brand Watermarks across all sections */
+.services-watermark {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--color-gold);
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.why-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--color-gold);
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.form-card-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--color-gold);
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.faq-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--color-gold);
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 0;
 }

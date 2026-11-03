@@ -7,12 +7,10 @@ import {
   AlertCircle, 
   ShieldCheck, 
   Lock, 
-  Clock, 
-  Sparkles,
-  PhoneCall,
-  MessageSquare
+  Clock,
+  PhoneCall
 } from "lucide-react";
-import { GoldDivider } from "./SubtleKolam";
+import { GoldDivider, BrandMotif } from "./SubtleKolam";
 
 export const LeadForm = ({ preselectedCategory, onOpenPolicy }) => {
   const { language, t, isTamil } = useLanguage();
@@ -231,6 +229,10 @@ export const LeadForm = ({ preselectedCategory, onOpenPolicy }) => {
 
           {/* Right Column: Lead Collection Form */}
           <div className="form-card">
+            {/* Centered Sacred Brand Watermark */}
+            <div className="form-card-watermark" aria-hidden="true">
+              <BrandMotif size={260} />
+            </div>
             {submissionResult ? (
               <div className="form-success-box" role="status" aria-live="polite">
                 <div className="success-icon-wrap">

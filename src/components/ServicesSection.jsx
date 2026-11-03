@@ -1,7 +1,7 @@
 import React from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { ArrowRight, Sparkles } from "lucide-react";
-import { GoldDivider } from "./SubtleKolam";
+import { ArrowRight } from "lucide-react";
+import { GoldDivider, BrandMotif } from "./SubtleKolam";
 
 export const ServicesSection = ({ onSelectService }) => {
   const { t, isTamil } = useLanguage();
@@ -42,6 +42,11 @@ export const ServicesSection = ({ onSelectService }) => {
   return (
     <section id="services" className="section-warm services-section" aria-labelledby="services-heading">
       <div className="container">
+        {/* Centered Sacred Brand Watermark */}
+        <div className="services-watermark" aria-hidden="true">
+          <BrandMotif size={280} />
+        </div>
+
         {/* Section Header */}
         <div className="section-header">
           <div className="section-eyebrow">
