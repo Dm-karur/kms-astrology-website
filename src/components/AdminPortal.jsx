@@ -7,6 +7,7 @@ import {
   exportLeadsToCSV,
   adminLoginAPI,
   fetchLeadsFromAPI,
+  syncOfflineLeads,
   updateLeadStatusAPI,
   updateLeadNotesAPI,
   deleteLeadAPI,
@@ -116,6 +117,9 @@ const adminStrings = {
     waGreetingIntro: "வணக்கம்",
     waGreetingBody: "KMS ஜோதிடத்தில் நீங்கள் பதிவு செய்த",
     waGreetingEnquiry: "ஜோதிட ஆலோசனைக் கோரிக்கை தொடர்பாக தொடர்பு கொள்கிறோம்.",
+    offlineNotice: "சேவையக MySQL தரவுத்தள இணைப்பு தற்போது இல்லை. இந்த சாதனத்தில் உள்ள பதிவுகள் மட்டுமே காட்டப்படுகின்றன. வாடிக்கையாளர்களின் புதிய கோரிக்கைகள் மத்திய MySQL தரவுத்தளத்துடன் இணைந்த பிறகே இங்கு பெறப்படும்.",
+    syncAction: "உள்ளூர் கோரிக்கைகளை தரவுத்தளத்திற்கு ஒத்திசை (Sync)",
+    syncSuccess: "உள்ளூர் கோரிக்கைகள் வெற்றிகரமாக ஒத்திசைக்கப்பட்டன! ✓",
   },
   en: {
     brandTitle: "KMS Astrology",
@@ -187,6 +191,9 @@ const adminStrings = {
     waGreetingIntro: "Hello",
     waGreetingBody: "We are contacting you regarding your KMS Astrology",
     waGreetingEnquiry: "consultation enquiry.",
+    offlineNotice: "Server MySQL database is currently disconnected. Viewing records stored locally on this device only. Client enquiries from other devices will appear once MySQL is connected.",
+    syncAction: "Sync Offline Enquiries to Database",
+    syncSuccess: "Offline enquiries synced to database successfully! ✓",
   },
 };
 
@@ -235,6 +242,9 @@ export const AdminPortal = () => {
   const [loginError, setLoginError] = useState("");
   const [dataSource, setDataSource] = useState("local"); // 'mysql' | 'local'
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [unsyncedLeadsCount, setUnsyncedLeadsCount] = useState(0);
+  const [isSyncing, setIsSyncing] = useState(false);
+  const [syncFeedback, setSyncFeedback] = useState("");
 
   // Leads & filters state
   const [leads, setLeads] = useState(() => {
@@ -320,6 +330,7 @@ export const AdminPortal = () => {
     if (result && Array.isArray(result.leads)) {
       setLeads(result.leads);
       setDataSource(result.source === "mysql-database" ? "mysql" : "local");
+      setUnsyncedLeadsCount(result.unsyncedCount || 0);
       const initialNotes = {};
       result.leads.forEach((l) => {
         initialNotes[l.leadId] = l.notes || "";
@@ -327,6 +338,18 @@ export const AdminPortal = () => {
       setEditingNotes(initialNotes);
     }
     setIsRefreshing(false);
+  };
+
+  // Manual Trigger to sync offline leads to MySQL
+  const handleManualSync = async () => {
+    setIsSyncing(true);
+    const res = await syncOfflineLeads();
+    await loadLeadsData();
+    setIsSyncing(false);
+    if (res.syncedCount > 0) {
+      setSyncFeedback(txt.syncSuccess);
+      setTimeout(() => setSyncFeedback(""), 3500);
+    }
   };
 
   // Initial fetch on mount if authenticated
@@ -775,6 +798,51 @@ export const AdminPortal = () => {
 
 
 
+
+        {/* Offline Notice Banner if running from local storage */}
+        {dataSource === "local" && (
+          <div className="admin-offline-banner" style={{
+            background: "#fffaf0",
+            border: "1px solid rgba(184, 134, 11, 0.35)",
+            borderRadius: "10px",
+            padding: "0.95rem 1.15rem",
+            marginBottom: "1.25rem",
+            display: "flex",
+            alignItems: "flex-start",
+            gap: "0.75rem",
+            color: "#5c381e",
+            fontSize: "0.875rem",
+            lineHeight: 1.5,
+            boxShadow: "0 2px 8px rgba(0, 0, 0, 0.04)"
+          }}>
+            <AlertCircle size={20} style={{ color: "#b8860b", flexShrink: 0, marginTop: "2px" }} />
+            <div style={{ flex: 1 }}>
+              <div style={{ fontWeight: 700, marginBottom: "0.25rem", color: "#38251d" }}>
+                {adminLang === "ta" ? "உள்ளூர் சேமிப்பக முறைமை (Offline / Local Storage)" : "Local Storage Mode (Offline)"}
+              </div>
+              <p style={{ margin: "0 0 0.5rem 0", color: "#5c381e" }}>{txt.offlineNotice}</p>
+              {unsyncedLeadsCount > 0 && (
+                <div>
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    style={{ fontSize: "0.8125rem", padding: "0.4rem 0.85rem", gap: "0.4rem" }}
+                    onClick={handleManualSync}
+                    disabled={isSyncing}
+                  >
+                    <RefreshCw size={13} className={isSyncing ? "spin-icon" : ""} />
+                    <span>{txt.syncAction} ({unsyncedLeadsCount})</span>
+                  </button>
+                </div>
+              )}
+              {syncFeedback && (
+                <div style={{ marginTop: "0.5rem", color: "#166534", fontWeight: 600, fontSize: "0.8125rem" }}>
+                  {syncFeedback}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* Filter and Search Bar */}
         <div className="admin-controls-card">

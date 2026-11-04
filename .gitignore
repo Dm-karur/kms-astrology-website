@@ -11,6 +11,13 @@ node_modules
 dist
 dist-ssr
 *.local
+api/config/db.local.php
+public/api/config/db.local.php
+dist/api/config/db.local.php
+api/config/db.env
+.env
+.env.*
+!*.example
 
 # Editor directories and files
 .vscode/*

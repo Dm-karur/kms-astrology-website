@@ -1,0 +1,15 @@
+<?php
+/**
+ * KMS Astrology - Local / Hostinger Production Database Credentials
+ * 
+ * INSTRUCTIONS FOR HOSTINGER / CPANEL:
+ * 1. In Hostinger File Manager, create a copy of this file named `db.local.php` in `api/config/`
+ * 2. Replace the password below with your actual Hostinger MySQL password.
+ * 3. Because `db.local.php` is gitignored, future Git updates will NEVER overwrite your credentials!
+ */
+
+define('DB_HOST', 'localhost');
+define('DB_PORT', '3306');
+define('DB_NAME', 'u589483802_kmsastrology');
+define('DB_USER', 'u589483802_kmsserver');
+define('DB_PASS', 'YOUR_HOSTINGER_MYSQL_PASSWORD');

@@ -7,6 +7,10 @@
   RewriteEngine On
   RewriteBase /
 
+  # Preserve HTTP Authorization header for PHP API Authentication
+  RewriteCond %{HTTP:Authorization} ^(.*)
+  RewriteRule .* - [E=HTTP_AUTHORIZATION:%1]
+
   # 1. Do not rewrite direct calls to the PHP API
   RewriteRule ^api/ - [L]
 
@@ -18,6 +22,17 @@
   # 3. Handle /admin and all client-side routes via index.html
   RewriteRule ^ index.html [L]
 </IfModule>
+
+# Protect sensitive database & environment configuration files
+<FilesMatch "^(db\.local\.php|db\.env|\.env.*)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
 
 # Correct MIME Types for PWA
 <IfModule mod_mime.c>

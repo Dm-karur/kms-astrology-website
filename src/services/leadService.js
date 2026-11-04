@@ -192,6 +192,7 @@ export async function submitConsultationLead(formData) {
 
       const serverData = await response.json();
       const savedLead = serverData.lead || leadPayload;
+      savedLead.syncedToServer = true;
 
       // Cache locally as offline backup
       try {
@@ -216,6 +217,7 @@ export async function submitConsultationLead(formData) {
   await new Promise((resolve) => setTimeout(resolve, 400));
 
   // Store privately in browser local storage as a secure offline backup so no enquiry is lost
+  leadPayload.syncedToServer = false;
   try {
     const existing = JSON.parse(localStorage.getItem(LEADS_STORAGE_KEY) || "[]");
     existing.unshift(leadPayload);
@@ -423,9 +425,85 @@ export async function adminLoginAPI(username, password) {
 }
 
 /**
+ * Automatically syncs any offline/locally-stored leads to the server MySQL database
+ */
+export async function syncOfflineLeads() {
+  if (!siteConfig.api.isProductionBackendConfigured) return { syncedCount: 0 };
+
+  const sampleIds = new Set(SAMPLE_INITIAL_LEADS.map((l) => l.leadId));
+  let existing = [];
+  try {
+    existing = JSON.parse(localStorage.getItem(LEADS_STORAGE_KEY) || "[]");
+  } catch {
+    return { syncedCount: 0 };
+  }
+
+  // Find leads that are neither sample dummy leads nor already confirmed synced
+  const unsynced = existing.filter(
+    (l) => !sampleIds.has(l.leadId) && l.syncedToServer !== true
+  );
+
+  if (unsynced.length === 0) return { syncedCount: 0 };
+
+  let syncedCount = 0;
+  for (const lead of unsynced) {
+    try {
+      const response = await fetch(siteConfig.api.endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          fullName: lead.fullName,
+          mobileNumber: lead.mobileNumber || lead.normalizedDigits,
+          consultationCategory: lead.consultationCategory,
+          preferredLanguage: lead.preferredLanguage || "ta",
+          preferredContactMethod: lead.preferredContactMethod || "Either",
+          briefConcern: lead.briefConcern || "",
+          consentGiven: true,
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success) {
+          lead.syncedToServer = true;
+          if (data.lead && data.lead.leadId) {
+            lead.serverLeadId = data.lead.leadId;
+          }
+          syncedCount++;
+        }
+      }
+    } catch (e) {
+      console.warn("Could not sync offline lead:", lead.leadId, e);
+      // Stop loop if network is unreachable
+      break;
+    }
+  }
+
+  if (syncedCount > 0) {
+    try {
+      localStorage.setItem(LEADS_STORAGE_KEY, JSON.stringify(existing));
+    } catch (err) {
+      console.error("Storage error updating synced leads", err);
+    }
+  }
+
+  return { syncedCount };
+}
+
+/**
  * Fetches consultation leads from MySQL Database via PHP API
  */
 export async function fetchLeadsFromAPI(token = "", filters = {}) {
+  // 1. Attempt background sync of any pending offline leads first
+  try {
+    await syncOfflineLeads();
+  } catch (syncErr) {
+    console.warn("Pre-fetch sync warning:", syncErr);
+  }
+
   try {
     const params = new URLSearchParams();
     if (filters.status && filters.status !== "all") params.append("status", filters.status);
@@ -444,11 +522,24 @@ export async function fetchLeadsFromAPI(token = "", filters = {}) {
     if (res.ok) {
       const data = await res.json();
       if (data.success && Array.isArray(data.leads)) {
-        // Sync local cache
-        localStorage.setItem(LEADS_STORAGE_KEY, JSON.stringify(data.leads));
+        const databaseLeads = data.leads.map((l) => ({ ...l, syncedToServer: true }));
+
+        // Check if there are any remaining unsynced local leads so they are never lost
+        let localUnsynced = [];
+        try {
+          const sampleIds = new Set(SAMPLE_INITIAL_LEADS.map((s) => s.leadId));
+          const currentLocal = JSON.parse(localStorage.getItem(LEADS_STORAGE_KEY) || "[]");
+          localUnsynced = currentLocal.filter((l) => !sampleIds.has(l.leadId) && l.syncedToServer !== true);
+        } catch {}
+
+        // Combine: unsynced local leads on top, followed by database leads
+        const combinedLeads = [...localUnsynced, ...databaseLeads];
+        localStorage.setItem(LEADS_STORAGE_KEY, JSON.stringify(combinedLeads));
+
         return {
           success: true,
-          leads: data.leads,
+          leads: combinedLeads,
+          unsyncedCount: localUnsynced.length,
           stats: data.stats,
           source: "mysql-database",
         };
