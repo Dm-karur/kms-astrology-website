@@ -970,11 +970,13 @@ export const AdminPortal = () => {
 
             // Category text
             const catBadgeText =
-              item.consultationCategory === "marriage"
+              item.consultationCategory === "marriage" || item.consultationCategory === "Marriage Astrology"
                 ? txt.catMarriageBadge
-                : item.consultationCategory === "education"
+                : item.consultationCategory === "education" || item.consultationCategory === "Education Astrology"
                   ? txt.catEducationBadge
-                  : txt.catBusinessBadge;
+                  : item.consultationCategory === "business" || item.consultationCategory === "Business Astrology"
+                    ? txt.catBusinessBadge
+                    : item.consultationCategory || txt.catBusinessBadge;
 
             // WhatsApp greeting adapting to selected language
             const waGreeting = encodeURIComponent(

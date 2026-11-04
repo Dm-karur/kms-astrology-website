@@ -69,7 +69,7 @@ $formattedMobile = '+91 ' . substr($digits, 0, 5) . ' ' . substr($digits, 5);
 
 // 4. Validate Consultation Category
 $category = trim($payload['consultationCategory'] ?? $payload['category'] ?? '');
-$validCategories = ['marriage', 'education', 'business', 'Marriage Astrology', 'Education Astrology', 'Business Astrology'];
+$otherService = trim($payload['otherService'] ?? '');
 if (empty($category)) {
     $category = 'marriage';
 } else {
@@ -81,6 +81,10 @@ if (empty($category)) {
         $category = 'education';
     } elseif (strpos($catLower, 'busi') !== false) {
         $category = 'business';
+    } elseif (strpos($catLower, 'health') !== false) {
+        $category = 'health';
+    } elseif (strpos($catLower, 'other') !== false) {
+        $category = !empty($otherService) ? ('Others: ' . mb_substr($otherService, 0, 50, 'UTF-8')) : 'others';
     }
 }
 

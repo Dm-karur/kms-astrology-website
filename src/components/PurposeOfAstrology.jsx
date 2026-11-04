@@ -1,6 +1,6 @@
 import React from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { Flame, Leaf, Navigation, ArrowRight, Sparkles } from "lucide-react";
+import { Flame, Leaf, Navigation, ArrowRight } from "lucide-react";
 import { GoldDivider, BrandMotif } from "./SubtleKolam";
 
 export const PurposeOfAstrology = ({ onBookConsultation }) => {
@@ -30,14 +30,14 @@ export const PurposeOfAstrology = ({ onBookConsultation }) => {
           <GoldDivider />
         </div>
 
-        {/* Master Sacred Heritage Showcase with Temple Sanctum Imagery */}
-        <div className="purpose-showcase-grid">
-          {/* Editorial Wisdom Column */}
-          <div className="purpose-narrative-card">
-            <div className="purpose-narrative-watermark" aria-hidden="true">
-              <BrandMotif size={200} />
-            </div>
+        {/* Unified Master Showcase Card with Image and Narrative inside the same container */}
+        <div className="purpose-master-card">
+          <div className="purpose-narrative-watermark" aria-hidden="true">
+            <BrandMotif size={220} />
+          </div>
 
+          <div className="purpose-master-grid">
+            {/* Left Column: Editorial Wisdom */}
             <div className="purpose-narrative-body">
               <h3 className="purpose-narrative-title">
                 {isTamil ? "பேரண்ட ஆற்றலோடு இசைந்து வாழ ஞானியர் அருளிய ஒப்பற்ற கொடை" : "Sacred Guidance to Live in Harmony with Cosmic Energies"}
@@ -54,30 +54,20 @@ export const PurposeOfAstrology = ({ onBookConsultation }) => {
                 )}
               </div>
 
-              <div className="purpose-insight-badge">
-                <Navigation size={16} className="text-gold" aria-hidden="true" />
-                <span>
-                  {isTamil
-                    ? "இயற்கை மற்றும் பிரபஞ்ச விதிகளுக்கு இசைந்து, வாழ்வின் திசையைத் தெளிவுபடுத்தும் நல்வழிகாட்டி"
-                    : "Living in resonance with universal cosmic laws to navigate life with clarity"}
-                </span>
-              </div>
+
             </div>
-          </div>
 
-          {/* Sacred Heritage Image Card */}
-          <div className="purpose-image-card">
-            <div className="purpose-image-frame">
-              <img
-                src="/images/purposeofastro-image.webp"
-                alt={isTamil ? "தொன்மையான ஆன்மீக திருத்தலக் கோபுரம் மற்றும் ஞானப் பாரம்பரியம்" : "Sacred ancient temple sanctum and spiritual heritage"}
-                width="640"
-                height="420"
-                loading="lazy"
-                className="purpose-temple-img"
-              />
-              <div className="purpose-image-overlay">
-
+            {/* Right Column: Cosmic Planet Earth & Sun Image Frame */}
+            <div className="purpose-image-col">
+              <div className="purpose-image-frame">
+                <img
+                  src="/images/purpose-cosmic-v2.webp"
+                  alt={isTamil ? "பேரண்ட விண்வெளியில் ஒளிரும் சூரியன் மற்றும் பூமி - ஜோதிடத்தின் தோற்றம்" : "Planet Earth and the radiant sun in the cosmic expanse illustrating the creation of astrology"}
+                  width="1024"
+                  height="715"
+                  loading="lazy"
+                  className="purpose-temple-img"
+                />
               </div>
             </div>
           </div>

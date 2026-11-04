@@ -1,7 +1,7 @@
 import React from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { Compass, Clock, HeartHandshake, ShieldAlert, Sparkles, AlertCircle } from "lucide-react";
-import { GoldDivider } from "./SubtleKolam";
+import { Compass, Clock, HeartHandshake, ShieldAlert, AlertCircle } from "lucide-react";
+import { GoldDivider, BrandMotif } from "./SubtleKolam";
 
 export const WhyAstrology = () => {
   const { t } = useLanguage();
@@ -14,7 +14,7 @@ export const WhyAstrology = () => {
     <Clock key="clock" size={22} className="why-icon-svg" aria-hidden="true" />,
     <HeartHandshake key="rel" size={22} className="why-icon-svg" aria-hidden="true" />,
     <ShieldAlert key="health" size={22} className="why-icon-svg" aria-hidden="true" />,
-    
+
   ];
 
   const cards = data.cards || [
@@ -26,10 +26,15 @@ export const WhyAstrology = () => {
   return (
     <section id="why-astrology" className="section-white why-astrology-section" aria-labelledby="why-heading">
       <div className="container">
+        {/* Centered Sacred Brand Watermark */}
+        <div className="why-watermark" aria-hidden="true">
+          <BrandMotif size={280} />
+        </div>
+
         {/* Section Header */}
         <div className="section-header">
           <div className="section-eyebrow">
-            
+
             <span>{data.eyebrow}</span>
           </div>
           <h2 id="why-heading" className="section-title">
@@ -57,18 +62,7 @@ export const WhyAstrology = () => {
           ))}
         </div>
 
-        {/* Responsible Guidance Note */}
-        <div className="guidance-note" role="note">
-          <div style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
-            <AlertCircle size={20} style={{ color: "var(--color-gold)", flexShrink: 0, marginTop: "2px" }} aria-hidden="true" />
-            <div>
-              <strong style={{ display: "block", color: "var(--color-primary-dark)", marginBottom: "0.25rem", fontSize: "0.9375rem" }}>
-                {data.disclaimerTitle}
-              </strong>
-              <span>{data.disclaimer}</span>
-            </div>
-          </div>
-        </div>
+
       </div>
     </section>
   );
