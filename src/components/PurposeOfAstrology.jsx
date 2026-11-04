@@ -54,14 +54,7 @@ export const PurposeOfAstrology = ({ onBookConsultation }) => {
                 )}
               </div>
 
-              <div className="purpose-insight-badge">
-                <Navigation size={16} className="text-gold" aria-hidden="true" />
-                <span>
-                  {isTamil
-                    ? "இயற்கை மற்றும் பிரபஞ்ச விதிகளுக்கு இசைந்து, வாழ்வின் திசையைத் தெளிவுபடுத்தும் நல்வழிகாட்டி"
-                    : "Living in resonance with universal cosmic laws to navigate life with clarity"}
-                </span>
-              </div>
+
             </div>
 
             {/* Right Column: Cosmic Planet Earth & Sun Image Frame */}

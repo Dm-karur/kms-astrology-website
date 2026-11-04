@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Navbar } from "./components/Navbar";
 import { HeroSection } from "./components/HeroSection";
-import { ServicesSection } from "./components/ServicesSection";
 import { WhyAstrology } from "./components/WhyAstrology";
 import { LeadForm } from "./components/LeadForm";
 import { FAQSection } from "./components/FAQSection";
@@ -127,15 +126,16 @@ export function App() {
         
         <WhatIsAstrology onBookConsultation={handleScrollToConsultation} />
         
-        <ServicesSection onSelectService={handleSelectService} />
-        
         <PurposeOfAstrology onBookConsultation={handleScrollToConsultation} />
         
         <WhyAstrology />
         
         <UniqueJourney onBookConsultation={handleScrollToConsultation} />
         
-        <AstrologerSpecialties onBookConsultation={handleScrollToConsultation} />
+        <AstrologerSpecialties
+          onBookConsultation={handleScrollToConsultation}
+          onSelectService={handleSelectService}
+        />
         
         <LeadForm
           preselectedCategory={selectedCategory}

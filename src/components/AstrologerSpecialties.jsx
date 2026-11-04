@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { GoldDivider, BrandMotif } from "./SubtleKolam";
 
-export const AstrologerSpecialties = ({ onBookConsultation }) => {
+export const AstrologerSpecialties = ({ onBookConsultation, onSelectService }) => {
   const { t, isTamil } = useLanguage();
   const data = t?.specialties;
 
@@ -35,8 +35,9 @@ export const AstrologerSpecialties = ({ onBookConsultation }) => {
 
   return (
     <section id="specialties" className="specialties-section" aria-labelledby="specialties-heading">
-      {/* Anchor helper for 'about' navigation */}
+      {/* Anchor helper for 'about' and 'services' navigation */}
       <div id="about" style={{ position: "relative", top: "-90px" }} />
+      <div id="services" style={{ position: "relative", top: "-90px" }} />
 
       <div className="container">
         {/* Section Header */}
@@ -75,7 +76,7 @@ export const AstrologerSpecialties = ({ onBookConsultation }) => {
                 />
                 <div className="specialties-image-badge">
 
-                  <span>{isTamil ? "28+ ஆண்டுகள் நீண்ட அனுபவம்" : "28+ Years Dedication"}</span>
+                  <span>{isTamil ? "28+ ஆண்டுகள் நீண்ட அனுபவம்" : "28+ Years  of Dedication"}</span>
                 </div>
               </div>
             </div>
@@ -104,7 +105,7 @@ export const AstrologerSpecialties = ({ onBookConsultation }) => {
               <div className="specialties-meta-pills">
                 <div className="specialties-meta-pill">
                   <Award size={15} className="text-gold" aria-hidden="true" />
-                  <span>{isTamil ? "28+ வருட தீவிரப் பயிற்சி" : "28+ Years Dedicated Practice"}</span>
+                  <span>{isTamil ? "28+ வருட தீவிரப் பயிற்சி" : "28+ Years of Dedicated Practice"}</span>
                 </div>
                 <div className="specialties-meta-pill">
                   <MapPin size={15} className="text-gold" aria-hidden="true" />
@@ -130,29 +131,92 @@ export const AstrologerSpecialties = ({ onBookConsultation }) => {
 
         {/* 3 Signature Specialty Cards Grid */}
         <div className="specialties-grid">
-          {data.items?.map((item, idx) => (
-            <div key={item.num || idx} className="specialty-card">
-              <div className="specialty-card-header">
-                <div className="specialty-badge-group">
-                  <span className="specialty-number">{item.num}</span>
-                  <span className="specialty-tag">{item.tag}</span>
+          {data.items?.map((item, idx) => {
+            const cardMeta = [
+              {
+                id: "business",
+                categoryKey: "Business Astrology",
+                image: "/images/Business-image.webp",
+                alt: t.services?.business?.alt || item.title,
+                price: t.services?.business?.price || (isTamil ? "கட்டணம் - ₹10,000" : "Pricing - ₹10,000"),
+                cta: t.services?.business?.cta || (isTamil ? "தொழில் ஆலோசனை கோருக" : "Enquire About Business"),
+              },
+              {
+                id: "marriage",
+                categoryKey: "Marriage Astrology",
+                image: "/images/marrige-image.webp",
+                alt: t.services?.marriage?.alt || item.title,
+                price: t.services?.marriage?.price || (isTamil ? "கட்டணம் - ₹10,000" : "Pricing - ₹10,000"),
+                cta: t.services?.marriage?.cta || (isTamil ? "திருமண ஆலோசனை கோருக" : "Enquire About Marriage"),
+              },
+              {
+                id: "education",
+                categoryKey: "Education Astrology",
+                image: "/images/Education%20Astrology.webp",
+                alt: t.services?.education?.alt || item.title,
+                price: t.services?.education?.price || (isTamil ? "கட்டணம் - ₹5,000" : "Pricing - ₹5,000"),
+                cta: t.services?.education?.cta || (isTamil ? "கல்வி ஆலோசனை கோருக" : "Enquire About Education"),
+              },
+            ][idx % 3];
+
+            return (
+              <div key={item.num || idx} className={`specialty-card specialty-card-${cardMeta.id}`}>
+                <div className="specialty-card-image-box">
+                  <img
+                    src={cardMeta.image}
+                    alt={cardMeta.alt}
+                    width="600"
+                    height="450"
+                    loading="lazy"
+                    className={`specialty-card-img specialty-img-${cardMeta.id}`}
+                  />
                 </div>
-                <div className="specialty-icon-wrap" aria-hidden="true">
-                  {specialtyIcons[idx % specialtyIcons.length]}
+
+                <div className="specialty-card-inner">
+                  <div className="specialty-card-header">
+                    <div className="specialty-badge-group">
+                      <span className="specialty-number">{item.num}</span>
+                      <span className="specialty-tag">{item.tag}</span>
+                    </div>
+                    <div className="specialty-icon-wrap" aria-hidden="true">
+                      {specialtyIcons[idx % specialtyIcons.length]}
+                    </div>
+                  </div>
+
+                  <h3 className="specialty-card-title">{item.title}</h3>
+
+                  <div className="specialty-card-body">
+                    {item.text.split("\n\n").map((para, pIdx) => (
+                      <p key={pIdx} className="specialty-card-text">
+                        {para}
+                      </p>
+                    ))}
+                  </div>
+
+                  <div className="specialty-card-footer">
+                    <div className="specialty-card-pricing">
+                      <span>{cardMeta.price}</span>
+                    </div>
+                    <button
+                      type="button"
+                      className="specialty-card-cta"
+                      onClick={() => {
+                        if (onSelectService) {
+                          onSelectService(cardMeta.categoryKey);
+                        } else if (onBookConsultation) {
+                          onBookConsultation();
+                        }
+                      }}
+                      aria-label={`${cardMeta.cta} - ${item.title}`}
+                    >
+                      <span>{cardMeta.cta}</span>
+                      <ArrowRight size={17} aria-hidden="true" />
+                    </button>
+                  </div>
                 </div>
               </div>
-
-              <h3 className="specialty-card-title">{item.title}</h3>
-
-              <div className="specialty-card-body">
-                {item.text.split("\n\n").map((para, pIdx) => (
-                  <p key={pIdx} className="specialty-card-text">
-                    {para}
-                  </p>
-                ))}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Direct & Online Delivery Modes Card */}

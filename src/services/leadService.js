@@ -149,6 +149,11 @@ export async function submitConsultationLead(formData) {
     throw new Error("VALIDATION_CATEGORY");
   }
 
+  const trimmedOtherService = (formData.otherService || "").trim();
+  if (formData.category === "Others" && !trimmedOtherService) {
+    throw new Error("VALIDATION_OTHER_SERVICE");
+  }
+
   if (!formData.consent) {
     throw new Error("VALIDATION_CONSENT");
   }
@@ -158,13 +163,20 @@ export async function submitConsultationLead(formData) {
     .slice(0, 1000)
     .replace(/[<>]/g, "");
 
+  const displayCategory =
+    formData.category === "Others" && trimmedOtherService
+      ? `Others (${trimmedOtherService})`
+      : formData.category;
+
   const leadPayload = {
     leadId: generateLeadId(),
     fullName: trimmedName,
     mobileNumber: `+91 ${normalizedPhone}`,
     normalizedDigits: normalizedPhone,
     preferredLanguage: formData.language || "ta",
-    consultationCategory: formData.category,
+    consultationCategory: displayCategory,
+    categoryRaw: formData.category,
+    otherService: trimmedOtherService,
     preferredContactMethod: formData.contactMethod || "Either",
     briefConcern: sanitizedConcern,
     consentGiven: true,
@@ -325,11 +337,15 @@ export function exportLeadsToCSV(leads, lang = "ta") {
       marriage: "Marriage Astrology",
       education: "Education Astrology",
       business: "Business Astrology",
+      health: "Health Astrology",
+      others: "Others",
     }
     : {
       marriage: "திருமணம் (Marriage)",
       education: "கல்வி (Education)",
       business: "தொழில் (Business)",
+      health: "ஆரோக்கியம் (Health)",
+      others: "மற்றவை (Others)",
     };
 
   const statusMap = isEn

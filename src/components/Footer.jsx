@@ -2,8 +2,8 @@ import React from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { siteConfig } from "../config/siteConfig";
 import { BrandMotif } from "./SubtleKolam";
-import { Phone, MessageSquare, MapPin, Shield } from "lucide-react";
-import { SocialLinks } from "./SocialIcons";
+import { Phone, MapPin, Shield } from "lucide-react";
+import { SocialLinks, WhatsAppIcon } from "./SocialIcons";
 
 export const Footer = ({ onOpenPolicy, onSelectService }) => {
   const { t, isTamil } = useLanguage();
@@ -149,7 +149,7 @@ export const Footer = ({ onOpenPolicy, onSelectService }) => {
                 className="footer-contact-item footer-contact-link"
                 aria-label={`WhatsApp ${siteConfig.contact.displayWhatsApp}`}
               >
-                <MessageSquare size={16} className="footer-contact-icon" aria-hidden="true" />
+                <WhatsAppIcon size={16} className="footer-contact-icon" aria-hidden="true" />
                 <span>{siteConfig.contact.displayWhatsApp}</span>
               </a>
               <div className="footer-contact-item">

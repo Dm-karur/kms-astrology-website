@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { submitConsultationLead } from "../services/leadService";
-import { 
-  Send, 
-  CheckCircle2, 
-  AlertCircle, 
-  ShieldCheck, 
-  Lock, 
+import {
+  Send,
+  CheckCircle2,
+  AlertCircle,
+  ShieldCheck,
+  Lock,
   Clock,
   PhoneCall
 } from "lucide-react";
@@ -21,6 +21,7 @@ export const LeadForm = ({ preselectedCategory, onOpenPolicy }) => {
     mobile: "",
     language: language === "ta" ? "ta" : "en",
     category: "",
+    otherService: "",
     contactMethod: "Either",
     concern: "",
     consent: false,
@@ -46,22 +47,32 @@ export const LeadForm = ({ preselectedCategory, onOpenPolicy }) => {
       setFormData((prev) => ({
         ...prev,
         category: preselectedCategory,
+        otherService: preselectedCategory === "Others" ? prev.otherService : "",
       }));
-      // Clear category error if present
-      setErrors((prev) => ({ ...prev, category: undefined }));
+      // Clear category and otherService error if present
+      setErrors((prev) => ({ ...prev, category: undefined, otherService: undefined }));
     }
   }, [preselectedCategory]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
+    setFormData((prev) => {
+      const updated = {
+        ...prev,
+        [name]: type === "checkbox" ? checked : value,
+      };
+      if (name === "category" && value !== "Others") {
+        updated.otherService = "";
+      }
+      return updated;
+    });
 
     // Clear inline error on change
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
+    }
+    if (name === "category" && value !== "Others" && errors.otherService) {
+      setErrors((prev) => ({ ...prev, otherService: undefined }));
     }
     if (serverError) {
       setServerError("");
@@ -89,8 +100,8 @@ export const LeadForm = ({ preselectedCategory, onOpenPolicy }) => {
         cleanDigits.length === 12 && cleanDigits.startsWith("91")
           ? cleanDigits.slice(2)
           : cleanDigits.length === 11 && cleanDigits.startsWith("0")
-          ? cleanDigits.slice(1)
-          : cleanDigits
+            ? cleanDigits.slice(1)
+            : cleanDigits
       );
 
       if (!isTenDigits) {
@@ -98,9 +109,11 @@ export const LeadForm = ({ preselectedCategory, onOpenPolicy }) => {
       }
     }
 
-    // 3. Category
+    // 3. Category & Optional Willing Service (Mandatory if Others)
     if (!formData.category) {
       newErrors.category = t.form.errors.categoryRequired;
+    } else if (formData.category === "Others" && !formData.otherService?.trim()) {
+      newErrors.otherService = t.form.errors.otherServiceRequired;
     }
 
     // 4. Consent
@@ -137,6 +150,8 @@ export const LeadForm = ({ preselectedCategory, onOpenPolicy }) => {
         setErrors((prev) => ({ ...prev, mobile: t.form.errors.mobileInvalid }));
       } else if (err.message === "VALIDATION_CATEGORY") {
         setErrors((prev) => ({ ...prev, category: t.form.errors.categoryRequired }));
+      } else if (err.message === "VALIDATION_OTHER_SERVICE") {
+        setErrors((prev) => ({ ...prev, otherService: t.form.errors.otherServiceRequired }));
       } else if (err.message === "VALIDATION_CONSENT") {
         setErrors((prev) => ({ ...prev, consent: t.form.errors.consentRequired }));
       } else {
@@ -154,6 +169,7 @@ export const LeadForm = ({ preselectedCategory, onOpenPolicy }) => {
       mobile: "",
       language: language === "ta" ? "ta" : "en",
       category: "",
+      otherService: "",
       contactMethod: "Either",
       concern: "",
       consent: false,
@@ -169,7 +185,7 @@ export const LeadForm = ({ preselectedCategory, onOpenPolicy }) => {
         {/* Section Header */}
         <div className="section-header">
           <div className="section-eyebrow">
-           
+
             <span>{t.form.eyebrow}</span>
           </div>
           <h2 id="form-heading" className="section-title">
@@ -403,6 +419,8 @@ export const LeadForm = ({ preselectedCategory, onOpenPolicy }) => {
                       <option value="Marriage Astrology">{t.form.options.catMarriage}</option>
                       <option value="Education Astrology">{t.form.options.catEducation}</option>
                       <option value="Business Astrology">{t.form.options.catBusiness}</option>
+                      <option value="Health Astrology">{t.form.options.catHealth || "Health Astrology"}</option>
+                      <option value="Others">{t.form.options.catOthers || "Others"}</option>
                     </select>
                     {errors.category && (
                       <div id="category-error" className="form-error-msg" role="alert">
@@ -412,6 +430,35 @@ export const LeadForm = ({ preselectedCategory, onOpenPolicy }) => {
                     )}
                   </div>
                 </div>
+
+                {/* 4b. Willing Service (Mandatory if category is Others) */}
+                {formData.category === "Others" && (
+                  <div className="form-group">
+                    <label htmlFor="form-other-service" className="form-label">
+                      {t.form.labels.otherService}
+                      <span className="required-star" aria-hidden="true">*</span>
+                    </label>
+                    <input
+                      id="form-other-service"
+                      type="text"
+                      name="otherService"
+                      value={formData.otherService}
+                      onChange={handleChange}
+                      placeholder={t.form.placeholders.otherService}
+                      className={`form-input ${errors.otherService ? "has-error" : ""}`}
+                      aria-required="true"
+                      aria-invalid={errors.otherService ? "true" : "false"}
+                      aria-describedby={errors.otherService ? "other-service-error" : undefined}
+                      autoFocus
+                    />
+                    {errors.otherService && (
+                      <div id="other-service-error" className="form-error-msg" role="alert">
+                        <AlertCircle size={14} aria-hidden="true" />
+                        <span>{errors.otherService}</span>
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 {/* 5. Preferred Contact Method */}
                 <div className="form-group">
