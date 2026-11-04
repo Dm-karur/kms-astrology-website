@@ -45,6 +45,62 @@ export const siteConfig = {
     whatsapp: "https://wa.me/917397162177?text=Hello%20KMS%20Astrology,%20I%20would%20like%20to%20enquire%20about%20a%20consultation",
   },
 
+  // IPL Match Predictions & Videos (YouTube Shorts)
+  iplPredictions: [
+    {
+      id: "ipl-prediction-1",
+      num: "01",
+      title: "IPL Prediction #1 • Rajasthan Royals",
+      titleTa: "ஐபிஎல் கணிப்பு #1 • ராஜஸ்தான் ராயல்ஸ்",
+      team: "Rajasthan Royals Match Astrology",
+      teamTa: "ராஜஸ்தான் ராயல்ஸ் போட்டி கணிப்பு",
+      tag: "IPL 2024 / 2025",
+      tagTa: "ஐபிஎல் தொடர்",
+      image: "/images/ipl-prediction-1.png",
+      videoUrl: "https://www.youtube.com/shorts/1UaS3pqm9Pw",
+      youtubeId: "1UaS3pqm9Pw",
+      isFeatured: true,
+    },
+    {
+      id: "ipl-prediction-2",
+      num: "02",
+      title: "IPL Match Prediction #2",
+      titleTa: "ஐபிஎல் போட்டி கணிப்பு #2",
+      team: "Planetary Positions & Match Lagna",
+      teamTa: "கிரக நிலைகள் & லக்ன ஆய்வு",
+      tag: "YouTube Shorts",
+      tagTa: "யூடியூப் ஷார்ட்ஸ்",
+      image: "/images/ipl-prediction-1.png",
+      videoUrl: "https://www.youtube.com/shorts/1UaS3pqm9Pw",
+      youtubeId: "1UaS3pqm9Pw",
+    },
+    {
+      id: "ipl-prediction-3",
+      num: "03",
+      title: "IPL Match Prediction #3",
+      titleTa: "ஐபிஎல் போட்டி கணிப்பு #3",
+      team: "Team Victory Astrology Forecast",
+      teamTa: "அணி வெற்றி வாய்ப்புகள் ஜோதிடம்",
+      tag: "YouTube Shorts",
+      tagTa: "யூடியூப் ஷார்ட்ஸ்",
+      image: "/images/ipl-prediction-1.png",
+      videoUrl: "https://www.youtube.com/shorts/1UaS3pqm9Pw",
+      youtubeId: "1UaS3pqm9Pw",
+    },
+    {
+      id: "ipl-channel-more",
+      isChannelCard: true,
+      title: "All IPL Predictions",
+      titleTa: "அனைத்து ஐபிஎல் கணிப்புகள்",
+      team: "Official KMS Astrology Channel",
+      teamTa: "KMS Astrology யூடியூப் சேனல்",
+      tag: "YouTube Channel",
+      tagTa: "யூடியூப் சேனல்",
+      image: "/images/ipl-prediction-1.png",
+      videoUrl: "https://www.youtube.com/@kmsastrology001",
+    },
+  ],
+
   // Consultation Services (The Three Primary Pillars)
   services: [
     {

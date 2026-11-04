@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { siteConfig } from "../config/siteConfig";
 import {
@@ -8,17 +8,73 @@ import {
   Home,
   PhoneCall,
   ArrowRight,
-
   Award,
   MapPin,
   Calendar,
   Compass,
+  ChevronLeft,
+  ChevronRight,
+  Play,
+  ExternalLink,
+  Trophy,
 } from "lucide-react";
+
+// Clean inline YouTube brand icon component
+const YouTubeIcon = ({ size = 20, className = "" }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={className}
+    aria-hidden="true"
+  >
+    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+  </svg>
+);
 import { GoldDivider, BrandMotif } from "./SubtleKolam";
 
 export const AstrologerSpecialties = ({ onBookConsultation, onSelectService }) => {
   const { t, isTamil } = useLanguage();
   const data = t?.specialties;
+
+  // Manual scroll state for IPL Predictions carousel
+  const iplScrollRef = useRef(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const checkScrollState = () => {
+    const el = iplScrollRef.current;
+    if (el) {
+      const { scrollLeft, scrollWidth, clientWidth } = el;
+      setCanScrollLeft(scrollLeft > 10);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+    }
+  };
+
+  useEffect(() => {
+    const el = iplScrollRef.current;
+    if (el) {
+      checkScrollState();
+      el.addEventListener("scroll", checkScrollState, { passive: true });
+      window.addEventListener("resize", checkScrollState);
+      return () => {
+        el.removeEventListener("scroll", checkScrollState);
+        window.removeEventListener("resize", checkScrollState);
+      };
+    }
+  }, []);
+
+  const handleScroll = (direction) => {
+    const el = iplScrollRef.current;
+    if (el) {
+      const scrollStep = 260; // 1 card width + gap
+      el.scrollBy({
+        left: direction === "right" ? scrollStep : -scrollStep,
+        behavior: "smooth",
+      });
+    }
+  };
 
   if (!data) return null;
 
@@ -128,6 +184,153 @@ export const AstrologerSpecialties = ({ onBookConsultation, onSelectService }) =
             </div>
           </div>
         </div>
+
+        {/* IPL Cricket Predictions Showcase - Manual Horizontal Scroll */}
+        {siteConfig.iplPredictions && siteConfig.iplPredictions.length > 0 && (
+          <div className="ipl-showcase-section" aria-labelledby="ipl-showcase-heading">
+            <div className="ipl-showcase-header">
+              <div className="ipl-showcase-title-group">
+                <div className="ipl-showcase-eyebrow">
+                  <Trophy size={14} className="text-gold" aria-hidden="true" />
+                  <span>
+                    {isTamil
+                      ? "விளையாட்டு ஜோதிடம் & ஐபிஎல் கணிப்புகள்"
+                      : "Sports Astrology & Match Predictions"}
+                  </span>
+                </div>
+                <h3 id="ipl-showcase-heading" className="ipl-showcase-title">
+                  {isTamil
+                    ? "ஜோதிடர் சுப்பிரமணியின் ஐபிஎல் போட்டி கணிப்புகள்"
+                    : "IPL Cricket Predictions by Astrologer Subramani"}
+                </h3>
+                <p className="ipl-showcase-subtitle">
+                  {isTamil
+                    ? "கிரக நிலைகள், அணிகளின் லக்ன அமைப்புகள் மற்றும் வீரர்களின் தசாபுத்திகளை துல்லியமாக கணித்த நேரடி வீடியோக்கள்."
+                    : "Planetary positions, team horoscope lagna alignments, and player dasha periods analyzed for IPL matches."}
+                </p>
+              </div>
+
+              {/* Manual Scroll Controls (Right / Left Arrows) */}
+              <div className="ipl-scroll-controls" aria-label="IPL Prediction Navigation">
+                <span className="ipl-scroll-hint">
+                  {isTamil ? "உருட்டிப் பார்க்கவும்" : "Scroll to browse"}
+                </span>
+                <div className="ipl-scroll-btn-group">
+                  <button
+                    type="button"
+                    className="ipl-scroll-btn"
+                    onClick={() => handleScroll("left")}
+                    disabled={!canScrollLeft}
+                    aria-label={isTamil ? "முந்தைய கணிப்புகள்" : "Previous predictions"}
+                    title={isTamil ? "முந்தைய கணிப்புகள்" : "Scroll left"}
+                  >
+                    <ChevronLeft size={18} aria-hidden="true" />
+                  </button>
+                  <button
+                    type="button"
+                    className="ipl-scroll-btn"
+                    onClick={() => handleScroll("right")}
+                    disabled={!canScrollRight}
+                    aria-label={isTamil ? "அடுத்த கணிப்புகள்" : "Next predictions"}
+                    title={isTamil ? "அடுத்த கணிப்புகள்" : "Scroll right"}
+                  >
+                    <ChevronRight size={18} aria-hidden="true" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Manual Scrollable Track (Not infinite, manual scroll) */}
+            <div
+              className="ipl-scroll-track"
+              ref={iplScrollRef}
+              role="region"
+              aria-label={isTamil ? "ஐபிஎல் கணிப்பு வீடியோக்கள் பட்டியல்" : "IPL Prediction Videos Carousel"}
+              tabIndex={0}
+            >
+              {siteConfig.iplPredictions.map((item, pIdx) => {
+                const title = isTamil ? (item.titleTa || item.title) : item.title;
+                const team = isTamil ? (item.teamTa || item.team) : item.team;
+                const tag = isTamil ? (item.tagTa || item.tag) : item.tag;
+
+                if (item.isChannelCard) {
+                  return (
+                    <a
+                      key={item.id || pIdx}
+                      href={item.videoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="ipl-card ipl-channel-card"
+                      aria-label={`${title} - ${team}`}
+                    >
+                      <div className="ipl-channel-card-inner">
+                        <div className="ipl-youtube-badge-large">
+                          <YouTubeIcon size={40} />
+                        </div>
+                        <span className="ipl-card-tag">{tag}</span>
+                        <h4 className="ipl-card-title">{title}</h4>
+                        <p className="ipl-card-team">{team}</p>
+                        <span className="ipl-card-link-pill">
+                          <span>{isTamil ? "யூடியூபில் காணுங்கள்" : "Watch on YouTube"}</span>
+                          <ExternalLink size={14} aria-hidden="true" />
+                        </span>
+                      </div>
+                    </a>
+                  );
+                }
+
+                return (
+                  <a
+                    key={item.id || pIdx}
+                    href={item.videoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="ipl-card"
+                    aria-label={`${title} - ${isTamil ? "யூடியூப் ஷார்ட்ஸில் பார்க்க கிளிக் செய்யவும்" : "Click to watch on YouTube Shorts"}`}
+                  >
+                    <div className="ipl-card-image-box">
+                      <img
+                        src={item.image}
+                        alt={title}
+                        width="405"
+                        height="720"
+                        loading="lazy"
+                        className="ipl-card-img"
+                      />
+                      <div className="ipl-card-overlay" />
+                    </div>
+
+                    {/* Top Tag & YouTube Shorts Badge */}
+                    <div className="ipl-card-top-badge">
+                      <div className="ipl-youtube-pill">
+                        <YouTubeIcon size={16} />
+                        <span>Shorts</span>
+                      </div>
+                      {tag && <span className="ipl-card-match-pill">{tag}</span>}
+                    </div>
+
+                    {/* Center Floating Play Button */}
+                    <div className="ipl-play-btn-wrap" aria-hidden="true">
+                      <div className="ipl-play-btn">
+                        <Play size={20} fill="#FFFFFF" color="#FFFFFF" />
+                      </div>
+                    </div>
+
+                    {/* Bottom Content Pill & Title */}
+                    <div className="ipl-card-bottom">
+                      <h4 className="ipl-card-title">{title}</h4>
+                      <p className="ipl-card-team">{team}</p>
+                      <div className="ipl-card-link-pill">
+                        <span>{isTamil ? "வீடியோ பார்க்க" : "Watch Video"}</span>
+                        <ExternalLink size={13} aria-hidden="true" />
+                      </div>
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
         {/* 3 Signature Specialty Cards Grid */}
         <div className="specialties-grid">

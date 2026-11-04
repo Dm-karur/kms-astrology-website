@@ -2536,6 +2536,436 @@ html[lang="ta"] .specialties-profile-bio {
   gap: 1rem;
 }
 
+/* ========================================================
+   IPL Cricket Predictions Showcase (Manual Horizontal Scroll)
+   ======================================================== */
+.ipl-showcase-section {
+  position: relative;
+  background: linear-gradient(135deg, #FAF7F1 0%, #F5EDE1 100%);
+  border: 1px solid rgba(176, 138, 80, 0.35);
+  border-radius: 16px;
+  padding: 2.25rem 2.5rem;
+  margin-bottom: var(--space-3xl);
+  box-shadow: 0 10px 32px rgba(56, 37, 29, 0.06);
+  overflow: hidden;
+}
+
+.ipl-showcase-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.ipl-showcase-title-group {
+  max-width: 640px;
+}
+
+.ipl-showcase-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--color-gold-subtle);
+  border: 1px solid rgba(176, 138, 80, 0.4);
+  color: var(--color-primary-dark);
+  font-size: 0.775rem;
+  font-weight: 700;
+  padding: 0.3rem 0.85rem;
+  border-radius: 20px;
+  margin-bottom: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.ipl-showcase-title {
+  font-family: var(--font-heading-ta);
+  font-size: clamp(1.35rem, 1.8vw + 0.3rem, 1.75rem);
+  color: var(--color-primary-dark);
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+  line-height: 1.3;
+}
+
+.ipl-showcase-subtitle {
+  font-size: 0.925rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.ipl-scroll-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.ipl-scroll-hint {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+  display: inline-block;
+}
+
+.ipl-scroll-btn-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ipl-scroll-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(176, 138, 80, 0.35);
+  background: #FFFFFF;
+  color: var(--color-primary-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(56, 37, 29, 0.06);
+}
+
+.ipl-scroll-btn:hover:not(:disabled) {
+  background: var(--color-primary-dark);
+  color: #FFFFFF;
+  border-color: var(--color-primary-dark);
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(56, 37, 29, 0.15);
+}
+
+.ipl-scroll-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.ipl-scroll-track {
+  display: flex;
+  gap: 1.35rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding: 0.35rem 0.25rem 1.15rem 0.25rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ipl-scroll-track::-webkit-scrollbar {
+  height: 6px;
+}
+
+.ipl-scroll-track::-webkit-scrollbar-track {
+  background: rgba(176, 138, 80, 0.12);
+  border-radius: 10px;
+}
+
+.ipl-scroll-track::-webkit-scrollbar-thumb {
+  background: var(--color-gold);
+  border-radius: 10px;
+}
+
+.ipl-scroll-track::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-hover);
+}
+
+.ipl-card {
+  flex: 0 0 220px;
+  width: 220px;
+  aspect-ratio: 9 / 16;
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+  background: #1B120E;
+  text-decoration: none;
+  color: #FFFFFF;
+  box-shadow: 0 8px 24px rgba(56, 37, 29, 0.14);
+  border: 2px solid rgba(176, 138, 80, 0.35);
+  scroll-snap-align: start;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  display: block;
+}
+
+.ipl-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(56, 37, 29, 0.24);
+  border-color: var(--color-gold);
+}
+
+.ipl-card-image-box {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.ipl-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+  display: block;
+}
+
+.ipl-card:hover .ipl-card-img {
+  transform: scale(1.05);
+}
+
+.ipl-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 12, 8, 0.6) 0%, rgba(20, 12, 8, 0.15) 45%, rgba(20, 12, 8, 0.94) 100%);
+  pointer-events: none;
+}
+
+.ipl-card-top-badge {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  right: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.ipl-youtube-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #CC0000;
+  color: #FFFFFF;
+  font-size: 0.725rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.ipl-card-match-pill {
+  background: rgba(43, 27, 20, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(212, 175, 55, 0.6);
+  color: #FCFAF6;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 0.25rem 0.55rem;
+  border-radius: 12px;
+}
+
+.ipl-play-btn-wrap {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  pointer-events: none;
+  transition: transform 0.3s ease;
+}
+
+.ipl-card:hover .ipl-play-btn-wrap {
+  transform: translate(-50%, -50%) scale(1.12);
+}
+
+.ipl-play-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(204, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  transition: all 0.3s ease;
+}
+
+.ipl-card:hover .ipl-play-btn {
+  background: #E60000;
+  box-shadow: 0 8px 24px rgba(230, 0, 0, 0.6);
+}
+
+.ipl-card-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.15rem 1rem;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.ipl-card-title {
+  font-size: 0.925rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.35;
+  margin: 0;
+  word-break: break-word;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.ipl-card-team {
+  font-size: 0.775rem;
+  color: #E6DDD2;
+  margin: 0;
+  opacity: 0.9;
+  line-height: 1.35;
+}
+
+.ipl-card-link-pill {
+  margin-top: 0.35rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-gold-light);
+  transition: color 0.2s ease;
+}
+
+.ipl-card:hover .ipl-card-link-pill {
+  color: #FFFFFF;
+}
+
+/* Channel Spotlight Card */
+.ipl-channel-card {
+  background: linear-gradient(135deg, #2D1D16 0%, #1A100B 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-color: rgba(212, 175, 55, 0.5);
+}
+
+.ipl-channel-card-inner {
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 0.65rem;
+  position: relative;
+  z-index: 2;
+}
+
+.ipl-youtube-badge-large {
+  color: #CC0000;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.35rem;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.ipl-card:hover .ipl-youtube-badge-large {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.ipl-channel-card .ipl-card-tag {
+  background: var(--color-gold-subtle);
+  color: var(--color-gold-light);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  font-size: 0.725rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+}
+
+@media (max-width: 900px) {
+  .ipl-showcase-section {
+    padding: 1.75rem 1.5rem;
+  }
+
+  .ipl-card {
+    flex: 0 0 190px;
+    width: 190px;
+  }
+}
+
+@media (max-width: 680px) {
+  .ipl-showcase-section {
+    padding: 1.5rem 1.15rem;
+    border-radius: 14px;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .ipl-showcase-header {
+    gap: 0.85rem;
+    margin-bottom: 1.15rem;
+  }
+
+  .ipl-showcase-eyebrow {
+    font-size: 0.725rem;
+    padding: 0.25rem 0.75rem;
+  }
+
+  .ipl-showcase-title {
+    font-size: 1.25rem;
+  }
+
+  .ipl-showcase-subtitle {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .ipl-scroll-hint {
+    display: none;
+  }
+
+  .ipl-card {
+    flex: 0 0 165px;
+    width: 165px;
+    border-radius: 12px;
+  }
+
+  .ipl-card-title {
+    font-size: 0.825rem;
+  }
+
+  .ipl-card-team {
+    font-size: 0.725rem;
+  }
+
+  .ipl-play-btn {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ipl-showcase-section {
+    padding: 1.25rem 1rem;
+    border-radius: 12px;
+  }
+
+  .ipl-card {
+    flex: 0 0 155px;
+    width: 155px;
+  }
+
+  .ipl-play-btn {
+    width: 40px;
+    height: 40px;
+  }
+}
+
 /* 3 Signature Specialty Cards Grid */
 .specialties-grid {
   display: grid;
