@@ -12,7 +12,7 @@ require_once __DIR__ . '/../config/auth_helper.php';
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     sendResponse(405, [
         'success' => false,
-        'error'   => 'METHOD_NOT_ALLOWED',
+        'error' => 'METHOD_NOT_ALLOWED',
         'message' => 'POST கோரிக்கை மட்டுமே அனுமதிக்கப்படுகிறது.'
     ]);
 }
@@ -24,7 +24,7 @@ $password = trim($payload['password'] ?? '');
 if (empty($username) || empty($password)) {
     sendResponse(400, [
         'success' => false,
-        'error'   => 'MISSING_FIELDS',
+        'error' => 'MISSING_FIELDS',
         'message' => 'தயவுசெய்து பயனர் பெயர் மற்றும் கடவுச்சொல்லை உள்ளிடவும்.'
     ]);
 }
@@ -48,12 +48,12 @@ try {
             $update = $pdo->prepare("UPDATE `kms_admins` SET `password_hash` = ? WHERE `username` = 'admin'");
             $update->execute([$hash]);
         } else {
-            $insert = $pdo->prepare("INSERT INTO `kms_admins` (`username`, `password_hash`, `full_name`, `role`) VALUES ('admin', ?, 'ஜோதிடர் சுப்பிரமணி', 'super_admin')");
+            $insert = $pdo->prepare("INSERT INTO `kms_admins` (`username`, `password_hash`, `full_name`, `role`) VALUES ('admin', ?, 'ஜோதிடர் சுப்ரமணி', 'super_admin')");
             $insert->execute([$hash]);
             $admin = [
                 'id' => $pdo->lastInsertId(),
                 'username' => 'admin',
-                'full_name' => 'ஜோதிடர் சுப்பிரமணி',
+                'full_name' => 'ஜோதிடர் சுப்ரமணி',
                 'role' => 'super_admin'
             ];
         }
@@ -62,7 +62,7 @@ try {
     if (!$isAuthenticated) {
         sendResponse(401, [
             'success' => false,
-            'error'   => 'INVALID_CREDENTIALS',
+            'error' => 'INVALID_CREDENTIALS',
             'message' => 'தவறான பயனர் பெயர் அல்லது கடவுச்சொல். மீண்டும் முயற்சிக்கவும்.'
         ]);
     }
@@ -73,26 +73,26 @@ try {
 
     // Generate session token (valid for 7 days)
     $token = createAuthToken([
-        'id'       => $admin['id'],
+        'id' => $admin['id'],
         'username' => $admin['username'],
-        'role'     => $admin['role']
+        'role' => $admin['role']
     ], 604800);
 
     sendResponse(200, [
         'success' => true,
         'message' => 'உள்நுழைவு வெற்றிகரமாக முடிந்தது!',
-        'token'   => $token,
-        'user'    => [
-            'id'       => $admin['id'],
+        'token' => $token,
+        'user' => [
+            'id' => $admin['id'],
             'username' => $admin['username'],
             'fullName' => $admin['full_name'],
-            'role'     => $admin['role']
+            'role' => $admin['role']
         ]
     ]);
 } catch (Exception $e) {
     sendResponse(500, [
         'success' => false,
-        'error'   => 'SERVER_ERROR',
+        'error' => 'SERVER_ERROR',
         'message' => 'சர்வர் பிழை: ' . $e->getMessage()
     ]);
 }

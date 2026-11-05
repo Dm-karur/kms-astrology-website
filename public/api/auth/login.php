@@ -48,12 +48,12 @@ try {
             $update = $pdo->prepare("UPDATE `kms_admins` SET `password_hash` = ? WHERE `username` = 'admin'");
             $update->execute([$hash]);
         } else {
-            $insert = $pdo->prepare("INSERT INTO `kms_admins` (`username`, `password_hash`, `full_name`, `role`) VALUES ('admin', ?, 'ஜோதிடர் சுப்பிரமணி', 'super_admin')");
+            $insert = $pdo->prepare("INSERT INTO `kms_admins` (`username`, `password_hash`, `full_name`, `role`) VALUES ('admin', ?, 'ஜோதிடர் சுப்ரமணி', 'super_admin')");
             $insert->execute([$hash]);
             $admin = [
                 'id' => $pdo->lastInsertId(),
                 'username' => 'admin',
-                'full_name' => 'ஜோதிடர் சுப்பிரமணி',
+                'full_name' => 'ஜோதிடர் சுப்ரமணி',
                 'role' => 'super_admin'
             ];
         }

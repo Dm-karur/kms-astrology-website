@@ -13,7 +13,7 @@ export const siteConfig = {
   // Astrologer profile placeholders (editable by business owner)
   astrologer: {
     name: "Astrologer Subramani",
-    nameTa: "ஜோதிடர் சுப்பிரமணி",
+    nameTa: "ஜோதிடர் சுப்ரமணி",
     title: "Vedic Astrology Consultant",
     titleTa: "வேத ஜோதிட ஆலோசகர்",
     experience: "28 Years of Dedicated Experience",

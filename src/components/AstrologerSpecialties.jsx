@@ -124,7 +124,7 @@ export const AstrologerSpecialties = ({ onBookConsultation, onSelectService }) =
               <div className="specialties-image-frame">
                 <img
                   src="/images/astrologer-subramani.webp"
-                  alt={isTamil ? "ஜோதிடர் சுப்பிரமணி - வேத ஜோதிட ஆலோசகர்" : "Astrologer Subramani - Vedic Astrology Consultant"}
+                  alt={isTamil ? "ஜோதிடர் சுப்ரமணி - வேத ஜோதிட ஆலோசகர்" : "Astrologer Subramani - Vedic Astrology Consultant"}
                   width="420"
                   height="560"
                   loading="lazy"
@@ -200,7 +200,7 @@ export const AstrologerSpecialties = ({ onBookConsultation, onSelectService }) =
                 </div>
                 <h3 id="ipl-showcase-heading" className="ipl-showcase-title">
                   {isTamil
-                    ? "ஜோதிடர் சுப்பிரமணியின் ஐபிஎல் போட்டி கணிப்புகள்"
+                    ? "ஜோதிடர் சுப்ரமணியின் ஐபிஎல் போட்டி கணிப்புகள்"
                     : "IPL Cricket Predictions by Astrologer Subramani"}
                 </h3>
                 <p className="ipl-showcase-subtitle">

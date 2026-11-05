@@ -27,7 +27,7 @@ INSERT INTO `kms_admins` (`username`, `password_hash`, `full_name`, `role`)
 VALUES (
   'admin',
   '$2y$10$92mle2yc9y5HMQy3cENRY.bSp74V4jdCVfkAlovN.kZCo8VDafi.K',
-  'ஜோதிடர் சுப்பிரமணி (நிர்வாகி)',
+  'ஜோதிடர் சுப்ரமணி (நிர்வாகி)',
   'super_admin'
 ) ON DUPLICATE KEY UPDATE `username` = `username`;
 

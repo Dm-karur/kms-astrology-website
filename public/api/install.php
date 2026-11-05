@@ -27,7 +27,7 @@ try {
     // 5. Seed default admin (admin / kmsastro@2026)
     $adminUser = 'admin';
     $adminHash = password_hash('kmsastro@2026', PASSWORD_BCRYPT);
-    $adminName = 'ஜோதிடர் சுப்பிரமணி (நிர்வாகி)';
+    $adminName = 'ஜோதிடர் சுப்ரமணி (நிர்வாகி)';
 
     $checkAdmin = $pdo->prepare("SELECT id FROM `kms_admins` WHERE `username` = ?");
     $checkAdmin->execute([$adminUser]);
