@@ -670,15 +670,6 @@ export const AdminPortal = () => {
               <h1 className="admin-header-title">{txt.brandTitle}</h1>
               <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginTop: "2px" }}>
                 <span className="admin-header-badge">{txt.portalBadge}</span>
-                {dataSource === "mysql" ? (
-                  <span className="admin-db-badge connected" title={txt.mysqlConnected}>
-                    ● {txt.mysqlConnected}
-                  </span>
-                ) : (
-                  <span className="admin-db-badge offline" title={txt.localOffline}>
-                    ● {txt.localOffline}
-                  </span>
-                )}
               </div>
             </div>
           </div>
@@ -749,9 +740,6 @@ export const AdminPortal = () => {
                         <CheckCircle2 size={16} className="status-dot-icon" />
                         <span>{txt.appRunning}</span>
                       </div>
-                      <span className={`admin-settings-db-pill ${dataSource === "mysql" ? "connected" : "offline"}`}>
-                        {dataSource === "mysql" ? `● ${txt.mysqlConnected}` : `● ${txt.localOffline}`}
-                      </span>
                     </div>
 
                     {!isAppInstalled && (
@@ -1017,7 +1005,17 @@ export const AdminPortal = () => {
                 {/* Main Client Info */}
                 <div className="admin-lead-body">
                   <div className="admin-client-info">
-                    <h3 className="admin-client-name">{item.fullName}</h3>
+                    <div className="admin-client-header-line">
+                      <h3 className="admin-client-name">{item.fullName}</h3>
+                      <a
+                        href={`tel:${(item.mobileNumber || "").replace(/\s/g, "")}`}
+                        className="admin-client-phone-pill"
+                        title={txt.call}
+                      >
+                        <Phone size={13} />
+                        <span>{item.mobileNumber}</span>
+                      </a>
+                    </div>
                     <div className="admin-client-time">
                       <Clock size={14} />
                       <span>{formatIST(item.submissionTimestamp)}</span>
@@ -1026,39 +1024,7 @@ export const AdminPortal = () => {
                       </span>
                     </div>
                   </div>
-
-                  {/* Action Contact Buttons (Direct WhatsApp & Direct Phone Call) */}
-                  <div className="admin-contact-buttons">
-                    <a
-                      href={`https://wa.me/91${cleanDigits}?text=${waGreeting}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn admin-wa-btn"
-                      title={txt.whatsapp}
-                    >
-                      <MessageCircle size={16} />
-                      <span>{txt.whatsapp}</span>
-                      <ExternalLink size={12} />
-                    </a>
-
-                    <a
-                      href={`tel:+91${cleanDigits}`}
-                      className="btn admin-call-btn"
-                      title={txt.call}
-                    >
-                      <Phone size={16} />
-                      <span>{item.mobileNumber}</span>
-                    </a>
-                  </div>
                 </div>
-
-                {/* Client's Concern Text */}
-                {item.briefConcern && (
-                  <div className="admin-concern-box">
-                    <span className="admin-concern-label">{txt.clientConcern}</span>
-                    <p className="admin-concern-text">{item.briefConcern}</p>
-                  </div>
-                )}
 
                 {/* Astrologer Private Notes Box */}
                 <div className="admin-notes-section">

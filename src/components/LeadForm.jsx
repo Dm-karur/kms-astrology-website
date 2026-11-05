@@ -488,22 +488,6 @@ export const LeadForm = ({ preselectedCategory, onOpenPolicy }) => {
                   </div>
                 </div>
 
-                {/* 6. Brief Description of Concern (Optional multiline textarea) */}
-                <div className="form-group">
-                  <label htmlFor="form-concern" className="form-label">
-                    {t.form.labels.concern}
-                  </label>
-                  <textarea
-                    id="form-concern"
-                    name="concern"
-                    rows={3}
-                    value={formData.concern}
-                    onChange={handleChange}
-                    placeholder={t.form.placeholders.concern}
-                    className="form-textarea"
-                  />
-                </div>
-
                 {/* 7. Consent Checkbox */}
                 <div className="consent-wrapper">
                   <input
