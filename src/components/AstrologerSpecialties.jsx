@@ -192,7 +192,7 @@ export const AstrologerSpecialties = ({ onBookConsultation, onSelectService }) =
             <div className="ipl-showcase-header">
               <div className="ipl-showcase-title-group">
                 <div className="ipl-showcase-eyebrow">
-                  <Sparkles size={14} className="text-gold" aria-hidden="true" />
+
                   <span>
                     {isTamil
                       ? "ஜோதிடக் கணிப்புகள் & ஆலோசனைகள் • சிறப்பு வீடியோக்கள்"
