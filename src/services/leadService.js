@@ -433,7 +433,12 @@ export async function adminLoginAPI(username, password) {
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify({ username, password }),
     });
-    return await res.json();
+    const text = await res.text();
+    try {
+      return JSON.parse(text);
+    } catch {
+      return null;
+    }
   } catch (err) {
     console.warn("Backend API not reachable (using offline fallback):", err);
     return null;
@@ -490,6 +495,9 @@ export async function syncOfflineLeads() {
           }
           syncedCount++;
         }
+      } else {
+        // Stop sequential loop if server returns error
+        break;
       }
     } catch (e) {
       console.warn("Could not sync offline lead:", lead.leadId, e);
