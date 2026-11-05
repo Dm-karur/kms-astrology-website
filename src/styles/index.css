@@ -2635,6 +2635,53 @@ html[lang="ta"] .specialties-profile-bio {
   gap: 0.5rem;
 }
 
+/* Desktop-Only Centered Alignment for Badge, Heading, and Paragraph */
+@media (min-width: 901px) {
+  .ipl-showcase-header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .ipl-showcase-title-group {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1rem;
+  }
+
+  .ipl-showcase-eyebrow {
+    margin: 0 auto 0.75rem auto;
+    text-align: center;
+  }
+
+  .ipl-showcase-title {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ipl-showcase-subtitle {
+    text-align: center;
+    max-width: 660px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ipl-scroll-controls {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+}
+
 .ipl-scroll-btn {
   width: 40px;
   height: 40px;
