@@ -347,6 +347,31 @@
     </div>
   </div>
 
+
+  <!-- KMS Sacred Celestial Preloader Failsafe Dismissal -->
+  <script>
+    (function() {
+      window.__kmsLoaderStartTime = Date.now();
+      var dismissed = false;
+      function dismissPreloader() {
+        if (dismissed) return;
+        dismissed = true;
+        var el = document.getElementById('kms-preloader');
+        if (el) {
+          el.classList.add('kms-loaded');
+          setTimeout(function() {
+            if (el && el.parentNode) {
+              el.parentNode.removeChild(el);
+            }
+          }, 650);
+        }
+      }
+      window.__kmsDismissPreloader = dismissPreloader;
+      // Absolute failsafe: Never let preloader stay visible longer than 2000ms
+      setTimeout(dismissPreloader, 2000);
+    })();
+  </script>
+
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>

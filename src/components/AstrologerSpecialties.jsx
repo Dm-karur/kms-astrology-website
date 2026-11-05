@@ -154,7 +154,7 @@ export const AstrologerSpecialties = ({ onBookConsultation, onSelectService }) =
 
               <p className="specialties-profile-bio">
                 {isTamil
-                  ? "28 ஆண்டுகளுக்கும் மேலான ஆழ்ந்த வேத ஜோதிட அனுபவம் கொண்ட ஜோதிடர் சுப்பிரமணி அவர்கள், திருமணப் பொருத்தம், தொழில் வளர்ச்சி மற்றும் குழந்தைகளின் கல்வி வழிகாட்டுதலில் தனித்துவமான கணிப்பு முறைகளையும் நடைமுறைப் பரிகாரங்களையும் வழங்கி வருகிறார். பிரபஞ்ச கிரக நிலைகளை பாகை (Degree) அளவில் நுணுக்கமாக ஆராய்ந்து, வாழ்வின் முக்கியமான தருணங்களில் தெளிவான வழிகாட்டலை அளிக்கிறார்."
+                  ? "28 ஆண்டுகளுக்கும் மேலான ஆழ்ந்த வேத ஜோதிட அனுபவம் கொண்ட ஜோதிடர் சுப்ரமணி அவர்கள், திருமணப் பொருத்தம், தொழில் வளர்ச்சி மற்றும் குழந்தைகளின் கல்வி வழிகாட்டுதலில் தனித்துவமான கணிப்பு முறைகளையும் நடைமுறைப் பரிகாரங்களையும் வழங்கி வருகிறார். பிரபஞ்ச கிரக நிலைகளை பாகை (Degree) அளவில் நுணுக்கமாக ஆராய்ந்து, வாழ்வின் முக்கியமான தருணங்களில் தெளிவான வழிகாட்டலை அளிக்கிறார்."
                   : "With over 28 years of dedicated experience in traditional Vedic astrology, Astrologer Subramani provides deep clarity and practical guidance for marriage compatibility, business success, and educational choices. By meticulously examining planetary positions and degree-level alignments, he empowers individuals and families to take confident life decisions."}
               </p>
 

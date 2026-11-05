@@ -35,6 +35,7 @@ import {
   ExternalLink,
   Languages,
   X,
+  Settings,
 } from "lucide-react";
 
 const ADMIN_STORAGE_KEY = "kms_admin_authenticated_session";
@@ -70,6 +71,8 @@ const adminStrings = {
     enterCreds: "தயவுசெய்து பயனர் பெயர் மற்றும் கடவுச்சொல்லை உள்ளிடவும்.",
     refresh: "புதுப்பி",
     refreshTooltip: "புதிய பதிவுகளைப் புதுப்பித்து பெறுக",
+    settings: "அமைப்புகள்",
+    settingsTooltip: "அமைப்புகள் மற்றும் விருப்பங்கள்",
     exportCsv: "எக்செல் (CSV)",
     exportTooltip: "எல்லா கோரிக்கைகளையும் எக்செல் கோப்பாக பதிவிறக்குக",
     logout: "வெளியேறு",
@@ -143,6 +146,8 @@ const adminStrings = {
     enterCreds: "Please enter your username and password.",
     refresh: "Refresh",
     refreshTooltip: "Refresh to fetch latest incoming enquiries",
+    settings: "Settings",
+    settingsTooltip: "Settings and Options",
     exportCsv: "Excel (CSV)",
     exportTooltip: "Download all enquiries as an Excel compatible CSV file",
     logout: "Logout",
