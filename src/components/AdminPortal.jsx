@@ -256,8 +256,6 @@ export const AdminPortal = () => {
     return isAuthenticated ? getStoredLeads() : [];
   });
   const [searchQuery, setSearchQuery] = useState("");
-  const [categoryFilter, setCategoryFilter] = useState("all");
-  const [statusFilter, setStatusFilter] = useState("all");
   const [editingNotes, setEditingNotes] = useState(() => {
     if (!isAuthenticated) return {};
     const data = getStoredLeads();
@@ -500,42 +498,19 @@ export const AdminPortal = () => {
     setDeleteConfirmId(null);
   };
 
-  // Filter leads
+  // Filter leads purely by search query
   const filteredLeads = useMemo(() => {
+    if (!searchQuery.trim()) return leads;
+    const q = searchQuery.toLowerCase().trim();
     return leads.filter((lead) => {
-      // Category filter
-      if (categoryFilter !== "all" && lead.consultationCategory !== categoryFilter) {
-        return false;
-      }
-
-      // Status filter
-      if (statusFilter !== "all" && lead.status !== statusFilter) {
-        return false;
-      }
-
-      // Search query
-      if (searchQuery.trim()) {
-        const q = searchQuery.toLowerCase().trim();
-        const nameMatch = (lead.fullName || "").toLowerCase().includes(q);
-        const mobileMatch = (lead.mobileNumber || "").toLowerCase().includes(q);
-        const idMatch = (lead.leadId || "").toLowerCase().includes(q);
-        const concernMatch = (lead.briefConcern || "").toLowerCase().includes(q);
-        const notesMatch = (lead.notes || "").toLowerCase().includes(q);
-        return nameMatch || mobileMatch || idMatch || concernMatch || notesMatch;
-      }
-
-      return true;
+      const nameMatch = (lead.fullName || "").toLowerCase().includes(q);
+      const mobileMatch = (lead.mobileNumber || "").toLowerCase().includes(q);
+      const idMatch = (lead.leadId || "").toLowerCase().includes(q);
+      const concernMatch = (lead.briefConcern || "").toLowerCase().includes(q);
+      const notesMatch = (lead.notes || "").toLowerCase().includes(q);
+      return nameMatch || mobileMatch || idMatch || concernMatch || notesMatch;
     });
-  }, [leads, categoryFilter, statusFilter, searchQuery]);
-
-  // Statistics
-  const stats = useMemo(() => {
-    const total = leads.length;
-    const received = leads.filter((l) => l.status === "received").length;
-    const contacted = leads.filter((l) => l.status === "contacted").length;
-    const consulted = leads.filter((l) => l.status === "consulted" || l.status === "closed").length;
-    return { total, received, contacted, consulted };
-  }, [leads]);
+  }, [leads, searchQuery]);
 
   // Format timestamp in Indian Standard Time (IST)
   const formatIST = (timestampStr) => {
@@ -962,75 +937,6 @@ export const AdminPortal = () => {
               </button>
             )}
           </div>
-
-          {/* Category & Status Tabs */}
-          <div className="admin-filter-row">
-            {/* Category Tabs */}
-            <div className="admin-pill-group">
-              <span className="admin-pill-label">{txt.filterCategory}</span>
-              <button
-                type="button"
-                className={`admin-pill ${categoryFilter === "all" ? "active" : ""}`}
-                onClick={() => setCategoryFilter("all")}
-              >
-                {txt.all}
-              </button>
-              <button
-                type="button"
-                className={`admin-pill ${categoryFilter === "marriage" ? "active" : ""}`}
-                onClick={() => setCategoryFilter("marriage")}
-              >
-                {txt.catMarriage}
-              </button>
-              <button
-                type="button"
-                className={`admin-pill ${categoryFilter === "education" ? "active" : ""}`}
-                onClick={() => setCategoryFilter("education")}
-              >
-                {txt.catEducation}
-              </button>
-              <button
-                type="button"
-                className={`admin-pill ${categoryFilter === "business" ? "active" : ""}`}
-                onClick={() => setCategoryFilter("business")}
-              >
-                {txt.catBusiness}
-              </button>
-            </div>
-
-            {/* Status Tabs */}
-            <div className="admin-pill-group">
-              <span className="admin-pill-label">{txt.filterStatus}</span>
-              <button
-                type="button"
-                className={`admin-pill ${statusFilter === "all" ? "active" : ""}`}
-                onClick={() => setStatusFilter("all")}
-              >
-                {txt.all}
-              </button>
-              <button
-                type="button"
-                className={`admin-pill ${statusFilter === "received" ? "active" : ""}`}
-                onClick={() => setStatusFilter("received")}
-              >
-                {txt.statusReceived} ({stats.received})
-              </button>
-              <button
-                type="button"
-                className={`admin-pill ${statusFilter === "contacted" ? "active" : ""}`}
-                onClick={() => setStatusFilter("contacted")}
-              >
-                {txt.statusContacted} ({stats.contacted})
-              </button>
-              <button
-                type="button"
-                className={`admin-pill ${statusFilter === "consulted" ? "active" : ""}`}
-                onClick={() => setStatusFilter("consulted")}
-              >
-                {txt.statusConsulted} ({stats.consulted})
-              </button>
-            </div>
-          </div>
         </div>
 
         {/* Leads Count Indicator */}
@@ -1049,11 +955,7 @@ export const AdminPortal = () => {
             <button
               type="button"
               className="btn btn-secondary"
-              onClick={() => {
-                setSearchQuery("");
-                setCategoryFilter("all");
-                setStatusFilter("all");
-              }}
+              onClick={() => setSearchQuery("")}
             >
               {txt.showAll}
             </button>

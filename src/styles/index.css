@@ -5431,7 +5431,7 @@ html[lang="ta"] .footer-social-label {
   position: relative;
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 }
 
 .admin-search-icon {
