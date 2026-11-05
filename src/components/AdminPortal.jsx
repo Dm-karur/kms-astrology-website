@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import {
   getStoredLeads,
   updateLeadStatus,
@@ -268,6 +268,32 @@ export const AdminPortal = () => {
   // PWA install prompt state
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [isInstallable, setIsInstallable] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const settingsRef = useRef(null);
+
+  // Close settings dropdown on click outside or Escape key
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (settingsRef.current && !settingsRef.current.contains(e.target)) {
+        setIsSettingsOpen(false);
+      }
+    };
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setIsSettingsOpen(false);
+      }
+    };
+
+    if (isSettingsOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("keydown", handleKeyDown);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isSettingsOpen]);
+
   const [isAppInstalled, setIsAppInstalled] = useState(() => {
     if (typeof window !== "undefined") {
       const isStandalone =
@@ -696,7 +722,7 @@ export const AdminPortal = () => {
               </button>
             </div>
 
-            {/* Live Refresh Button */}
+            {/* Live Refresh Button (Left prominently visible in Navbar) */}
             <button
               type="button"
               className="btn btn-secondary admin-refresh-btn"
@@ -708,47 +734,113 @@ export const AdminPortal = () => {
               <span>{txt.refresh}</span>
             </button>
 
-            {/* PWA Mobile App Install Button */}
-            {!isAppInstalled && (
+            {/* Settings Icon Dropdown containing App running badge, CSV export, and Logout */}
+            <div className="admin-settings-wrap" ref={settingsRef}>
               <button
                 type="button"
-                className="btn btn-gold admin-install-btn"
-                onClick={handleInstallApp}
-                title={txt.installApp}
+                className={`admin-settings-btn ${isSettingsOpen ? "active" : ""}`}
+                onClick={() => setIsSettingsOpen((prev) => !prev)}
+                title={txt.settingsTooltip || txt.settings}
+                aria-label={txt.settings}
+                aria-expanded={isSettingsOpen}
               >
-                <Smartphone size={16} />
-                <span>{txt.installApp}</span>
+                <Settings size={18} className="admin-settings-icon" />
               </button>
-            )}
 
-            {isAppInstalled && (
-              <div className="admin-installed-badge" title={txt.appRunning}>
-                <CheckCircle2 size={16} />
-                <span>{txt.appRunning}</span>
-              </div>
-            )}
+              {/* Settings Dropdown Popover */}
+              {isSettingsOpen && (
+                <div className="admin-settings-dropdown" role="menu" aria-label={txt.settings}>
+                  <div className="admin-settings-header">
+                    <span className="admin-settings-title">{txt.settings}</span>
+                    <button
+                      type="button"
+                      className="admin-settings-close-btn"
+                      onClick={() => setIsSettingsOpen(false)}
+                      aria-label="Close"
+                    >
+                      <X size={15} />
+                    </button>
+                  </div>
 
-            {/* CSV Export */}
-            <button
-              type="button"
-              className="btn btn-secondary admin-export-btn"
-              onClick={() => exportLeadsToCSV(leads, adminLang)}
-              title={txt.exportTooltip}
-            >
-              <FileSpreadsheet size={16} />
-              <span>{txt.exportCsv}</span>
-            </button>
+                  {/* 1. App Running / Connection Status Badge */}
+                  <div className="admin-settings-status-box">
+                    <div className="admin-settings-status-row">
+                      <div className="admin-settings-status-badge">
+                        <CheckCircle2 size={16} className="status-dot-icon" />
+                        <span>{txt.appRunning}</span>
+                      </div>
+                      <span className={`admin-settings-db-pill ${dataSource === "mysql" ? "connected" : "offline"}`}>
+                        {dataSource === "mysql" ? `● ${txt.mysqlConnected}` : `● ${txt.localOffline}`}
+                      </span>
+                    </div>
 
-            {/* Logout */}
-            <button
-              type="button"
-              className="btn btn-secondary admin-logout-btn"
-              onClick={handleLogout}
-              title={txt.logout}
-            >
-              <LogOut size={16} />
-              <span>{txt.logout}</span>
-            </button>
+                    {!isAppInstalled && (
+                      <button
+                        type="button"
+                        className="admin-settings-install-btn"
+                        onClick={() => {
+                          setIsSettingsOpen(false);
+                          handleInstallApp();
+                        }}
+                      >
+                        <Smartphone size={14} />
+                        <span>{txt.installApp}</span>
+                      </button>
+                    )}
+                  </div>
+
+                  <div className="admin-settings-divider" />
+
+                  {/* 2. CSV Export Button */}
+                  <button
+                    type="button"
+                    className="admin-settings-menu-item"
+                    onClick={() => {
+                      exportLeadsToCSV(leads, adminLang);
+                      setIsSettingsOpen(false);
+                    }}
+                    title={txt.exportTooltip}
+                  >
+                    <div className="admin-settings-item-icon gold">
+                      <FileSpreadsheet size={16} />
+                    </div>
+                    <div className="admin-settings-item-info">
+                      <span className="admin-settings-item-name">{txt.exportCsv}</span>
+                      <span className="admin-settings-item-sub">
+                        {adminLang === "ta"
+                          ? "Excel / CSV கோப்பாக பதிவிறக்குக"
+                          : "Download client leads as Excel CSV file"}
+                      </span>
+                    </div>
+                  </button>
+
+                  <div className="admin-settings-divider" />
+
+                  {/* 3. Logout Button */}
+                  <button
+                    type="button"
+                    className="admin-settings-menu-item logout"
+                    onClick={() => {
+                      setIsSettingsOpen(false);
+                      handleLogout();
+                    }}
+                    title={txt.logout}
+                  >
+                    <div className="admin-settings-item-icon red">
+                      <LogOut size={16} />
+                    </div>
+                    <div className="admin-settings-item-info">
+                      <span className="admin-settings-item-name">{txt.logout}</span>
+                      <span className="admin-settings-item-sub">
+                        {adminLang === "ta"
+                          ? "நிர்வாகி அமர்வை நிறைவு செய்க"
+                          : "Sign out from admin portal"}
+                      </span>
+                    </div>
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </header>

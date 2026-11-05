@@ -1892,6 +1892,28 @@ html[lang="ta"] .purpose-cta-text {
 }
 
 @media (max-width: 480px) {
+  .admin-header-container {
+    padding-left: 0.65rem;
+    padding-right: 0.65rem;
+  }
+
+  .admin-header-title {
+    font-size: 0.95rem;
+  }
+
+  .admin-db-badge {
+    display: none;
+  }
+
+  .admin-refresh-btn span {
+    display: none;
+  }
+
+  .admin-refresh-btn {
+    padding: 0.4rem 0.55rem;
+    width: 36px;
+    justify-content: center;
+  }
   .purpose-master-card {
     padding: 1.25rem 1rem !important;
     border-radius: 14px !important;
@@ -4958,34 +4980,270 @@ html[lang="ta"] .footer-social-label {
   background: var(--color-gold-hover);
 }
 
-.admin-installed-badge {
+/* Settings Trigger Button */
+.admin-settings-wrap {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  background: rgba(46, 90, 68, 0.25);
-  border: 1px solid rgba(46, 90, 68, 0.5);
+}
+
+.admin-settings-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FCFAF6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.admin-settings-btn:hover,
+.admin-settings-btn.active {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: var(--color-gold);
+  color: var(--color-gold-light);
+  transform: scale(1.04);
+}
+
+.admin-settings-icon {
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.admin-settings-btn:hover .admin-settings-icon,
+.admin-settings-btn.active .admin-settings-icon {
+  transform: rotate(45deg);
+}
+
+/* Settings Dropdown Popover */
+.admin-settings-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 290px;
+  max-width: calc(100vw - 2rem);
+  background: #241610;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  border-radius: 12px;
+  padding: 0.95rem;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  z-index: 1000;
+  animation: adminDropdownFade 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: top right;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+@keyframes adminDropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.admin-settings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-settings-title {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-gold-light);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.admin-settings-close-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s, background 0.2s;
+}
+
+.admin-settings-close-btn:hover {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* App Running Status Box inside Settings */
+.admin-settings-status-box {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.admin-settings-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.admin-settings-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   color: #A3E6C2;
-  padding: 0.35rem 0.65rem;
-  border-radius: 6px;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 600;
+}
+
+.admin-settings-status-badge .status-dot-icon {
+  color: #48BB78;
+  filter: drop-shadow(0 0 4px rgba(72, 187, 120, 0.5));
+}
+
+.admin-settings-db-pill {
+  font-size: 0.6875rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.admin-settings-db-pill.connected {
+  background: rgba(46, 90, 68, 0.35);
+  color: #9CE7BF;
+  border: 1px solid rgba(46, 90, 68, 0.55);
+}
+
+.admin-settings-db-pill.offline {
+  background: rgba(184, 75, 41, 0.3);
+  color: #F8B4A5;
+  border: 1px solid rgba(184, 75, 41, 0.5);
+}
+
+.admin-settings-install-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  background: var(--color-gold);
+  border: none;
+  color: #1F140E;
+  padding: 0.45rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.775rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.admin-settings-install-btn:hover {
+  background: var(--color-gold-hover);
+}
+
+.admin-settings-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 0.1rem 0;
+}
+
+/* Action Menu Items (CSV & Logout) */
+.admin-settings-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: #FCFAF6;
+  text-align: left;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.admin-settings-menu-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.admin-settings-menu-item.logout:hover {
+  background: rgba(158, 42, 43, 0.25);
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.admin-settings-item-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.admin-settings-item-icon.gold {
+  color: var(--color-gold-light);
+  background: rgba(212, 175, 55, 0.15);
+}
+
+.admin-settings-item-icon.red {
+  color: #FF8080;
+  background: rgba(239, 68, 68, 0.15);
+}
+
+.admin-settings-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.admin-settings-item-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  line-height: 1.25;
+}
+
+.admin-settings-menu-item.logout .admin-settings-item-name {
+  color: #FFB3B3;
+}
+
+.admin-settings-item-sub {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.2;
+}
+
+/* Kept for backwards compatibility */
+.admin-installed-badge {
+  display: none;
 }
 
 .admin-export-btn,
 .admin-logout-btn {
-  padding: 0.5rem 0.85rem;
-  font-size: 0.85rem;
-  min-height: 38px;
-  background: rgba(255, 255, 255, 0.1);
-  color: #FCFAF6;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 6px;
-}
-
-.admin-export-btn:hover,
-.admin-logout-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
+  display: none;
 }
 
 .admin-main {
@@ -5643,14 +5901,14 @@ html[lang="ta"] .footer-social-label {
   }
 
   .admin-header-container {
-    height: auto;
-    padding-top: 0.65rem;
-    padding-bottom: 0.65rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.55rem;
+    height: 64px;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0.85rem;
+    padding-right: 0.85rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     max-width: 100%;
     box-sizing: border-box;
   }
@@ -5658,53 +5916,60 @@ html[lang="ta"] .footer-social-label {
   .admin-header-brand {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
     gap: 0.5rem;
+    width: auto;
+    flex-shrink: 1;
+    min-width: 0;
   }
 
   .admin-header-title {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
+    line-height: 1.15;
+    white-space: nowrap;
+  }
+
+  .admin-header-badge {
+    font-size: 0.7rem;
   }
 
   .admin-header-actions {
-    width: 100%;
+    width: auto;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 0.4rem;
+    gap: 0.45rem;
     flex-wrap: nowrap;
-    max-width: 100%;
-    box-sizing: border-box;
+    flex-shrink: 0;
   }
 
   .admin-lang-switcher {
-    margin-right: auto;
+    margin-right: 0;
     flex-shrink: 0;
   }
 
-  /* Compact icon-only buttons on mobile to ensure zero horizontal overflow */
-  .admin-refresh-btn span,
-  .admin-installed-badge span,
-  .admin-install-btn span,
-  .admin-export-btn span,
-  .admin-logout-btn span {
-    display: none !important;
-  }
-
-  .admin-refresh-btn,
-  .admin-installed-badge,
-  .admin-install-btn,
-  .admin-export-btn,
-  .admin-logout-btn {
-    padding: 0.4rem 0.55rem;
+  .admin-refresh-btn {
+    padding: 0.4rem 0.65rem;
     min-height: 36px;
     height: 36px;
+    font-size: 0.775rem;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
+    gap: 0.35rem;
+    border-radius: 6px;
     flex-shrink: 0;
+  }
+
+  .admin-settings-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+  }
+
+  .admin-settings-dropdown {
+    width: 270px;
+    max-width: calc(100vw - 1.5rem);
+    right: 0;
+    top: calc(100% + 8px);
   }
 
   .admin-main {
