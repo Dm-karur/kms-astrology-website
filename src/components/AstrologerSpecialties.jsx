@@ -17,6 +17,7 @@ import {
   Play,
   ExternalLink,
   Trophy,
+  Sparkles,
 } from "lucide-react";
 
 // Clean inline YouTube brand icon component
@@ -191,22 +192,22 @@ export const AstrologerSpecialties = ({ onBookConsultation, onSelectService }) =
             <div className="ipl-showcase-header">
               <div className="ipl-showcase-title-group">
                 <div className="ipl-showcase-eyebrow">
-                  <Trophy size={14} className="text-gold" aria-hidden="true" />
+                  <Sparkles size={14} className="text-gold" aria-hidden="true" />
                   <span>
                     {isTamil
-                      ? "விளையாட்டு ஜோதிடம் & ஐபிஎல் கணிப்புகள்"
-                      : "Sports Astrology & Match Predictions"}
+                      ? "ஜோதிடக் கணிப்புகள் & ஆலோசனைகள் • சிறப்பு வீடியோக்கள்"
+                      : "Astrology Predictions & Guidance Videos"}
                   </span>
                 </div>
                 <h3 id="ipl-showcase-heading" className="ipl-showcase-title">
                   {isTamil
-                    ? "ஜோதிடர் சுப்ரமணியின் ஐபிஎல் போட்டி கணிப்புகள்"
-                    : "IPL Cricket Predictions by Astrologer Subramani"}
+                    ? "ஜோதிடர் சுப்ரமணியின் நேரடி வீடியோ பதிவுகள்"
+                    : "Video Predictions & Consultations by Astrologer Subramani"}
                 </h3>
                 <p className="ipl-showcase-subtitle">
                   {isTamil
-                    ? "கிரக நிலைகள், அணிகளின் லக்ன அமைப்புகள் மற்றும் வீரர்களின் தசாபுத்திகளை துல்லியமாக கணித்த நேரடி வீடியோக்கள்."
-                    : "Planetary positions, team horoscope lagna alignments, and player dasha periods analyzed for IPL matches."}
+                    ? "ஐபிஎல் கிரிக்கெட் போட்டிகள், உலகக் கோப்பை மற்றும் வேலைவாய்ப்பு, தொழில் சார்ந்த துல்லியமான வேத ஜோதிட வழிகாட்டல் வீடியோக்கள்."
+                    : "Accurate astrological analysis for sports matches, career choices, job opportunities, and personal decisions."}
                 </p>
               </div>
 
