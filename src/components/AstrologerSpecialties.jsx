@@ -301,15 +301,6 @@ export const AstrologerSpecialties = ({ onBookConsultation, onSelectService }) =
                       <div className="ipl-card-overlay" />
                     </div>
 
-                    {/* Top Tag & YouTube Shorts Badge */}
-                    <div className="ipl-card-top-badge">
-                      <div className="ipl-youtube-pill">
-                        <YouTubeIcon size={16} />
-                        <span>Shorts</span>
-                      </div>
-                      {tag && <span className="ipl-card-match-pill">{tag}</span>}
-                    </div>
-
                     {/* Center Floating Play Button */}
                     <div className="ipl-play-btn-wrap" aria-hidden="true">
                       <div className="ipl-play-btn">
