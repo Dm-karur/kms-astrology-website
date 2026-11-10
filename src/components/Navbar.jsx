@@ -87,7 +87,7 @@ export const Navbar = ({ onOpenConsultation }) => {
             src="/images/kms-logo.png"
             alt={isTamil ? siteConfig.brandNameTa : siteConfig.brandName}
             className="brand-logo-img"
-            width="84"
+            width="89"
             height="64"
           />
           {isTamil && (

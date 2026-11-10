@@ -31,7 +31,7 @@ export const Footer = ({ onOpenPolicy, onSelectService }) => {
                 src="/images/kms-logo-light.png"
                 alt={isTamil ? siteConfig.brandNameTa : siteConfig.brandName}
                 className="footer-brand-logo"
-                width="105"
+                width="111"
                 height="80"
               />
               {isTamil && (
