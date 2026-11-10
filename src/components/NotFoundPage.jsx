@@ -65,17 +65,18 @@ export const NotFoundPage = ({ onNavigateHome, onSelectService }) => {
             aria-label={isTamil ? siteConfig.brandNameTa : siteConfig.brandName}
             style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}
           >
-            <div className="brand-motif">
-              <BrandMotif size={24} />
-            </div>
-            <div className="brand-text-block">
-              <span className="brand-title">
-                {isTamil ? siteConfig.brandNameTa : siteConfig.brandName}
+            <img
+              src="/images/kms-logo.png"
+              alt={isTamil ? siteConfig.brandNameTa : siteConfig.brandName}
+              className="brand-logo-img"
+              width="63"
+              height="48"
+            />
+            {isTamil && (
+              <span className="brand-title-tamil">
+                {siteConfig.brandNameTa}
               </span>
-              <span className="brand-subtitle">
-                {isTamil ? siteConfig.taglineTa : siteConfig.tagline}
-              </span>
-            </div>
+            )}
           </button>
 
           <div className="nav-actions">

@@ -21,14 +21,25 @@ export const Footer = ({ onOpenPolicy, onSelectService }) => {
         <div className="footer-grid">
           {/* Column 1: Brand Info */}
           <div>
-            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1rem" }}>
-              <div className="brand-motif" style={{ background: "rgba(255,255,255,0.08)" }}>
-                <BrandMotif size={22} />
-              </div>
-              <span style={{ fontSize: "1.25rem", fontWeight: 700, color: "#FCFAF6", fontFamily: isTamil ? "var(--font-heading-ta)" : "var(--font-heading-en)" }}>
-                {isTamil ? siteConfig.brandNameTa : siteConfig.brandName}
-              </span>
-            </div>
+            <a
+              href="#home"
+              className="footer-brand-wrap"
+              onClick={(e) => handleNavClick(e, "home")}
+              aria-label={isTamil ? siteConfig.brandNameTa : siteConfig.brandName}
+            >
+              <img
+                src="/images/kms-logo-light.png"
+                alt={isTamil ? siteConfig.brandNameTa : siteConfig.brandName}
+                className="footer-brand-logo"
+                width="68"
+                height="52"
+              />
+              {isTamil && (
+                <span className="footer-brand-tamil">
+                  {siteConfig.brandNameTa}
+                </span>
+              )}
+            </a>
             <p className="footer-desc">
               {t.footer.description}
             </p>
