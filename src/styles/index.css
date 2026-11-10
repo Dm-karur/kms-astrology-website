@@ -433,7 +433,7 @@ html[lang="ta"] .footer-link {
   background-color: rgba(252, 250, 246, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: none;
   transition: all var(--transition-normal);
 }
 
